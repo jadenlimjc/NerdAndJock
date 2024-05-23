@@ -4,37 +4,54 @@ using UnityEngine;
 
 public class NerdController : MonoBehaviour
 {
-    private Rigidbody2D playerRb;
-    public float jumpForce = 10;
-    private float speed = 10;
-    public int jumpCount = 0;
-    public bool gameOver = false;
-    public float gravityModifier;
-    // Start is called before the first frame update
+    public float moveSpeed = 2f; // Speed of left/right movement
+    public float jumpForce = 4f; // Force applied for jumping
+    public Transform groundCheck; // Empty GameObject to check if the player is on the ground
+    public LayerMask groundLayer; // Layer mask to specify what is considered ground
+
+    private Rigidbody2D rb;
+    private bool isGrounded;
+
     void Start()
     {
-        playerRb = GetComponent<Rigidbody2D>();
-        Physics.gravity *= gravityModifier;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount  < 2) {
-            playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            jumpCount += 1;
-        }
-
-        while (Input.GetKeyDown(KeyCode.A)) {
-            playerRb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);
-        }
-        while (Input.GetKeyDown(KeyCode.D)) {
-            playerRb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
-        }
-        
+        Move();
+        Jump();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        jumpCount = 0;
+    void Move()
+    {
+        float moveInput = 0f;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveInput = -1f;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            moveInput = 1f;
+        }
+
+        Vector2 moveVelocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        rb.velocity = moveVelocity;
+    }
+
+    void Jump()
+    {
+        if (groundCheck == null)
+        {
+            return;
+        }
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.W))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
     }
 }
