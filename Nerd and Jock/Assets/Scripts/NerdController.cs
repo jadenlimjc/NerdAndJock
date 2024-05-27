@@ -9,6 +9,10 @@ public class NerdController : MonoBehaviour
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
 
+    public int maxJumps  = 2; //set max no. of jumps
+
+    private int jumpCount; //current no. of jumps
+
     private Rigidbody2D rb;
     private bool isGrounded;
 
@@ -17,6 +21,7 @@ public class NerdController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        jumpCount = maxJumps; //initialise jump count
     }
 
     void Update()
@@ -55,18 +60,14 @@ public class NerdController : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
 
-        if (isGrounded)
-        {
-            Debug.Log("Player is grounded");
-        }
-        else
-        {
-            Debug.Log("Player is not grounded");
+        if (isGrounded) {
+            jumpCount = maxJumps; //reset jumpCount when on ground
         }
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpCount--;  //decrease jumpCount after each jump
         }
     }
 
