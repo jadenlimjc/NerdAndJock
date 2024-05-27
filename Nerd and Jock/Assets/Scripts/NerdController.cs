@@ -78,7 +78,7 @@ public class NerdController : MonoBehaviour
             Debug.Log("Interacted with: " + currentInteractable.gameObject.name);
 
             //call  OnInteract
-            currentInteractable.GetComponent<InteractableObject>().OnInteract();
+            currentInteractable.GetComponent<InteractableLaptop>().OnInteract();
         }
     }
 
