@@ -61,7 +61,7 @@ public class JockController : MonoBehaviour
             jumpCount = maxJumps; //reset jumpCount when on ground
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && jumpCount > 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && jumpCount > 1)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--; //decrease jumpCount after each jump
