@@ -9,7 +9,7 @@ public class NerdController : MonoBehaviour
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
 
-    public int maxJumps  = 2; //set max no. of jumps
+    public int maxJumps  = 3; //set max no. of jumps
 
     private int jumpCount; //current no. of jumps
 
