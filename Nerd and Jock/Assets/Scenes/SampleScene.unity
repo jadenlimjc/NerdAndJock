@@ -889,7 +889,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1025736500}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   maxJumps: 2
 --- !u!114 &1006412462
 MonoBehaviour:
