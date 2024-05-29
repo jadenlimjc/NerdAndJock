@@ -520,7 +520,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &658419127
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -564,7 +564,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.24}
+  m_Size: {x: 0.24, y: 0.24000001}
   m_EdgeRadius: 0
 --- !u!1 &1003212251
 GameObject:
@@ -796,7 +796,6 @@ GameObject:
   - component: {fileID: 1006412461}
   - component: {fileID: 1006412464}
   - component: {fileID: 1006412463}
-  - component: {fileID: 1006412462}
   m_Layer: 0
   m_Name: jockPlaceholder
   m_TagString: Untagged
@@ -936,7 +935,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1006412464
 BoxCollider2D:
   m_ObjectHideFlags: 0
