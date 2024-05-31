@@ -70,7 +70,7 @@ public class JockController : MonoBehaviour
         RestrictPositionWithinCameraBounds();
     }
 
-    void Jump()
+   /*  void Jump()
     {
         if (groundCheck == null)
         {
@@ -89,6 +89,22 @@ public class JockController : MonoBehaviour
             jumpCount--; //decrease jumpCount after each jump
         }
 
+        RestrictPositionWithinCameraBounds();
+    } */
+
+    void Jump()
+    {
+        if (groundCheck == null)
+        {
+            return;
+        }
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
         RestrictPositionWithinCameraBounds();
     }
 
