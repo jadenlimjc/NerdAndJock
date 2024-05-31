@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableLaptop : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Transform wall;
     void Start()
     {
         
@@ -18,14 +19,12 @@ public class InteractableLaptop : MonoBehaviour
 
      public void OnInteract() {
 
-        // Find the child named "wallPlaceholder"
-        Transform wallPlaceholder = transform.Find("wallPlaceholder");
 
         // Check if the child exists
-        if (wallPlaceholder != null)
+        if (wall!= null)
         {
             // Destroy the child GameObject
-            Destroy(wallPlaceholder.gameObject);
+            Destroy(wall.gameObject);
         }
     }
 }

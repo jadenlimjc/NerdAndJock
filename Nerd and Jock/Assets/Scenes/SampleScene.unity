@@ -275,11 +275,11 @@ Transform:
   m_GameObject: {fileID: 193119439}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.983, y: 0.192, z: 0}
+  m_LocalPosition: {x: -0.57000005, y: 1.4100001, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2137658914}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -796,6 +796,7 @@ GameObject:
   - component: {fileID: 1006412461}
   - component: {fileID: 1006412464}
   - component: {fileID: 1006412463}
+  - component: {fileID: 1006412462}
   m_Layer: 0
   m_Name: jockPlaceholder
   m_TagString: Untagged
@@ -1405,7 +1406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427242164}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.99, y: 2.077, z: 0}
   m_LocalScale: {x: 4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1684,8 +1685,7 @@ Transform:
   m_LocalPosition: {x: 1.413, y: 1.218, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 193119443}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2137658915
@@ -1745,6 +1745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486271d292dc949faaf9325353ec0f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wall: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1753,8 +1754,9 @@ SceneRoots:
   - {fileID: 658419124}
   - {fileID: 1006412460}
   - {fileID: 1205212285}
-  - {fileID: 1427242168}
   - {fileID: 1553121819}
   - {fileID: 1003212256}
+  - {fileID: 1427242168}
   - {fileID: 2137658914}
   - {fileID: 1296954713}
+  - {fileID: 193119443}
