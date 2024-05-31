@@ -6,6 +6,9 @@ TagManager:
   tags:
   - jockInteract
   - nerdInteract
+  - door
+  - nerd
+  - jock
   layers:
   - Default
   - TransparentFX
