@@ -73,7 +73,7 @@ public class NerdController : MonoBehaviour
     }
 
     //jump function
-    void Jump()
+   /*  void Jump()
     {
         if (groundCheck == null)
         {
@@ -93,8 +93,24 @@ public class NerdController : MonoBehaviour
             jumpCount--;  //decrease jumpCount after each jump
         }
 
+        
+    } */
+    void Jump()
+    {
+        if (groundCheck == null)
+        {
+            return;
+        }
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.W))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
         RestrictPositionWithinCameraBounds();
     }
+    
 
     void Interact()
     {
