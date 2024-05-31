@@ -9,7 +9,7 @@ public class NerdController : MonoBehaviour
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
 
-    public int maxJumps  = 3; //set max no. of jumps
+    public int maxJumps = 1; //set max no. of jumps
 
     private int jumpCount; //current no. of jumps
 
@@ -87,7 +87,7 @@ public class NerdController : MonoBehaviour
             jumpCount = maxJumps; //reset jumpCount when on ground
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && jumpCount > 1)
+        if (Input.GetKeyDown(KeyCode.W) && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;  //decrease jumpCount after each jump

@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 658419127}
   - component: {fileID: 658419126}
   - component: {fileID: 658419128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: nerdPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,12 +490,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  jumpForce: 4
+  jumpForce: 5
   groundCheck: {fileID: 1575968448}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
-  maxJumps: 2
+    m_Bits: 136
+  maxJumps: 1
 --- !u!50 &658419126
 Rigidbody2D:
   serializedVersion: 4
@@ -813,9 +813,8 @@ GameObject:
   - component: {fileID: 1006412461}
   - component: {fileID: 1006412464}
   - component: {fileID: 1006412463}
-  - component: {fileID: 1006412462}
   - component: {fileID: 1006412465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: jockPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -903,31 +902,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  jumpForce: 4
+  jumpForce: 5
   groundCheck: {fileID: 1025736500}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
-  maxJumps: 2
---- !u!114 &1006412462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006412458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee1887891aa1b4344803009a9b9d8856, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 10
-  groundCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxJumps: 2
+    m_Bits: 72
+  maxJumps: 1
 --- !u!50 &1006412463
 Rigidbody2D:
   serializedVersion: 4
