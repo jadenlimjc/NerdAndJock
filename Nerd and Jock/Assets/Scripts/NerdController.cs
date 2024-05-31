@@ -9,10 +9,12 @@ public class NerdController : MonoBehaviour
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
 
+    // Fields used for multiple jump method
+    /*
     public int maxJumps = 1; //set max no. of jumps
 
     private int jumpCount; //current no. of jumps
-
+    */
     private Rigidbody2D rb;
     private bool isGrounded;
 
@@ -21,7 +23,10 @@ public class NerdController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpCount = maxJumps; //initialise jump count
+        // Initialise jumpCount for multiple jumps method
+        /*
+        jumpCount = maxJumps;
+        */
     }
 
     void Update()
@@ -31,6 +36,7 @@ public class NerdController : MonoBehaviour
         Interact();
     }
 
+    // Helper function used to restrict sprite's position to within the camera boundaries
     void RestrictPositionWithinCameraBounds()
     {
         Camera cam = Camera.main;
@@ -51,7 +57,7 @@ public class NerdController : MonoBehaviour
         }
     }
 
-    // move left and right function
+    // Move method to check input and corresponding lateral movement of sprites
     void Move()
     {
         float moveInput = 0f;
@@ -72,8 +78,8 @@ public class NerdController : MonoBehaviour
         RestrictPositionWithinCameraBounds();
     }
 
-    //jump function
-   /*  void Jump()
+    // Code for multiple jumps
+    /*  void Jump()
     {
         if (groundCheck == null)
         {
@@ -95,6 +101,8 @@ public class NerdController : MonoBehaviour
 
         
     } */
+
+    // Single jump method to check input and corresponding vertical movement of sprites
     void Jump()
     {
         if (groundCheck == null)
@@ -111,7 +119,7 @@ public class NerdController : MonoBehaviour
         RestrictPositionWithinCameraBounds();
     }
     
-
+    // Interact method to check input and corresponding interaction of sprites and objects
     void Interact()
     {
         if (currentInteractable != null && Input.GetKey(KeyCode.E))
@@ -123,7 +131,7 @@ public class NerdController : MonoBehaviour
         }
     }
 
-    //enable interact if within collider of object and object tag is nerdInteract
+    // Enable interact if within collider of object and object tag is nerdInteract
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("nerdInteract"))
@@ -133,7 +141,7 @@ public class NerdController : MonoBehaviour
     }
 
 
-    //disable interact when out of range with object
+    // Disable interact when out of range with object
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("nerdInteract"))
@@ -145,6 +153,7 @@ public class NerdController : MonoBehaviour
         }
     }
 
+    // To visualise groundCheck hitbox
     void OnDrawGizmos()
     {
         if (groundCheck != null)
@@ -153,7 +162,4 @@ public class NerdController : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
         }
     }
-
-
-
 }
