@@ -31,6 +31,26 @@ public class JockController : MonoBehaviour
         Interact();
     }
 
+    void RestrictPositionWithinCameraBounds()
+    {
+        Camera cam = Camera.main;
+        if (cam != null && cam.orthographic) 
+        {
+            float height = 2f * cam.orthographicSize;
+            float width = height * cam.aspect;
+            // Min and max boundaries
+            float minX = cam.transform.position.x - width/2;
+            float maxX = cam.transform.position.x + width/2;
+            float minY = cam.transform.position.y - height/2;
+            float maxY = cam.transform.position.y + height/2;
+
+            Vector2 characterPosition = transform.position;
+            characterPosition.x = Mathf.Clamp(characterPosition.x, minX + 0.5f, maxX - 0.5f);
+            characterPosition.y = Mathf.Clamp(characterPosition.y, minY + 0.5f, maxY - 0.5f);
+            transform.position = characterPosition;
+        }
+    }
+
     void Move()
     {
         float moveInput = 0f;
@@ -43,9 +63,11 @@ public class JockController : MonoBehaviour
         {
             moveInput = 1f;
         }
-
+        // Calculate new position 
         Vector2 moveVelocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         rb.velocity = moveVelocity;
+
+        RestrictPositionWithinCameraBounds();
     }
 
     void Jump()
@@ -66,6 +88,8 @@ public class JockController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--; //decrease jumpCount after each jump
         }
+
+        RestrictPositionWithinCameraBounds();
     }
 
     void Interact() {
