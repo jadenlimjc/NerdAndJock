@@ -9,10 +9,12 @@ public class JockController : MonoBehaviour
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
 
+    // Fields used for multiple jump method
+    /*
     public int maxJumps = 1;
 
     private int jumpCount;
-
+    */
     private Rigidbody2D rb;
     private bool isGrounded;
 
@@ -21,7 +23,10 @@ public class JockController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpCount = maxJumps; // initialise jumpCount
+        // Initialise jumpCount for multiple jumps method
+        /*
+        jumpCount = maxJumps;
+        */
     }
 
     void Update()
@@ -31,6 +36,7 @@ public class JockController : MonoBehaviour
         Interact();
     }
 
+    // Helper function used to restrict sprite's position to within the camera boundaries
     void RestrictPositionWithinCameraBounds()
     {
         Camera cam = Camera.main;
@@ -50,7 +56,8 @@ public class JockController : MonoBehaviour
             transform.position = characterPosition;
         }
     }
-
+    
+    // Move method to check input and corresponding lateral movement of sprites
     void Move()
     {
         float moveInput = 0f;
@@ -70,7 +77,8 @@ public class JockController : MonoBehaviour
         RestrictPositionWithinCameraBounds();
     }
 
-   /*  void Jump()
+    // Code for multiple jumps
+    /*  void Jump()
     {
         if (groundCheck == null)
         {
@@ -92,6 +100,7 @@ public class JockController : MonoBehaviour
         RestrictPositionWithinCameraBounds();
     } */
 
+    // Single jump method to check input and corresponding vertical movement of sprites
     void Jump()
     {
         if (groundCheck == null)
@@ -108,8 +117,9 @@ public class JockController : MonoBehaviour
         RestrictPositionWithinCameraBounds();
     }
 
+    // Interact method to check input and corresponding interaction of sprites and objects
     void Interact() {
-        if (currentInteractable != null && Input.GetKey(KeyCode.RightShift)) {
+        if (currentInteractable != null && Input.GetKey(KeyCode.Return)) {
             Debug.Log("Interacted with: " + currentInteractable.gameObject.name);
 
             //call  OnInteract
@@ -117,7 +127,7 @@ public class JockController : MonoBehaviour
         }
     }
 
-    //enable interact if within collider of object and object tag is nerdInteract
+    // Enable interact if within collider of object and object tag is nerdInteract
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("jockInteract")) {
             currentInteractable = other.gameObject;
@@ -125,7 +135,7 @@ public class JockController : MonoBehaviour
     }
 
     
-    //disable interact when out of range with object
+    // Disable interact when out of range with object
     void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("jockInteract")) {
             if (currentInteractable == other.gameObject) {
@@ -134,6 +144,7 @@ public class JockController : MonoBehaviour
         }
     }
     
+    // To visualise groundCheck hitbox
     void OnDrawGizmos()
     {
         if (groundCheck != null)
