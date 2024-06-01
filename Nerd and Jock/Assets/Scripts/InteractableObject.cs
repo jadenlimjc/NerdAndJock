@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
+    public Transform text;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +21,6 @@ public class InteractableObject : MonoBehaviour
 
         // example interaction, subject to change
         Destroy(gameObject);
+        Destroy(text.gameObject);
     }
 }
