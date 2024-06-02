@@ -19,10 +19,18 @@ public class respawnOutOfBounds : MonoBehaviour
     void Update()
     {
     
-        if (transform.position.y < lowerBound) {
+        if (!isRespawning && (transform.position.y < lowerBound ||
+                            !isWithinCameraView())) {
             StartCoroutine(respawnAfterDelay());
         }
         
+    }
+
+    private bool isWithinCameraView() 
+    {
+        Camera cam = Camera.main;
+        Vector3 screenPoint = cam.WorldToViewportPoint(transform.position);
+        return screenPoint.y >= 0 && screenPoint.y <= 1;
     }
 
     private IEnumerator respawnAfterDelay() {

@@ -52,7 +52,7 @@ public class JockController : MonoBehaviour
 
             Vector2 characterPosition = transform.position;
             characterPosition.x = Mathf.Clamp(characterPosition.x, minX + 0.5f, maxX - 0.5f);
-            characterPosition.y = Mathf.Clamp(characterPosition.y, minY + 0.5f, maxY - 0.5f);
+            //characterPosition.y = Mathf.Clamp(characterPosition.y, minY + 0.5f, maxY - 0.5f);
             transform.position = characterPosition;
         }
     }
