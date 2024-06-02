@@ -12,14 +12,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d402f598c2042759f69fa56f14b05b, type: 3}
   m_Name: Pixel Image
   m_EditorClassIdentifier: 
-  width: 0
-  height: 0
-  layers: []
+  width: 8
+  height: 8
+  layers:
+  - name: Layer 1
+    map:
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    tex: {fileID: 0}
+    enabled: 1
+    opacity: 1
+    mode: 0
+    locked: 0
+    parentImg: {fileID: 11400000}
   finalImg: {fileID: 0}
-  _gridSpacing: 20
+  _gridSpacing: 10
   gridOffsetY: 0
   gridOffsetX: 0
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
   tool: 0
   gridBGIndex: 0
-  dirty: 0
+  dirty: 1
