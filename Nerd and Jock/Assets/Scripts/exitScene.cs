@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class exitScene : MonoBehaviour
+public class ExitScene : MonoBehaviour
 {
     public string sceneToLoad = "EndScene"; // Name of the scene to load
     public static bool nerdInDoor = false;
