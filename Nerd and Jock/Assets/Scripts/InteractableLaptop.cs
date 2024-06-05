@@ -17,7 +17,7 @@ public class InteractableLaptop : MonoBehaviour
         
     }
 
-     public void OnInteract() {
+    public void OnInteract() {
 
 
         // Check if the child exists
