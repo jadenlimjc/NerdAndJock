@@ -141,18 +141,20 @@ public class NerdController : MonoBehaviour
     // Interact method to check input and corresponding interaction of sprites and objects
     void Interact()
     {
-        if (currentInteractable != null && Input.GetKey(KeyCode.E)) {
-            IInteractable interactable =  currentInteractable.GetComponent<IInteractable>();
-            if (interactable != null) {
-                interactable.OnInteract();
-            }
+        if (currentInteractable != null && Input.GetKey(KeyCode.E))
+        {
+            Debug.Log("Interacted with: " + currentInteractable.gameObject.name);
+
+            //call  OnInteract
+            currentInteractable.GetComponent<InteractableLaptop>().OnInteract();
         }
     }
 
     // Enable interact if within collider of object and object tag is nerdInteract
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<IInteractable>() != null && other.CompareTag("nerdInteract")) {
+        if (other.CompareTag("nerdInteract"))
+        {
             currentInteractable = other.gameObject;
         }
     }
@@ -161,8 +163,12 @@ public class NerdController : MonoBehaviour
     // Disable interact when out of range with object
     void OnTriggerExit2D(Collider2D other)
     {
-         if (other.gameObject == currentInteractable) {
-            currentInteractable = null;
+        if (other.CompareTag("nerdInteract"))
+        {
+            if (currentInteractable == other.gameObject)
+            {
+                currentInteractable = null;
+            }
         }
     }
 

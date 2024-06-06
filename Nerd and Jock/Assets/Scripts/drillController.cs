@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class drillController : MonoBehaviour , IInteractable
+public class drillController : MonoBehaviour
 {
     public float speed  = 0.8f;
     public float leftBound;
@@ -65,9 +65,5 @@ public class drillController : MonoBehaviour , IInteractable
     void ScheduleNextJump()
     {
         nextJumpTime = Time.time + Random.Range(jumpIntervalMin, jumpIntervalMax);
-    }
-
-    public void OnInteract() {
-        Destroy(gameObject);
     }
 }
