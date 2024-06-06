@@ -9,6 +9,8 @@ public class JockController : MonoBehaviour
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
 
+    public LayerMask enemyHead; //Layer mask to specify what is considered the enemies' head
+
     // Fields used for multiple jump method
     /*
     public int maxJumps = 1;
@@ -17,6 +19,8 @@ public class JockController : MonoBehaviour
     */
     private Rigidbody2D rb;
     private bool isGrounded;
+
+    private bool landOnEnemy;
 
     private GameObject currentInteractable;
 
@@ -115,6 +119,14 @@ public class JockController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         RestrictPositionWithinCameraBounds();
+    }
+
+    void Kill(Collider2D other) {
+        landOnEnemy = Physics2D.OverlapCircle(groundCheck.position, 0.1f, enemyHead);
+
+        if (landOnEnemy) {
+            Destroy(other.gameObject);
+        }
     }
 
     // Interact method to check input and corresponding interaction of sprites and objects

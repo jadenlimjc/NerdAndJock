@@ -5,7 +5,7 @@ using UnityEngine;
 public class respawnOutOfBounds : MonoBehaviour
 {
     public float lowerBound = -10.0f;
-    public float respawnTimer = 3.0f;
+    public float respawnTimer = 1.0f;
     // Start is called before the first frame update
     public Vector2 spawn = new Vector2(0,0);
     private bool isRespawning = false;

@@ -9,6 +9,7 @@ TagManager:
   - door
   - nerd
   - jock
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Nerd
   - Jock
   - Background
-  - 
+  - enemy
   - 
   - 
   - 
