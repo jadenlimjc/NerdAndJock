@@ -67,7 +67,7 @@ public class drillController : MonoBehaviour , IInteractable
         nextJumpTime = Time.time + Random.Range(jumpIntervalMin, jumpIntervalMax);
     }
 
-    OnInteract() {
-        Destroy()
+    public void OnInteract() {
+        Destroy(gameObject);
     }
 }
