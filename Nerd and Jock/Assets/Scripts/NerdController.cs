@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NerdController : MonoBehaviour
 {
+    public Animator animator; // Reference animator component
+    private SpriteRenderer spriteRenderer;
     public float moveSpeed = 2f; // Speed of left/right movement
     public float jumpForce = 4f; // Force applied for jumping
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
@@ -23,6 +25,7 @@ public class NerdController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         // Initialise jumpCount for multiple jumps method
         /*
         jumpCount = maxJumps;
@@ -34,6 +37,7 @@ public class NerdController : MonoBehaviour
         Move();
         Jump();
         Interact();
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
     }
 
     // Helper function used to restrict sprite's position to within the camera boundaries
@@ -74,6 +78,12 @@ public class NerdController : MonoBehaviour
         // Calculate new position
         Vector2 moveVelocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         rb.velocity = moveVelocity;
+
+        // Flip the sprite based on movement direction
+        if (moveInput != 0)
+        {
+            spriteRenderer.flipX = moveInput < 0;
+        }
 
         RestrictPositionWithinCameraBounds();
     }
