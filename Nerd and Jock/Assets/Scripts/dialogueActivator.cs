@@ -5,25 +5,32 @@ using UnityEngine;
 public class dialogueActivator : MonoBehaviour
 {
     public GameObject dialogue;
-    public GameObject player;
-    public float activationRange = 5f;
+    public GameObject other;
+    public float activationRange = 1f;
 
 
     // Update is called once per frame
     void Update()
     {
-        //calculate distance between player and object
-        float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
-        //Debug.Log("distance to player: " + distanceToPlayer);
+         // Check if the other GameObject exists
+        if (other == null || other.gameObject == null)
+        {
+            dialogue.SetActive(false);
+            return;
+        }
 
-        //check if player in activation range
-        if (distanceToPlayer < activationRange) {
-            dialogue.SetActive(true);
+        // Calculate distance between player and object
+        float distanceToOther = Vector2.Distance(other.transform.position, transform.position);
+
+        // Check if player is in activation range
+        if (distanceToOther > activationRange)
+        {
+            dialogue.SetActive(false);
         }
         else
-            {
-                // Deactivate the target object
-                dialogue.SetActive(false);
-            }
+        {
+            // Activate the dialogue object
+            dialogue.SetActive(true);
+        }
     }
 }
