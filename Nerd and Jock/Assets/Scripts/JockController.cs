@@ -139,27 +139,21 @@ public class JockController : MonoBehaviour
         RestrictPositionWithinCameraBounds();
     }
 
-    void Kill(Collider2D other) {
-        landOnEnemy = Physics2D.OverlapCircle(groundCheck.position, 0.1f, enemyHead);
 
-        if (landOnEnemy) {
-            Destroy(other.gameObject);
-        }
-    }
 
     // Interact method to check input and corresponding interaction of sprites and objects
     void Interact() {
         if (currentInteractable != null && Input.GetKey(KeyCode.Return)) {
-            Debug.Log("Interacted with: " + currentInteractable.gameObject.name);
-
-            //call  OnInteract
-            currentInteractable.GetComponent<InteractableObject>().OnInteract();
+            IInteractable interactable =  currentInteractable.GetComponent<IInteractable>();
+            if (interactable != null) {
+                interactable.OnInteract();
+            }
         }
     }
 
     // Enable interact if within collider of object and object tag is nerdInteract
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("jockInteract")) {
+        if (other.gameObject.GetComponent<IInteractable>() != null && other.CompareTag("jockInteract")) {
             currentInteractable = other.gameObject;
         }
     }
@@ -167,10 +161,8 @@ public class JockController : MonoBehaviour
     
     // Disable interact when out of range with object
     void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("jockInteract")) {
-            if (currentInteractable == other.gameObject) {
-                currentInteractable = null;
-            }
+        if (other.gameObject == currentInteractable) {
+            currentInteractable = null;
         }
     }
     

@@ -1121,9 +1121,8 @@ GameObject:
   - component: {fileID: 1003212255}
   - component: {fileID: 1003212254}
   - component: {fileID: 1003212253}
-  - component: {fileID: 1003212252}
   - component: {fileID: 1003212257}
-  - component: {fileID: 1003212258}
+  - component: {fileID: 1003212259}
   m_Layer: 0
   m_Name: blockPlaceholder
   m_TagString: jockInteract
@@ -1131,19 +1130,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1003212252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003212251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 066fae4b828d54dca96935a905003725, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 4193711592536145596}
 --- !u!61 &1003212253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1328,7 +1314,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 3.2}
   m_EdgeRadius: 0
---- !u!114 &1003212258
+--- !u!114 &1003212259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1337,12 +1323,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1003212251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f3caa1f5bc0481ea36dff8bfd40940, type: 3}
+  m_Script: {fileID: 11500000, guid: f8bd921af72724649b0757a6f0d31b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 8590568104791612440}
-  player: {fileID: 6541011633527727115}
-  activationRange: 1.5
 --- !u!1001 &1072139765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2164,7 +2147,6 @@ GameObject:
   - component: {fileID: 2137658913}
   - component: {fileID: 2137658916}
   - component: {fileID: 2137658915}
-  - component: {fileID: 2137658917}
   m_Layer: 0
   m_Name: laptopPlaceholder
   m_TagString: nerdInteract
@@ -2297,21 +2279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 1980791533}
---- !u!114 &2137658917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137658912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f3caa1f5bc0481ea36dff8bfd40940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 1232170038}
-  player: {fileID: 658419122}
-  activationRange: 1.2
 --- !u!114 &199668777708432062
 MonoBehaviour:
   m_ObjectHideFlags: 0
