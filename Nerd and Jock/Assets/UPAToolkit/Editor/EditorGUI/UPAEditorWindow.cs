@@ -197,6 +197,7 @@ public class UPAEditorWindow : EditorWindow {
 		
 		UPADrawer.DrawLayerPanel ( window.position );
 		
+		
 		e.Use();	// Release event handler
 	}
 }

@@ -37,7 +37,7 @@ public class NerdController : MonoBehaviour
         Move();
         Jump();
         Interact();
-        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        UpdateAnimator();
     }
 
     // Helper function used to restrict sprite's position to within the camera boundaries
@@ -59,6 +59,15 @@ public class NerdController : MonoBehaviour
             //characterPosition.y = Mathf.Clamp(characterPosition.y, minY + 0.5f, maxY - 0.5f);
             transform.position = characterPosition;
         }
+    }
+
+    // Update animator method to transition between frames
+    void UpdateAnimator() 
+    {
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        // Check if character is grounded 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        animator.SetBool("IsJumping", !isGrounded);
     }
 
     // Move method to check input and corresponding lateral movement of sprites

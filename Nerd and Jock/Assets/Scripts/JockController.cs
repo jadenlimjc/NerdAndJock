@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JockController : MonoBehaviour
 {
+    public Animator animator; // Reference animator component
+    private SpriteRenderer spriteRenderer;
     public float moveSpeed = 2f; // Speed of left/right movement
     public float jumpForce = 4f; // Force applied for jumping
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
@@ -27,6 +29,7 @@ public class JockController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         // Initialise jumpCount for multiple jumps method
         /*
         jumpCount = maxJumps;
@@ -38,6 +41,7 @@ public class JockController : MonoBehaviour
         Move();
         Jump();
         Interact();
+        UpdateAnimator();
     }
 
     // Helper function used to restrict sprite's position to within the camera boundaries
@@ -60,6 +64,14 @@ public class JockController : MonoBehaviour
             transform.position = characterPosition;
         }
     }
+
+    void UpdateAnimator() 
+    {
+        animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        // Check if character is grounded 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        animator.SetBool("IsJumping", !isGrounded);
+    }
     
     // Move method to check input and corresponding lateral movement of sprites
     void Move()
@@ -77,6 +89,12 @@ public class JockController : MonoBehaviour
         // Calculate new position 
         Vector2 moveVelocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         rb.velocity = moveVelocity;
+
+        // Flip the sprite based on movement direction
+        if (moveInput != 0)
+        {
+            spriteRenderer.flipX = moveInput < 0;
+        }
 
         RestrictPositionWithinCameraBounds();
     }

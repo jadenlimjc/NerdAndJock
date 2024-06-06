@@ -14,7 +14,7 @@ public class dialogueActivator : MonoBehaviour
     {
         //calculate distance between player and object
         float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
-        Debug.Log("distance to player: " + distanceToPlayer);
+        //Debug.Log("distance to player: " + distanceToPlayer);
 
         //check if player in activation range
         if (distanceToPlayer < activationRange) {
