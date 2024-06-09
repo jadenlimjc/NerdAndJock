@@ -12,19 +12,18 @@ public class JockController : MonoBehaviour
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
 
     public LayerMask enemyHead; //Layer mask to specify what is considered the enemies' head
+    private Rigidbody2D rb;
+    private bool isGrounded;
+    private bool landOnEnemy;
+    private GameObject currentInteractable;
+    private bool isInteracting = false;
 
-    // Fields used for multiple jump method
+      // Fields used for multiple jump method
     /*
     public int maxJumps = 1;
 
     private int jumpCount;
     */
-    private Rigidbody2D rb;
-    private bool isGrounded;
-
-    private bool landOnEnemy;
-
-    private GameObject currentInteractable;
 
     void Start()
     {
@@ -38,8 +37,11 @@ public class JockController : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Jump();
+        if (!isInteracting) 
+        {
+            Move();
+            Jump();
+        }
         Interact();
         UpdateAnimator();
     }
@@ -142,12 +144,33 @@ public class JockController : MonoBehaviour
 
 
     // Interact method to check input and corresponding interaction of sprites and objects
-    void Interact() {
-        if (currentInteractable != null && Input.GetKey(KeyCode.Return)) {
+    void Interact()
+    {
+        if (currentInteractable != null && Input.GetKey(KeyCode.Return) && !isInteracting) {
             IInteractable interactable =  currentInteractable.GetComponent<IInteractable>();
             if (interactable != null) {
-                interactable.OnInteract();
+                StartCoroutine(InteractCoroutine(interactable));
+                //interactable.OnInteract();
             }
+        }
+    }
+
+    // InteractCoroutine method to disrupt movement and interactions when an interaction is called
+    IEnumerator InteractCoroutine(IInteractable interactable) 
+    {
+        isInteracting = true; // Disable movement and interactions
+        animator.SetBool("IsInteracting", true); // Start interaction animation
+        rb.velocity = Vector2.zero; // Make the sprite stop moving
+        rb.isKinematic = true; // Make the sprite unaffected by other sprites
+        yield return new WaitForSeconds(3); // Wait for 3 seconds
+        interactable.OnInteract(); // Call the interaction
+        rb.isKinematic = false; // Make the sprite unaffected by other sprites
+        animator.SetBool("IsInteracting", false); // Stop interaction animation
+        isInteracting = false; // Enable movement and interactions
+        
+        if (currentInteractable == (interactable as MonoBehaviour).gameObject) 
+        {
+            currentInteractable = null;
         }
     }
 

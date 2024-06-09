@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class BlockInteractable : MonoBehaviour , IInteractable
 {
-    
+    public Transform block;
 
     public void OnInteract() {
-
-        // example interaction, subject to change
-        Destroy(gameObject);
+        Destroy(block.gameObject); // Destroy the block
     }
 }

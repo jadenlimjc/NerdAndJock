@@ -10,6 +10,10 @@ public class NerdController : MonoBehaviour
     public float jumpForce = 4f; // Force applied for jumping
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
+    private Rigidbody2D rb;
+    private bool isGrounded;
+    private GameObject currentInteractable;
+    private bool isInteracting = false;
 
     // Fields used for multiple jump method
     /*
@@ -17,10 +21,6 @@ public class NerdController : MonoBehaviour
 
     private int jumpCount; //current no. of jumps
     */
-    private Rigidbody2D rb;
-    private bool isGrounded;
-
-    private GameObject currentInteractable;
 
     void Start()
     {
@@ -34,8 +34,11 @@ public class NerdController : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Jump();
+        if (!isInteracting) 
+        {
+            Move();
+            Jump();
+        }
         Interact();
         UpdateAnimator();
     }
@@ -141,13 +144,34 @@ public class NerdController : MonoBehaviour
     // Interact method to check input and corresponding interaction of sprites and objects
     void Interact()
     {
-        if (currentInteractable != null && Input.GetKey(KeyCode.E)) {
+        if (currentInteractable != null && Input.GetKey(KeyCode.E) && !isInteracting) {
             IInteractable interactable =  currentInteractable.GetComponent<IInteractable>();
             if (interactable != null) {
-                interactable.OnInteract();
+                StartCoroutine(InteractCoroutine(interactable));
+                //interactable.OnInteract();
             }
         }
     }
+
+    // InteractCoroutine method to disrupt movement and interactions when an interaction is called
+    IEnumerator InteractCoroutine(IInteractable interactable) 
+    {
+        isInteracting = true; // Disable movement and interactions
+        animator.SetBool("IsInteracting", true); // Start interaction animation
+        rb.velocity = Vector2.zero; // Make the sprite stop moving
+        rb.isKinematic = true; // Make the sprite unaffected by other sprites
+        yield return new WaitForSeconds(3); // Wait for 3 seconds
+        interactable.OnInteract(); // Call the interaction
+        rb.isKinematic = false; // Make the sprite unaffected by other sprites
+        animator.SetBool("IsInteracting", false); // Stop interaction animation
+        isInteracting = false; // Enable movement and interactions
+        
+        if (currentInteractable == (interactable as MonoBehaviour).gameObject) 
+        {
+            currentInteractable = null;
+        }
+    }
+
 
     // Enable interact if within collider of object and object tag is nerdInteract
     void OnTriggerEnter2D(Collider2D other)

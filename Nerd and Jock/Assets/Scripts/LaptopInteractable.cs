@@ -9,8 +9,8 @@ public class LaptopInteractable : MonoBehaviour , IInteractable
     
 
     public void OnInteract() {
-        // Destroy the child GameObject
-            Destroy(wall.gameObject);
 
+        Destroy(wall.gameObject); // Destroy the wall
+        GetComponent<Collider2D>().enabled = false; // Disable laptop to prevent further interaction
     }
 }

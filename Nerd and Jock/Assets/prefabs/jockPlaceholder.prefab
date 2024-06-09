@@ -370,12 +370,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1887891aa1b4344803009a9b9d8856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   moveSpeed: 2
   jumpForce: 6
   groundCheck: {fileID: 5386408637348890979}
   groundLayer:
     serializedVersion: 2
     m_Bits: 72
+  enemyHead:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &5428297764630142484
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -410,9 +414,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.035648346, y: 0.16560784}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.6666667, y: 2.6666667}
+    border: {x: 0, y: 0.4, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.122}
+    oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -502,7 +506,7 @@ Transform:
   m_GameObject: {fileID: 8598637936563627228}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3875364, y: 0.8672102, z: -1}
+  m_LocalPosition: {x: 1.69, y: 2.47, z: 2}
   m_LocalScale: {x: 0.73521847, y: 1.5437002, z: 1.1532838}
   m_ConstrainProportionsScale: 0
   m_Children:
