@@ -3,24 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - jockInteract
-  - nerdInteract
-  - door
-  - nerd
-  - jock
-  - enemy
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - Nerd
-  - Jock
-  - Background
-  - enemy
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -46,24 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-<<<<<<< Updated upstream
-  - name: Foreground
-    uniqueID: 2602483647
-    locked: 0
-  - name: Background
-    uniqueID: 618814119
-=======
-  - name: Background
-    uniqueID: 3970411603
-    locked: 0
-  - name: Interactables
-    uniqueID: 2726309767
-    locked: 0
-  - name: Characters
-    uniqueID: 2602483647
-    locked: 0
-  - name: UI
-    uniqueID: 2856119205
->>>>>>> Stashed changes
     locked: 0
