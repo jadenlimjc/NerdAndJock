@@ -10,16 +10,24 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 offset = new Vector3(0,0,-3);
 
 
-    void Start()
-    {
-    
-    }
-
-    // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = (player1.transform.position 
-                             + player2.transform.position) / 2 
-                             + offset;
+        // Check if player1 or player2 is null
+        if (player1 == null)
+        {
+            player1 = GameObject.FindGameObjectWithTag("nerd");
+        }
+
+        if (player2 == null)
+        {
+            player2 = GameObject.FindGameObjectWithTag("jock");
+        }
+
+        // Check if both players are not null
+        if (player1 != null && player2 != null)
+        {
+            // Follow the midpoint between player1 and player2
+            transform.position = (player1.transform.position + player2.transform.position) / 2 + offset;
+        }
     }
 }

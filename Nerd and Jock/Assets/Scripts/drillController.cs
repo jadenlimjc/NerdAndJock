@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class drillController : MonoBehaviour , IInteractable
+public class drillController : MonoBehaviour
 {
-    public float speed  = 0.8f;
+    public float speed = 0.8f;
     public float leftBound;
     public float rightBound;
     private bool movingLeft = true;
@@ -21,11 +21,12 @@ public class drillController : MonoBehaviour , IInteractable
         ScheduleNextJump();
     }
 
-   // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
         Move();
-        if (Time.time >= nextJumpTime) {
+        if (Time.time >= nextJumpTime)
+        {
             Jump();
             ScheduleNextJump();
         }
@@ -57,7 +58,7 @@ public class drillController : MonoBehaviour , IInteractable
         }
     }
 
-   void Jump()
+    void Jump()
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -67,7 +68,12 @@ public class drillController : MonoBehaviour , IInteractable
         nextJumpTime = Time.time + Random.Range(jumpIntervalMin, jumpIntervalMax);
     }
 
-    public void OnInteract() {
-        Destroy(gameObject);
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("jock") || other.gameObject.CompareTag("nerd"))
+        {
+            other.gameObject.SendMessage("StartRespawn");
+        }
     }
 }

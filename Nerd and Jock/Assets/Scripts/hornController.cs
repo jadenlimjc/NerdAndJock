@@ -46,4 +46,13 @@ public class hornController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("jock") || other.gameObject.CompareTag("nerd"))
+        {
+            other.gameObject.SendMessage("StartRespawn");
+        }
+    }
+
+
 }
