@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class drillController : MonoBehaviour , IInteractable
+public class drillController : MonoBehaviour
 {
-    public float speed  = 0.8f;
+    public float speed = 0.8f;
     public float leftBound;
     public float rightBound;
     private bool movingLeft = true;
@@ -21,11 +21,12 @@ public class drillController : MonoBehaviour , IInteractable
         ScheduleNextJump();
     }
 
-   // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
         Move();
-        if (Time.time >= nextJumpTime) {
+        if (Time.time >= nextJumpTime)
+        {
             Jump();
             ScheduleNextJump();
         }
@@ -57,7 +58,7 @@ public class drillController : MonoBehaviour , IInteractable
         }
     }
 
-   void Jump()
+    void Jump()
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -67,7 +68,30 @@ public class drillController : MonoBehaviour , IInteractable
         nextJumpTime = Time.time + Random.Range(jumpIntervalMin, jumpIntervalMax);
     }
 
-    public void OnInteract() {
-        Destroy(gameObject);
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("jock") || other.gameObject.CompareTag("nerd"))
+        {
+            // Check if the collision is from above
+            if (IsCollisionFromAbove(other))
+            {
+                Destroy(gameObject); // Destroy the horn
+            }
+            else
+            {
+                // If not from above, trigger respawn logic
+                other.gameObject.SendMessage("StartRespawn");
+            }
+        }
+    }
+
+     bool IsCollisionFromAbove(Collision2D collision)
+    {
+        // Get the collision point
+        ContactPoint2D contact = collision.GetContact(0);
+
+        // Compare the positions
+        return contact.point.y > transform.position.y;
     }
 }
