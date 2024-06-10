@@ -73,7 +73,25 @@ public class drillController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("jock") || other.gameObject.CompareTag("nerd"))
         {
-            other.gameObject.SendMessage("StartRespawn");
+            // Check if the collision is from above
+            if (IsCollisionFromAbove(other))
+            {
+                Destroy(gameObject); // Destroy the horn
+            }
+            else
+            {
+                // If not from above, trigger respawn logic
+                other.gameObject.SendMessage("StartRespawn");
+            }
         }
+    }
+
+     bool IsCollisionFromAbove(Collision2D collision)
+    {
+        // Get the collision point
+        ContactPoint2D contact = collision.GetContact(0);
+
+        // Compare the positions
+        return contact.point.y > transform.position.y;
     }
 }
