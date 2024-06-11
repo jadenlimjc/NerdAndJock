@@ -17,6 +17,7 @@ public class JockController : MonoBehaviour
     private bool landOnEnemy;
     private GameObject currentInteractable;
     private bool isInteracting = false;
+    private bool isDead = false;
 
       // Fields used for multiple jump method
     /*
