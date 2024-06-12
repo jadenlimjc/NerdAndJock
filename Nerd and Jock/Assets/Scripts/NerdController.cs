@@ -14,7 +14,6 @@ public class NerdController : MonoBehaviour
     private bool isGrounded;
     private GameObject currentInteractable;
     private bool isInteracting = false;
-    private bool isDead = false;
 
     // Fields used for multiple jump method
     /*

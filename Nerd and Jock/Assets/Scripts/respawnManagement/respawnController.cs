@@ -77,7 +77,6 @@ public class respawnController : MonoBehaviour
     {
         if (!isDying && !isRespawning)
         {
-            Debug.Log("Calling StartRespawn"); // Debug log
             StartCoroutine(respawnAfterDelayWithAnimation());
         }
     }
