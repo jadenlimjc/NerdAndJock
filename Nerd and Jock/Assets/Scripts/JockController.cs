@@ -162,8 +162,8 @@ public class JockController : MonoBehaviour
         animator.SetBool("IsInteracting", true); // Start interaction animation
         rb.velocity = Vector2.zero; // Make the sprite stop moving
         rb.isKinematic = true; // Make the sprite unaffected by other sprites
+        interactable.OnInteract(); // Trigger the animation for the block immediately
         yield return new WaitForSeconds(3); // Wait for 3 seconds
-        interactable.OnInteract(); // Call the interaction
         rb.isKinematic = false; // Make the sprite unaffected by other sprites
         animator.SetBool("IsInteracting", false); // Stop interaction animation
         isInteracting = false; // Enable movement and interactions
