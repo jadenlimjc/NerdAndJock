@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 293731935298458318}
   - component: {fileID: 631684607975367862}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: ProfDialogueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -322, y: 29}
+  m_AnchoredPosition: {x: -664, y: 387}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &293731935298458318
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hmm... can i break this?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -82.78786, w: -77.656746}
+  m_margin: {x: 0, y: -14.042695, z: -458.31744, w: -200.53006}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 1676810962466025688}
   - component: {fileID: 6094128141669011528}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: TutorialSpeechBubbleCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ RectTransform:
   m_GameObject: {fileID: 1372245556989281313}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0056091547, y: 0.0022330838, z: 0.017781932}
+  m_LocalScale: {x: 0.0024621317, y: 0.0010757742, z: 0.009137424}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5537553425490835587}
@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.04, y: 1.02}
+  m_AnchoredPosition: {x: -1.41, y: 1.03}
   m_SizeDelta: {x: 1919, y: 1048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4789414422249011753
@@ -245,6 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8708655395048308752}
+  - component: {fileID: 7574619029878015029}
   - component: {fileID: 8362442725058800398}
   m_Layer: 0
   m_Name: SpeechBubblePrefab
@@ -261,7 +262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2248072798587915544}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.3875364, y: 0.8672102, z: -1}
   m_LocalScale: {x: 0.73521847, y: 1.5437002, z: 1.1532838}
   m_ConstrainProportionsScale: 0
@@ -269,6 +270,27 @@ Transform:
   - {fileID: 6236684938648114092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7574619029878015029
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2248072798587915544}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1fc532460ffbc451ebd28d6006933549, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &8362442725058800398
 SpriteRenderer:
   m_ObjectHideFlags: 0
