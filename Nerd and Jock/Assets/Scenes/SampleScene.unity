@@ -1331,7 +1331,12 @@ PrefabInstance:
       propertyPath: other
       value: 
       objectReference: {fileID: 1003212251}
-    m_RemovedComponents: []
+    - target: {fileID: 7732430129773574187, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7732430129773574187, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6459638557564635942, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
     m_AddedGameObjects: []
@@ -1765,6 +1770,10 @@ PrefabInstance:
       propertyPath: other
       value: 
       objectReference: {fileID: 2137658912}
+    - target: {fileID: 3829592787354263523, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3888922357625682096, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
       propertyPath: m_Name
       value: nerdFinal
@@ -1777,7 +1786,8 @@ PrefabInstance:
       propertyPath: spawn.x
       value: -3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3829592787354263523, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3672368311668524088, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
     m_AddedGameObjects: []
