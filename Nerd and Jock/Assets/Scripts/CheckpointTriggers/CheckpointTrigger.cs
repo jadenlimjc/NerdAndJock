@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CheckpointTrigger : MonoBehaviour
+{
+    [SerializeField] private tutorialDialogueManager dialogueManager;
+    [TextArea]
+    [SerializeField] private string[] dialogueSentences;
+    public static bool nerdInCheckpoint = false;
+    public static bool jockInCheckpoint = false;
+
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("jock")) {
+            jockInCheckpoint = true;
+        }
+        else if (other.CompareTag("nerd")) {
+            nerdInCheckpoint = true;
+        }
+        CheckBothPlayersInCheckpoint();
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+         if (other.CompareTag("jock")) {
+            jockInCheckpoint = false;
+        }
+        else if (other.CompareTag("nerd")) {
+            nerdInCheckpoint = false;
+        }
+    }
+
+    private void CheckBothPlayersInCheckpoint() {
+        if (nerdInCheckpoint && jockInCheckpoint) {
+            dialogueManager.StartDialogue(dialogueSentences);
+        }
+    }
+}

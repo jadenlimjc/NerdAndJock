@@ -5,27 +5,44 @@ using TMPro;
 
 public class tutorialDialogueManager : MonoBehaviour
 {
+    
     [SerializeField] private TextMeshProUGUI tutorialDialogueText;
     [Header("Dialogue Sentences")]
     [TextArea]
-    [SerializeField] private string[] tutorialDialogueSentences;
+    [SerializeField] private string[] initialDialogueSentences;
     [SerializeField] private float textSpeed = 0.01f;
     [Header("Animation Controllers")]
     [SerializeField] private Animator tutorialSpeechBubbleAnimator;
     private int sentenceIndex;
+    //reference to players
+    public Transform nerd; 
+    public Transform jock;
+    private string[] tutorialDialogueSentences;
 
-    private float speechBubbleAnimationDelay = 0.6f;
+    private float speechBubbleAnimationDelay = 1.0f;
     private bool typing = false;
+    private bool dialogueActive = false;
 
-    private void Start() {
-        StartCoroutine(StartDialogue());
+
+    public void Start() {
+        if (initialDialogueSentences != null && initialDialogueSentences.Length > 0) {
+            StartDialogue(initialDialogueSentences);
+        }
     }
     private void Update() {
-        if (Input.anyKey) {
+        if (dialogueActive && !typing && Input.anyKeyDown) {
             StartCoroutine(ContinueDialogue());
         }
     }
-    public IEnumerator StartDialogue() {
+    public void StartDialogue(string[] dialogueSentences) {
+        tutorialDialogueSentences = dialogueSentences;
+        sentenceIndex = 0;
+        dialogueActive = true;
+        StartCoroutine(StartDialogueCoroutine());
+    }
+
+    private IEnumerator StartDialogueCoroutine() {
+        LockPlayerMovement(true);
         tutorialSpeechBubbleAnimator.SetTrigger("Open");
         yield return new WaitForSeconds(speechBubbleAnimationDelay);
         StartCoroutine(TypeTutorialDialogue());
@@ -50,8 +67,15 @@ public class tutorialDialogueManager : MonoBehaviour
         else if (!typing) {
             tutorialDialogueText.text = string.Empty;
             tutorialSpeechBubbleAnimator.SetTrigger("Close");
+            LockPlayerMovement(false);
+            dialogueActive = false;
             yield return null;
         }
     }
-}
 
+     void LockPlayerMovement(bool lockMovement)
+    {
+        nerd.GetComponent<NerdController>().enabled = !lockMovement;
+        jock.GetComponent<JockController>().enabled = !lockMovement;
+    }
+}
