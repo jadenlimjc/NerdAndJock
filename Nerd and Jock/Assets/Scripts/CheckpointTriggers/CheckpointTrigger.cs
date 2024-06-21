@@ -7,8 +7,9 @@ public class CheckpointTrigger : MonoBehaviour
     [SerializeField] private tutorialDialogueManager dialogueManager;
     [TextArea]
     [SerializeField] private string[] dialogueSentences;
-    public static bool nerdInCheckpoint = false;
-    public static bool jockInCheckpoint = false;
+    public bool nerdInCheckpoint = false;
+    public bool jockInCheckpoint = false;
+    private bool dialogueStarted = false;
 
 
 
@@ -33,7 +34,8 @@ public class CheckpointTrigger : MonoBehaviour
     }
 
     private void CheckBothPlayersInCheckpoint() {
-        if (nerdInCheckpoint && jockInCheckpoint) {
+        if (nerdInCheckpoint && jockInCheckpoint && !dialogueStarted) {
+            dialogueStarted = true;
             dialogueManager.StartDialogue(dialogueSentences);
         }
     }
