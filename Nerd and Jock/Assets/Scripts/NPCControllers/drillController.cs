@@ -90,7 +90,8 @@ public class drillController : MonoBehaviour
     {
         // Get the collision point
         ContactPoint2D contact = collision.GetContact(0);
-
+        Debug.Log("Contact Point: " + contact.point);
+        Debug.Log("Drill Position: " + transform.position);
         // Compare the positions
         return contact.point.y > transform.position.y;
     }

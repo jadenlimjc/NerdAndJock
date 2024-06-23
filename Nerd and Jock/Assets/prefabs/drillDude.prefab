@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.8
-  leftBound: -5.5
-  rightBound: -3
+  leftBound: 0
+  rightBound: 3
   jumpForce: 3
   jumpIntervalMin: 2
   jumpIntervalMax: 5
