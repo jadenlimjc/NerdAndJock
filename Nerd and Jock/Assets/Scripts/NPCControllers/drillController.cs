@@ -86,13 +86,16 @@ public class drillController : MonoBehaviour
         }
     }
 
-     bool IsCollisionFromAbove(Collision2D collision)
+    bool IsCollisionFromAbove(Collision2D collision)
     {
         // Get the collision point
         ContactPoint2D contact = collision.GetContact(0);
-        Debug.Log("Contact Point: " + contact.point);
-        Debug.Log("Drill Position: " + transform.position);
+        // Get the relative velocity to determine if the character is jumping
+        Vector2 relativeVelocity = collision.relativeVelocity;
+        // Check if character is falling from a jump
+        bool isFalling = relativeVelocity.y < 0;
         // Compare the positions
-        return contact.point.y > transform.position.y;
+        bool isAbove = contact.point.y > transform.position.y;
+        return isFalling && isAbove;
     }
 }

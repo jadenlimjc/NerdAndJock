@@ -67,9 +67,13 @@ public class hornController : MonoBehaviour
     {
         // Get the collision point
         ContactPoint2D contact = collision.GetContact(0);
-
+        // Get the relative velocity to determine if the character is jumping
+        Vector2 relativeVelocity = collision.relativeVelocity;
+        // Check if character is falling from a jump
+        bool isFalling = relativeVelocity.y < 0;
         // Compare the positions
-        return contact.point.y > transform.position.y;
+        bool isAbove = contact.point.y > transform.position.y;
+        return isFalling && isAbove;
     }
 
 
