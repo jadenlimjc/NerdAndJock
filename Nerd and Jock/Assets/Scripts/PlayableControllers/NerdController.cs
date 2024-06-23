@@ -176,7 +176,12 @@ public class NerdController : MonoBehaviour
     // Enable interact if within collider of object and object tag is nerdInteract
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<IInteractable>() != null && other.CompareTag("nerdInteract")) {
+        if (other.gameObject.CompareTag("Collectable")) 
+        {
+            ScoreManager.Instance.addScore(1);
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.GetComponent<IInteractable>() != null && other.CompareTag("nerdInteract")) {
             currentInteractable = other.gameObject;
         }
     }

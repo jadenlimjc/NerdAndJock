@@ -10,6 +10,7 @@ TagManager:
   - nerdInteract
   - nerd
   - jock
+  - Collectable
   layers:
   - Default
   - TransparentFX
