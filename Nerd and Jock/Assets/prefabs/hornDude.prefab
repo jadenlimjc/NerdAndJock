@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.8
-  leftBound: 0
-  rightBound: 3
+  leftBound: -5.5
+  rightBound: -3
 --- !u!114 &9152243450799295535
 MonoBehaviour:
   m_ObjectHideFlags: 0
