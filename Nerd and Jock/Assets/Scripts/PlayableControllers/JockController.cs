@@ -183,7 +183,7 @@ public class JockController : MonoBehaviour
             {
                 interactable.OnInteract();
             }
-            else if (other.CompareTag("jockInteract")) 
+            else if (other.CompareTag("jockInteract") && isGrounded) 
             {
                 currentInteractable = other.gameObject;
             }

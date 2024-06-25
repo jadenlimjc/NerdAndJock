@@ -183,7 +183,7 @@ public class NerdController : MonoBehaviour
             {
                 interactable.OnInteract();
             }
-            else if (other.CompareTag("nerdInteract")) 
+            else if (other.CompareTag("nerdInteract") && isGrounded) 
             {
                 currentInteractable = other.gameObject;
             }
