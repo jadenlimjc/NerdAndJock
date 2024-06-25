@@ -1600,6 +1600,19 @@ PrefabInstance:
       propertyPath: spawn.x
       value: -2.5
       objectReference: {fileID: 0}
+    - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 883446252}
+    - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: dialogueSentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: dialogueSentences.Array.data[0]
+      value: Oops! I forgot to tell you! Fall off the map and you will have to restart
+        all over again! Try not to die!
+      objectReference: {fileID: 0}
     - target: {fileID: 1257584075155659986, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
       propertyPath: m_Size.x
       value: 2.5270545
@@ -2149,6 +2162,19 @@ PrefabInstance:
     - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
       propertyPath: spawn.x
       value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 883446252}
+    - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: dialogueSentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: dialogueSentences.Array.data[0]
+      value: Oops! I forgot to tell you! Fall off the map and you will have to restart
+        all over again! Try not to die!
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3829592787354263523, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}

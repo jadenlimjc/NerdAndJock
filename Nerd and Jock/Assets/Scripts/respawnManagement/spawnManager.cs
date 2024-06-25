@@ -10,7 +10,7 @@ public class spawnManager : MonoBehaviour
     public float leftBound;
     public float rightBound;
     public float spawnPosY;
-    private float checkInterval = 1.0f;
+    private float checkInterval = 5.0f;
     void Start()
     {
         StartCoroutine(CheckAndSpawn());

@@ -17,6 +17,10 @@ public class tutorialDialogueManager : MonoBehaviour
     //reference to players
     public Transform nerd; 
     public Transform jock;
+    private Animator nerdAnimator;
+    private Animator jockAnimator;
+    private Rigidbody2D nerdRigidbody;
+    private Rigidbody2D jockRigidbody;
     private string[] tutorialDialogueSentences;
 
     private float speechBubbleAnimationDelay = 1.0f;
@@ -28,6 +32,11 @@ public class tutorialDialogueManager : MonoBehaviour
         if (initialDialogueSentences != null && initialDialogueSentences.Length > 0) {
             StartDialogue(initialDialogueSentences);
         }
+        // Initialize animators
+        nerdAnimator = nerd.GetComponent<Animator>();
+        jockAnimator = jock.GetComponent<Animator>();
+        nerdRigidbody = nerd.GetComponent<Rigidbody2D>();
+        jockRigidbody = jock.GetComponent<Rigidbody2D>();
     }
     private void Update() {
         if (dialogueActive && !typing && Input.anyKeyDown) {
@@ -75,6 +84,31 @@ public class tutorialDialogueManager : MonoBehaviour
 
      void LockPlayerMovement(bool lockMovement)
     {
+        if (lockMovement)
+        {
+            // Set animations to idle
+            if (nerdAnimator != null)
+            {
+                nerdAnimator.SetFloat("Speed", 0);
+                nerdAnimator.SetBool("IsJumping", false);
+                
+            }
+
+            if (jockAnimator != null)
+            {
+                jockAnimator.SetFloat("Speed", 0);
+                nerdAnimator.SetBool("IsJumping",false);
+            }
+            if (nerdRigidbody != null)
+            {
+                nerdRigidbody.velocity = Vector2.zero;
+            }
+
+            if (jockRigidbody != null)
+            {
+                jockRigidbody.velocity = Vector2.zero;
+            }
+        }
         nerd.GetComponent<NerdController>().enabled = !lockMovement;
         jock.GetComponent<JockController>().enabled = !lockMovement;
     }

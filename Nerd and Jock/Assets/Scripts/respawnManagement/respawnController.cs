@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class respawnController : MonoBehaviour
 {
+    //trigger respawn dialogue
     public static respawnController Instance;
+    [SerializeField] private tutorialDialogueManager dialogueManager;
+    [TextArea]
+    [SerializeField] private string[] dialogueSentences;
+    private static bool dialogueStarted = false;
     public float lowerBound = -10.0f;
     public float respawnTimer = 1.0f;
     // Start is called before the first frame update
@@ -17,6 +22,7 @@ public class respawnController : MonoBehaviour
     private MonoBehaviour movementScript; 
     private Collider2D col;
     private bool isDying = false;
+    
 
     void Start()
     {
@@ -33,6 +39,8 @@ public class respawnController : MonoBehaviour
         if (!isRespawning && (transform.position.y < lowerBound || (!isWithinCameraView() && isGrounded())))
         {
             StartCoroutine(respawnAfterDelay());
+            
+            
         }
 
     }
@@ -60,6 +68,11 @@ public class respawnController : MonoBehaviour
         yield return new WaitForSeconds(respawnTimer);
         gameObject.transform.position = spawn;
         isRespawning = false;
+        // trigger dialogue upon first respawn
+        if (!dialogueStarted) {
+                dialogueStarted = true;
+                dialogueManager.StartDialogue(dialogueSentences);
+            }
     }
 
     public IEnumerator respawnAfterDelayWithAnimation()
