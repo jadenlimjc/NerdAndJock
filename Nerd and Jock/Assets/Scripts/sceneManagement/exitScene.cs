@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ExitScene : MonoBehaviour
 {
     public string sceneToLoad = "EndScene"; // Name of the scene to load
     public static bool nerdInDoor = false;
     public static bool jockInDoor = false;
-   
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("door")) {
@@ -40,8 +40,28 @@ public class ExitScene : MonoBehaviour
     {
         if (nerdInDoor && jockInDoor)
         {
+            stopClock();
+            saveScoreAndTime();
+            // Store the current stage name to come back if failed stage
+            PlayerPrefs.SetString("PreviousStage", SceneManager.GetActiveScene().name);
+            PlayerPrefs.Save();
             SceneManager.LoadScene(sceneToLoad);
         }
     }
+
+    private void stopClock()
+    {
+        ScoreManager.Instance.stopClock();
+    }
+
+    private void saveScoreAndTime()
+    {
+        int score = ScoreManager.Instance.score;
+        float time = ScoreManager.Instance.getTimeTaken();
+
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.SetFloat("Time", time);
+    }
+
 
 }
