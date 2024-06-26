@@ -524,6 +524,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3888922357625682096, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
   m_PrefabInstance: {fileID: 1811442864}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &324063786 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3795786833479312279, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+  m_PrefabInstance: {fileID: 1811442864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &335513596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,6 +1143,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
   m_PrefabInstance: {fileID: 769487265}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &769487268 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2311844824403118815, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
+  m_PrefabInstance: {fileID: 769487265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &819666659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1376,6 +1386,11 @@ GameObject:
 --- !u!1 &1168924755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3338941137022542122, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+  m_PrefabInstance: {fileID: 1303058483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1168924756 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1531379290380072770, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
   m_PrefabInstance: {fileID: 1303058483}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1303058483
@@ -2038,14 +2053,18 @@ MonoBehaviour:
     shi..
 
     Anyways! Moving On!'
-  - 'Good Job completing NJ1001! Although... that was just a tutorial... CS/CU type
-    shi..
+  - 'Welcome to NJ2001: Scoring Basics!
 
-    Anyways! Moving On!'
+    I am the magnificent Murleficent and
+    I will be taking you through this module.'
+  - There are a bunch of extra credits scattered around the map. To get maximum credit,
+    you will have to collect all of them!
+  - This module won't have as much handholding as 1001! I'll see you guys again at
+    the end! All the best youngins!
   textSpeed: 0.01
-  tutorialSpeechBubbleAnimator: {fileID: 0}
-  nerd: {fileID: 0}
-  jock: {fileID: 0}
+  tutorialSpeechBubbleAnimator: {fileID: 769487268}
+  nerd: {fileID: 324063786}
+  jock: {fileID: 1168924756}
 --- !u!4 &2096254004
 Transform:
   m_ObjectHideFlags: 0
