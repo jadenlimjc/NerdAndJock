@@ -7,10 +7,12 @@ public class spawnManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] enemyPrefabs;
 
-    public float leftBound;
-    public float rightBound;
+    public float leftSpawn;
+    public float rightSpawn;
     public float spawnPosY;
     private float checkInterval = 1.0f;
+    public float leftBound = -10f;
+    public float rightBound = 10f;
     void Start()
     {
         StartCoroutine(CheckAndSpawn());
@@ -34,7 +36,12 @@ public class spawnManager : MonoBehaviour
 
     void SpawnCharacter() {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-        Vector2 spawnPos = new Vector2(Random.Range(leftBound, rightBound), spawnPosY);
-        Instantiate(enemyPrefabs[enemyIndex], spawnPos, enemyPrefabs[enemyIndex].transform.rotation);
+        Vector2 spawnPos = new Vector2(Random.Range(leftSpawn, rightSpawn), spawnPosY);
+        GameObject enemy = Instantiate(enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);
+        IEnemy enemyController = enemy.GetComponent<IEnemy>();
+        if (enemyController != null)
+        {
+            enemyController.SetMovementBounds(leftBound,rightBound);
+        }
     }
 }   
