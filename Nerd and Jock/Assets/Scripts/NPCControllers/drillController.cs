@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class drillController : MonoBehaviour
+public class drillController : MonoBehaviour, IEnemy
 {
     public float speed = 0.8f;
     public float leftBound;
@@ -30,6 +30,12 @@ public class drillController : MonoBehaviour
             Jump();
             ScheduleNextJump();
         }
+    }
+
+    public void SetMovementBounds(float left, float right)
+    {
+        leftBound = left;
+        rightBound = right;
     }
 
     void Move()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hornController : MonoBehaviour
+public class hornController : MonoBehaviour, IEnemy
 {
     public float speed = 0.8f;
     public float leftBound;
@@ -20,6 +20,12 @@ public class hornController : MonoBehaviour
         Move();
     }
 
+    public void SetMovementBounds(float left, float right)
+    {
+        leftBound = left;
+        rightBound = right;
+    }
+    
     void Move()
     {
         if (movingLeft)

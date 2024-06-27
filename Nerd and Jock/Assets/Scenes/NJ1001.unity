@@ -264,9 +264,11 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7924932020128382591, guid: f2b5f982318fc4f97b0e430921160712, type: 3}
   - {fileID: 6577143182778854058, guid: ac83c651082224d6abbdad5e6115d9c2, type: 3}
+  leftSpawn: -5.5
+  rightSpawn: -3
+  spawnPosY: 1
   leftBound: -5.5
   rightBound: -3
-  spawnPosY: 1
 --- !u!4 &79662869
 Transform:
   m_ObjectHideFlags: 0
