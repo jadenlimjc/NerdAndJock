@@ -5,16 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {    
-    public void PlayGame() {
-        SceneManager.LoadScene("SampleScene");
+    public GameObject stageListPanel;
+    public GameObject settingsPanel;
+    public GameObject creditsPanel;
+
+    public void NewGame() {
+        SceneManager.LoadScene("NJ1001");
     }
 
-    void Update()
-    {
-        // Check if the Enter key is pressed
-        if (Input.GetKeyDown(KeyCode.Return)) // KeyCode.Return corresponds to the Enter key
-        {
-            PlayGame();
-        }
+    public void Continue() {
+        stageListPanel.SetActive(true);
+    }
+
+    public void Settings() {
+        settingsPanel.SetActive(true);
+    }
+
+    public void Credits() {
+        creditsPanel.SetActive(true);
+    }
+
+    public void ClosePanel(GameObject panel) {
+         panel.SetActive(false);
     }
 }
