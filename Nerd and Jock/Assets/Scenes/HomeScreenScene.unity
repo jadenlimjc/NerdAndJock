@@ -1094,39 +1094,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1813378393}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Credits
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6421271140999923473, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
       propertyPath: m_text
-      value: 'credits
-
-'
+      value: credits
       objectReference: {fileID: 0}
     - target: {fileID: 7197303754676172718, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
       propertyPath: m_Name
@@ -1762,33 +1732,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1813378393}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NewGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4117249228282741791, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7197303754676172718, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
       propertyPath: m_Name
       value: New Game Button

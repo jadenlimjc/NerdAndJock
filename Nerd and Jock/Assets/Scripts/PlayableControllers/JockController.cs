@@ -14,7 +14,7 @@ public class JockController : MonoBehaviour
     public LayerMask enemyHead; //Layer mask to specify what is considered the enemies' head
     private Rigidbody2D rb;
     private bool isGrounded;
-    private bool landOnEnemy;
+  
     private GameObject currentInteractable;
     private bool isInteracting = false;
 
