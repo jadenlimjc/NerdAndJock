@@ -5,7 +5,7 @@ using TMPro;
 
 public class tutorialDialogueManager : MonoBehaviour
 {
-    
+
     [SerializeField] private TextMeshProUGUI tutorialDialogueText;
     [Header("Dialogue Sentences")]
     [TextArea]
@@ -15,7 +15,7 @@ public class tutorialDialogueManager : MonoBehaviour
     [SerializeField] private Animator tutorialSpeechBubbleAnimator;
     private int sentenceIndex;
     //reference to players
-    public Transform nerd; 
+    public Transform nerd;
     public Transform jock;
     private Animator nerdAnimator;
     private Animator jockAnimator;
@@ -28,8 +28,10 @@ public class tutorialDialogueManager : MonoBehaviour
     private bool dialogueActive = false;
 
 
-    public void Start() {
-        if (initialDialogueSentences != null && initialDialogueSentences.Length > 0) {
+    public void Start()
+    {
+        if (initialDialogueSentences != null && initialDialogueSentences.Length > 0)
+        {
             StartDialogue(initialDialogueSentences);
         }
         // Initialize animators
@@ -38,51 +40,65 @@ public class tutorialDialogueManager : MonoBehaviour
         nerdRigidbody = nerd.GetComponent<Rigidbody2D>();
         jockRigidbody = jock.GetComponent<Rigidbody2D>();
     }
-    private void Update() {
-        if (dialogueActive && !typing && Input.anyKeyDown) {
-            StartCoroutine(ContinueDialogue());
+    private void Update()
+    {
+        if (dialogueActive && !typing && Input.anyKeyDown)
+        {
+            ContinueDialogue();
         }
     }
-    public void StartDialogue(string[] dialogueSentences) {
+    public void StartDialogue(string[] dialogueSentences)
+    {
         tutorialDialogueSentences = dialogueSentences;
         sentenceIndex = 0;
         dialogueActive = true;
         StartCoroutine(StartDialogueCoroutine());
     }
 
-    private IEnumerator StartDialogueCoroutine() {
+    private IEnumerator StartDialogueCoroutine()
+    {
         LockPlayerMovement(true);
         tutorialSpeechBubbleAnimator.SetTrigger("Open");
         yield return new WaitForSeconds(speechBubbleAnimationDelay);
         StartCoroutine(TypeTutorialDialogue());
     }
 
-    private IEnumerator TypeTutorialDialogue() {
+    private IEnumerator TypeTutorialDialogue()
+    {
         typing = true;
-        foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray()) {
+        tutorialDialogueText.text = string.Empty;
+        foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
+        {
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
         typing = false;
     }
 
-    private IEnumerator ContinueDialogue() {
+    private void ContinueDialogue()
+    {
 
-        if (!typing && sentenceIndex < tutorialDialogueSentences.Length - 1) {
+        if (sentenceIndex < tutorialDialogueSentences.Length - 1)
+        {
             sentenceIndex++;
-            tutorialDialogueText.text = string.Empty;
             StartCoroutine(TypeTutorialDialogue());
         }
-        else if (!typing) {
-            tutorialDialogueText.text = string.Empty;
-            tutorialSpeechBubbleAnimator.SetTrigger("Close");
-            LockPlayerMovement(false);
-            dialogueActive = false;
-            yield return null;
+        else
+        {
+            StartCoroutine(EndDialogue());
         }
     }
 
-     void LockPlayerMovement(bool lockMovement)
+    private IEnumerator EndDialogue()
+    {
+        tutorialDialogueText.text = string.Empty;
+        tutorialSpeechBubbleAnimator.SetTrigger("Close");
+        LockPlayerMovement(false);
+        dialogueActive = false;
+        yield return null;
+    }
+
+    void LockPlayerMovement(bool lockMovement)
     {
         if (lockMovement)
         {
@@ -91,13 +107,13 @@ public class tutorialDialogueManager : MonoBehaviour
             {
                 nerdAnimator.SetFloat("Speed", 0);
                 nerdAnimator.SetBool("IsJumping", false);
-                
+
             }
 
             if (jockAnimator != null)
             {
                 jockAnimator.SetFloat("Speed", 0);
-                nerdAnimator.SetBool("IsJumping",false);
+                nerdAnimator.SetBool("IsJumping", false);
             }
             if (nerdRigidbody != null)
             {
