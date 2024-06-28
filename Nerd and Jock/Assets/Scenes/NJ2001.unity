@@ -1544,6 +1544,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1472898504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8258798468319807861, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
+  m_PrefabInstance: {fileID: 769487265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1507870775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,6 +2070,7 @@ MonoBehaviour:
   tutorialSpeechBubbleAnimator: {fileID: 769487268}
   nerd: {fileID: 324063786}
   jock: {fileID: 1168924756}
+  continueButton: {fileID: 1472898504}
 --- !u!4 &2096254004
 Transform:
   m_ObjectHideFlags: 0

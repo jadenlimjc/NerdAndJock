@@ -17,6 +17,7 @@ public class tutorialDialogueManager : MonoBehaviour
     //reference to players
     public Transform nerd;
     public Transform jock;
+    public GameObject continueButton;
     private Animator nerdAnimator;
     private Animator jockAnimator;
     private Rigidbody2D nerdRigidbody;
@@ -24,12 +25,12 @@ public class tutorialDialogueManager : MonoBehaviour
     private string[] tutorialDialogueSentences;
 
     private float speechBubbleAnimationDelay = 1.0f;
-    private bool typing = false;
     private bool dialogueActive = false;
 
 
     public void Start()
     {
+        continueButton.SetActive(false);
         if (initialDialogueSentences != null && initialDialogueSentences.Length > 0)
         {
             StartDialogue(initialDialogueSentences);
@@ -42,16 +43,16 @@ public class tutorialDialogueManager : MonoBehaviour
     }
     private void Update()
     {
-        if (dialogueActive && !typing && Input.anyKeyDown)
+        if (dialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
             ContinueDialogue();
         }
     }
     public void StartDialogue(string[] dialogueSentences)
     {
+        dialogueActive = true;
         tutorialDialogueSentences = dialogueSentences;
         sentenceIndex = 0;
-        dialogueActive = true;
         StartCoroutine(StartDialogueCoroutine());
     }
 
@@ -65,27 +66,30 @@ public class tutorialDialogueManager : MonoBehaviour
 
     private IEnumerator TypeTutorialDialogue()
     {
-        typing = true;
+        continueButton.SetActive(false);
         tutorialDialogueText.text = string.Empty;
         foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
         {
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
-        typing = false;
+        continueButton.SetActive(true);
     }
 
     private void ContinueDialogue()
     {
-
-        if (sentenceIndex < tutorialDialogueSentences.Length - 1)
+        if (continueButton.activeSelf)
         {
-            sentenceIndex++;
-            StartCoroutine(TypeTutorialDialogue());
-        }
-        else
-        {
-            StartCoroutine(EndDialogue());
+            continueButton.SetActive(false);
+            if (sentenceIndex < tutorialDialogueSentences.Length - 1)
+            {
+                sentenceIndex++;
+                StartCoroutine(TypeTutorialDialogue());
+            }
+            else
+            {
+                StartCoroutine(EndDialogue());
+            }
         }
     }
 

@@ -748,8 +748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 883446252}
   dialogueSentences:
-  - You've made it! Enter the door on the right to complete the module! Good job
-    students! You've passed!
+  - You've made it! Enter the door to complete the module! Good job students! You've
+    passed!
   nerdInCheckpoint: 0
   jockInCheckpoint: 0
 --- !u!4 &806846286
@@ -807,6 +807,7 @@ MonoBehaviour:
   tutorialSpeechBubbleAnimator: {fileID: 180971995}
   nerd: {fileID: 467070344}
   jock: {fileID: 1644770961}
+  continueButton: {fileID: 1049002081}
 --- !u!4 &883446253
 Transform:
   m_ObjectHideFlags: 0
@@ -1140,7 +1141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 883446252}
   dialogueSentences:
-  - We're in the homestretch now! Looks like the end is in sight! Keep going!
+  - We're in the homestretch now! Looks like the end is in sight!
+  - You will see a door if you keep going forward. Keep going!
   nerdInCheckpoint: 0
   jockInCheckpoint: 0
 --- !u!4 &1018957897
@@ -1158,6 +1160,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1049002081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8258798468319807861, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
+  m_PrefabInstance: {fileID: 4952760660928275817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1072139765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1338,7 +1345,7 @@ MonoBehaviour:
   dialogueSentences:
   - Good Job! You made it!
   - In front of you is a stack of books that you may find difficulty passing through.
-  - Jock, walk up to it and press E to destroy it with your big muscles!
+  - Jock, walk up to it and press ENTER to destroy it with your big muscles!
   - Once done, meet me on top! Nerd's jump kinda sucks so you might need to find
     other ways to get up...
   nerdInCheckpoint: 0
@@ -1827,8 +1834,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 883446252}
   dialogueSentences:
-  - This is an enemy. Touch it and you die! To destroy it, jump on its head, but
-    beware! They will come back!
+  - 'This is an enemy. Touch it and you die! '
+  - To destroy it, jump on its head, but beware! They will come back!
   nerdInCheckpoint: 0
   jockInCheckpoint: 0
 --- !u!4 &1316778868
