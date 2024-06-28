@@ -42,9 +42,6 @@ public class ExitScene : MonoBehaviour
         {
             stopClock();
             saveScoreAndTime();
-            // Store the current stage name to come back if failed stage
-            PlayerPrefs.SetString("PreviousStage", SceneManager.GetActiveScene().name);
-            PlayerPrefs.Save();
             SceneManager.LoadScene(sceneToLoad);
         }
     }
@@ -61,6 +58,7 @@ public class ExitScene : MonoBehaviour
 
         PlayerPrefs.SetInt("Score", score);
         PlayerPrefs.SetFloat("Time", time);
+        PlayerPrefs.Save();
     }
 
 
