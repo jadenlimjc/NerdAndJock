@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1121042198149545046}
   m_Layer: 5
   m_Name: ClockText
-  m_TagString: Untagged
+  m_TagString: ClockText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 2887422892279065712}
   m_Layer: 5
   m_Name: ScoreText
-  m_TagString: Untagged
+  m_TagString: ScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

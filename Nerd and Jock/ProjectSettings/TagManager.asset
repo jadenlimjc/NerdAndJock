@@ -11,6 +11,8 @@ TagManager:
   - nerd
   - jock
   - Collectable
+  - ScoreText
+  - ClockText
   layers:
   - Default
   - TransparentFX

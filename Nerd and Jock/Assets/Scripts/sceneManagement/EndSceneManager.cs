@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneManager : MonoBehaviour
 {
+    public int stars;
     public Image star1;
     public Image star2;
     public Image star3;
@@ -26,6 +27,8 @@ public class EndSceneManager : MonoBehaviour
     {
         int score = PlayerPrefs.GetInt("Score", 0);
         float time = PlayerPrefs.GetFloat("Time", 0);
+        int totalCollectables = PlayerPrefs.GetInt("TotalCollectables", 0); // Setting to 0 if it is not set
+        stars = calculateStars(score, totalCollectables);
         retryButton.gameObject.SetActive(false);
         nextLevelButton.gameObject.SetActive(false);
         wellDoneImage.gameObject.SetActive(false);
@@ -34,24 +37,34 @@ public class EndSceneManager : MonoBehaviour
         StartCoroutine(displayResults(score, time));
     }
 
+    // Calculate stars, accounting for collectables not a multiple of 3
+    private int calculateStars(int score, int totalCollectables)
+    {
+        if (totalCollectables == 0)
+        {
+            return 3;
+        }
+        return Mathf.CeilToInt((float)score / (float)totalCollectables * 3); 
+    }
+
     IEnumerator displayResults(int score, float time)
     {
         // Display score
         // Lit up stars based on score
-        if (score >= 1) 
+        if (stars >= 1) 
         {
             yield return new WaitForSeconds(delay);
             star1.sprite = star1Lit;
             yield return new WaitForSeconds(delay);
         }
 
-        if (score >= 2)
+        if (stars >= 2)
         {
             star2.sprite = star2Lit;
             yield return new WaitForSeconds(delay);
         }
 
-        if (score >= 3) 
+        if (stars >= 3) 
         {
             star3.sprite = star3Lit;
             yield return new WaitForSeconds(delay);
@@ -115,22 +128,13 @@ public class EndSceneManager : MonoBehaviour
         }
     }
 
-    public void retryLevel()
+    public void nextStage()
     {
-        // Get the name of the stage just completed
-        // Replay stage if stage failed, optional if passed
-        string previousStage = PlayerPrefs.GetString("PreviousStage");
-        if (!string.IsNullOrEmpty(previousStage))
-        {
-            SceneManager.LoadScene(previousStage);
-        }
+        GameManager.Instance.loadNextStage();
     }
 
-    public void nextLevel()
+    public void replay()
     {
-        // Load the next level or homepage
-        BackToHome backToHome = new BackToHome();
-        backToHome.backToHome();
+        GameManager.Instance.replayStage();
     }
-
 }

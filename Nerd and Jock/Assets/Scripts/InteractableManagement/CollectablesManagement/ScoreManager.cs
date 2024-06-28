@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
     public int score = 0;
+    public int totalCollectables;
     public Text scoreText;
     public Text clockText;
 
@@ -20,6 +22,7 @@ public class ScoreManager : MonoBehaviour
             Instance = this;
             // To make sure the ScoreManager persists across scenes
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -27,11 +30,35 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    // Called every time a scene is loaded
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        scoreText = GameObject.FindWithTag("ScoreText")?.GetComponent<Text>();
+        clockText = GameObject.FindWithTag("ClockText")?.GetComponent<Text>();
+        initialiseLevel();  // Reset and initialize when a new scene is loaded
+    }
+
     void Start()
     {
+        initialiseLevel();
+    }
+
+    public void initialiseLevel()
+    {
+        resetScoreManager();
+        countCollectables();
         // Initialize the score text
         updateScoreText();
+        updateClockText();
         startClock();
+    }
+
+    // Resetting score manager each stage
+    public void resetScoreManager()
+    {
+        score = 0;
+        timeTaken = 0f;
+        isRunning = false; 
     }
 
     void Update()
@@ -43,6 +70,20 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    // Count the total number of collectables at the start of each level
+    private void countCollectables()
+    {
+        if (SceneManager.GetActiveScene().name != "EndScene")
+        {
+            totalCollectables = GameObject.FindGameObjectsWithTag("Collectable").Length;
+            PlayerPrefs.SetInt("TotalCollectables", totalCollectables);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            totalCollectables = PlayerPrefs.GetInt("TotalCollectables", 0);
+        }
+    }
 
     public void addScore(int value) 
     {
@@ -54,7 +95,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Extra Credit: " + score + " / 3";
+            scoreText.text = string.Format("Extra Credit: {0} / {1}", score, totalCollectables);
         }
     }
 
@@ -78,8 +119,11 @@ public class ScoreManager : MonoBehaviour
 
     private void updateClockText()
     {
-        int min = Mathf.FloorToInt(timeTaken / 60F);
-        int sec = Mathf.FloorToInt(timeTaken % 60F);
-        clockText.text = string.Format("Time Taken: {0:0} : {1:00}", min, sec);
+        if (clockText != null) 
+        {
+            int min = Mathf.FloorToInt(timeTaken / 60F);
+            int sec = Mathf.FloorToInt(timeTaken % 60F);
+            clockText.text = string.Format("Time Taken: {0:0} : {1:00}", min, sec);
+        }
     }
 }
