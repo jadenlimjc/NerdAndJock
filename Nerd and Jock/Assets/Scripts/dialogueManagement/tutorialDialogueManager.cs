@@ -25,6 +25,7 @@ public class tutorialDialogueManager : MonoBehaviour
     private string[] tutorialDialogueSentences;
 
     private float speechBubbleAnimationDelay = 1.0f;
+    private float continueButtonDelay = 0.2f;
     private bool dialogueActive = false;
 
 
@@ -73,6 +74,7 @@ public class tutorialDialogueManager : MonoBehaviour
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
+        yield return new WaitForSeconds(continueButtonDelay);
         continueButton.SetActive(true);
     }
 
