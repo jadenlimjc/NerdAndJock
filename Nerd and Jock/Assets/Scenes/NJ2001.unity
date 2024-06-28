@@ -916,8 +916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beadd85ff29e2499fb473891f3293726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 324063785}
-  player2: {fileID: 1168924755}
+  nerd: {fileID: 324063785}
+  jock: {fileID: 1168924755}
 --- !u!1001 &533888826
 PrefabInstance:
   m_ObjectHideFlags: 0
