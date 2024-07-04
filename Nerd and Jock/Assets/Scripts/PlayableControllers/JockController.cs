@@ -17,6 +17,7 @@ public class JockController : MonoBehaviour
   
     private GameObject currentInteractable;
     private bool isInteracting = false;
+    public GameObject exclamation;
 
       // Fields used for multiple jump method
     /*
@@ -27,6 +28,7 @@ public class JockController : MonoBehaviour
 
     void Start()
     {
+        exclamation.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         // Initialise jumpCount for multiple jumps method
@@ -185,6 +187,7 @@ public class JockController : MonoBehaviour
             }
             else if (other.CompareTag("jockInteract") && isGrounded) 
             {
+                exclamation.SetActive(true);
                 currentInteractable = other.gameObject;
             }
         }
@@ -195,6 +198,7 @@ public class JockController : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject == currentInteractable) {
             currentInteractable = null;
+            exclamation.SetActive(false);
         }
     }
     
