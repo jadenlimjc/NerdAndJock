@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
         {
             Instance = this;
             // To make sure the ScoreManager persists across scenes
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
