@@ -14,6 +14,7 @@ public class NerdController : MonoBehaviour
     private bool isGrounded;
     private GameObject currentInteractable;
     private bool isInteracting = false;
+    public GameObject exclamation;
 
     // Fields used for multiple jump method
     /*
@@ -24,6 +25,7 @@ public class NerdController : MonoBehaviour
 
     void Start()
     {
+        exclamation.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         // Initialise jumpCount for multiple jumps method
@@ -185,6 +187,7 @@ public class NerdController : MonoBehaviour
             }
             else if (other.CompareTag("nerdInteract") && isGrounded) 
             {
+                exclamation.SetActive(true);
                 currentInteractable = other.gameObject;
             }
         }
@@ -196,6 +199,7 @@ public class NerdController : MonoBehaviour
     {
          if (other.gameObject == currentInteractable) {
             currentInteractable = null;
+            exclamation.SetActive(false);
         }
     }
 
