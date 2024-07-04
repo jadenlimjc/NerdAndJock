@@ -1600,11 +1600,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: other
+      value: 
+      objectReference: {fileID: 324063785}
+    - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
       propertyPath: spawn.x
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
       propertyPath: spawn.y
+      value: 4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: otherSpawn.x
+      value: -2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3684060735849310848, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: otherSpawn.y
       value: 4.05
       objectReference: {fileID: 0}
     - target: {fileID: 1125860041618061672, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
@@ -2075,11 +2087,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 562097554}
     - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: other
+      value: 
+      objectReference: {fileID: 1168924755}
+    - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
       propertyPath: spawn.x
       value: -2.6
       objectReference: {fileID: 0}
     - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
       propertyPath: spawn.y
+      value: 4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: otherSpawn.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: otherSpawn.y
       value: 4.05
       objectReference: {fileID: 0}
     m_RemovedComponents:
