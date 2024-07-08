@@ -39,6 +39,6 @@ public class GameManager : MonoBehaviour
     // To replay the stage
     public void replayStage()
     {
-        SceneManager.LoadScene(modules[currentModuleIndex]);
+        SceneManager.LoadScene(ScoreManager.Instance.getCurrentScene());
     }    
 }

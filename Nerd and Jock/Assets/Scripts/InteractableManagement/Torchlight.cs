@@ -14,7 +14,6 @@ public class Torchlight : MonoBehaviour, IInteractable
         if (fogOfWarManager != null)
         {
             fogOfWarManager.collectTorchlight();
-            Debug.Log("torchlight");
         }
         Destroy(gameObject);
     }
