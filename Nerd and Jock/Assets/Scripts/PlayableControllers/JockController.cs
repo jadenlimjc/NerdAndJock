@@ -169,6 +169,7 @@ public class JockController : MonoBehaviour
         rb.isKinematic = false; // Make the sprite unaffected by other sprites
         animator.SetBool("IsInteracting", false); // Stop interaction animation
         isInteracting = false; // Enable movement and interactions
+        exclamation.SetActive(false);
         
         if (currentInteractable == (interactable as MonoBehaviour).gameObject) 
         {
@@ -181,7 +182,7 @@ public class JockController : MonoBehaviour
         IInteractable interactable = other.GetComponent<IInteractable>();
         if (interactable != null)
         {
-            if (other.CompareTag("Collectable"))
+            if (other.CompareTag("Collectable") || other.CompareTag("Torchlight"))
             {
                 interactable.OnInteract();
             }
