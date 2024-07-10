@@ -28,6 +28,13 @@ public class BlockInteractable : MonoBehaviour , IInteractable
     // Will be called by the Animation Event at the end of the breaking animation
     public void DestroyBlock()
     {
+        Collider2D collider = block.GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            Debug.Log("Disabling collider on: " + block.name);
+            collider.enabled = false;
+        }
+        Debug.Log("Destroying block: " + block.name);
         Destroy(block.gameObject); // Destroy the block
     }
 }

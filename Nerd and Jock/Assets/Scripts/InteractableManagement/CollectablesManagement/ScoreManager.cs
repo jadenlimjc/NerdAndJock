@@ -37,7 +37,6 @@ public class ScoreManager : MonoBehaviour
         {
             currentScene = scene.name;
         }
-        currentScene = scene.name;
         scoreText = GameObject.FindWithTag("ScoreText")?.GetComponent<Text>();
         clockText = GameObject.FindWithTag("ClockText")?.GetComponent<Text>();
         initialiseLevel();  // Reset and initialize when a new scene is loaded
