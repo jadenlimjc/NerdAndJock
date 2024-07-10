@@ -21,7 +21,7 @@ public class BlockInteractable : MonoBehaviour , IInteractable
         } 
         else 
         {
-            Destroy(block.gameObject); // Destroy the block if no animator found
+            Destroy(block.gameObject); // Destroy the block if no animator found, for debugging
         }
     }
 
@@ -31,10 +31,8 @@ public class BlockInteractable : MonoBehaviour , IInteractable
         Collider2D collider = block.GetComponent<Collider2D>();
         if (collider != null)
         {
-            Debug.Log("Disabling collider on: " + block.name);
             collider.enabled = false;
         }
-        Debug.Log("Destroying block: " + block.name);
         Destroy(block.gameObject); // Destroy the block
     }
 }

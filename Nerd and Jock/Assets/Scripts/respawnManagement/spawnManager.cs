@@ -13,6 +13,9 @@ public class spawnManager : MonoBehaviour
     public float checkInterval = 5.0f;
     public float leftBound = -10f;
     public float rightBound = 10f;
+
+    private GameObject currentEnemy = null; // current spawned enemy
+    
     void Start()
     {
         StartCoroutine(CheckAndSpawn());
@@ -27,7 +30,7 @@ public class spawnManager : MonoBehaviour
     IEnumerator CheckAndSpawn() {
         while (true) {
             yield return new WaitForSeconds(checkInterval);
-            if (GameObject.FindGameObjectWithTag("enemy") == null)
+            if (currentEnemy == null)
             {
                 SpawnCharacter();
             }
@@ -37,8 +40,8 @@ public class spawnManager : MonoBehaviour
     void SpawnCharacter() {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
         Vector2 spawnPos = new Vector2(Random.Range(leftSpawn, rightSpawn), spawnPosY);
-        GameObject enemy = Instantiate(enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);
-        IEnemy enemyController = enemy.GetComponent<IEnemy>();
+        currentEnemy = Instantiate(enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);
+        IEnemy enemyController = currentEnemy.GetComponent<IEnemy>();
         if (enemyController != null)
         {
             enemyController.SetMovementBounds(leftBound,rightBound);

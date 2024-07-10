@@ -10,8 +10,6 @@ public class JockController : MonoBehaviour
     public float jumpForce = 4f; // Force applied for jumping
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
-
-    public LayerMask enemyHead; //Layer mask to specify what is considered the enemies' head
     private Rigidbody2D rb;
     private bool isGrounded;
   
@@ -213,5 +211,5 @@ public class JockController : MonoBehaviour
         }
     }
 
-    
+
 }
