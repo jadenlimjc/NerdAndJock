@@ -28,4 +28,12 @@ public class MenuManager : MonoBehaviour
     public void ClosePanel(GameObject panel) {
          panel.SetActive(false);
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && stageListPanel.activeSelf) 
+        {
+            stageListPanel.SetActive(false);
+        }
+    }
 }

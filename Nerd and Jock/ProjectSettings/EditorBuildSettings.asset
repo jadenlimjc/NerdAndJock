@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NJ2001.unity
     guid: 3c818724089904201bbe1092abf1e973
   - enabled: 1
+    path: Assets/Scenes/NJ3001.unity
+    guid: 4db1703dc697e4cdda033cca5bebee2b
+  - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: 98b7aeeccd5a843ceb161ade3d0be1e1
   m_configObjects: {}

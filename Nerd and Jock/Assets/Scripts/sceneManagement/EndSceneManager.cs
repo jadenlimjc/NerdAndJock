@@ -91,6 +91,10 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             nextLevelButton.gameObject.SetActive(true);
             retryButton.gameObject.SetActive(true);
+            
+            // Notify StageManager that the stage is completed
+            string currentStageName = SceneManager.GetActiveScene().name;
+            StageManager.Instance.SaveStageCompletion(currentStageName);
         }
         else
         {
@@ -130,11 +134,13 @@ public class EndSceneManager : MonoBehaviour
 
     public void nextStage()
     {
-        GameManager.Instance.loadNextStage();
+        SceneManager.LoadScene("HomeScreenScene");
     }
 
     public void replay()
     {
         GameManager.Instance.replayStage();
     }
+
+
 }

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5782248131743344668}
   - component: {fileID: 4117249228282741791}
   - component: {fileID: 4787601388473319618}
-  - component: {fileID: -4725394040440520944}
+  - component: {fileID: -3616769988664134297}
+  - component: {fileID: -3568750721323328381}
   m_Layer: 4
-  m_Name: Button Prefab
+  m_Name: Stage Button Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,19 +123,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5782248131743344668}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: NewGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &4787601388473319618
 Animator:
   serializedVersion: 5
@@ -156,7 +145,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-4725394040440520944
+--- !u!114 &-3616769988664134297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197303754676172718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445f40249b714408d835460c223e8967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageData: {fileID: 0}
+  button: {fileID: 4117249228282741791}
+  stageNameText: {fileID: 6421271140999923473}
+  childStageButtons: []
+--- !u!114 &-3568750721323328381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
