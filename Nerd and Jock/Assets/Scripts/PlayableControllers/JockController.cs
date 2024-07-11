@@ -12,7 +12,6 @@ public class JockController : MonoBehaviour
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Rigidbody2D rb;
     private bool isGrounded;
-  
     private GameObject currentInteractable;
     private bool isInteracting = false;
     public GameObject exclamation;
