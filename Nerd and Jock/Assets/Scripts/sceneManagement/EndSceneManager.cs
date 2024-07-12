@@ -19,6 +19,7 @@ public class EndSceneManager : MonoBehaviour
     public Button retryButton;
     public Button nextLevelButton;
 
+
     public Text gradeText;
     // Adding a delay so it looks better
     public float delay = 0.75f;
@@ -92,9 +93,18 @@ public class EndSceneManager : MonoBehaviour
             nextLevelButton.gameObject.SetActive(true);
             retryButton.gameObject.SetActive(true);
             
-            // Notify StageManager that the stage is completed
-            string currentStageName = SceneManager.GetActiveScene().name;
-            StageManager.Instance.SaveStageCompletion(currentStageName);
+            int currLevel = PlayerPrefs.GetInt("currLevel", 0);
+            int unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 0);
+
+            if (currLevel == unlockedLevels)
+            {
+                unlockedLevels++;
+                PlayerPrefs.SetInt("UnlockedLevels", unlockedLevels);
+            }
+            if (stars > PlayerPrefs.GetInt("stars" + currLevel.ToString(),0)) {
+                PlayerPrefs.SetInt("stars" +currLevel.ToString(), stars);
+            }
+            
         }
         else
         {
