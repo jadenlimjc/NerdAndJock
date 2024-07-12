@@ -89,7 +89,7 @@ public class EndSceneManager : MonoBehaviour
         // Display message based on grade
         if (grade != "F" && grade != "D+" && grade != "D")
         {
-            updateHighScore(score);
+            updateHighScore(stars, time, grade);
             wellDoneImage.gameObject.SetActive(true);
             yield return new WaitForSeconds(delay);
             nextLevelButton.gameObject.SetActive(true);
@@ -226,12 +226,15 @@ public class EndSceneManager : MonoBehaviour
     }
 
     // Save the player's highscore
-    private void updateHighScore(int score)
+    private void updateHighScore(int stars, float time, string grade)
     {
-        int highScore = PlayerPrefs.GetInt(currentScene + "_highScore", 0);
-        if (score > highScore)
+        float bestTime = PlayerPrefs.GetFloat(currentScene + "_bestTime", 0f);
+
+        if (bestTime == 0 || time < bestTime)
         {
-            PlayerPrefs.SetInt(currentScene + "_highScore", score);
+            PlayerPrefs.SetInt(currentScene + "_stars", stars);
+            PlayerPrefs.SetFloat(currentScene + "_bestTime", time);
+            PlayerPrefs.SetString(currentScene + "_bestGrade", grade);
         }
     }
 
