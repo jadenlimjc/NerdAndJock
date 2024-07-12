@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -93,6 +94,11 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             nextLevelButton.gameObject.SetActive(true);
             retryButton.gameObject.SetActive(true);
+
+            // Find next stage and unlock
+            List<string> nextStageNames = calculateNextStageNames();
+            UnlockStages(nextStageNames);
+             
         }
         else
         {
@@ -100,8 +106,58 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             retryButton.gameObject.SetActive(true);
         }
+    }
 
-        
+    private void UnlockStages(List<string> stageNames)
+    {
+        if (stageNames.Count > 0)
+        {
+            Debug.Log("Unlocked stages:");
+            foreach (string stage in stageNames)
+            {
+                PlayerPrefs.SetInt(stage + "_unlocked", 1);
+                Debug.Log(stage);
+            }
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Debug.Log("No new stages were unlocked.");
+        }
+    }
+
+    private List<string> calculateNextStageNames()
+    {
+        List<string> nextStages = new List<string>();
+        if (currentScene == "NJ1001")
+        {
+            nextStages.Add("NJ2001");
+            nextStages.Add("NJ2012");
+            nextStages.Add("NJ2020");
+            nextStages.Add("NJ2021");
+            return nextStages;
+        }
+        else
+        {
+            string stageBranch = currentScene.Substring(3, 3);
+            Debug.Log(stageBranch);
+            int level = int.Parse(currentScene.Substring(2, 1));
+            Debug.Log(level);
+            int maxLevel = (stageBranch == "001" || stageBranch == "012") 
+                                        ? 3
+                                        : (stageBranch == "020" || stageBranch == "021")
+                                            ? 2
+                                            : -1;
+            Debug.Log(maxLevel);
+            string nextStage = "NJ" + (level + 1) + stageBranch;
+            Debug.Log(nextStage);
+            if (level + 1 <= maxLevel) 
+            {
+                nextStages.Add(nextStage);
+                return nextStages;
+            }
+            return nextStages;
+        }
     }
 
     // Calculate grade
@@ -172,20 +228,20 @@ public class EndSceneManager : MonoBehaviour
     // Save the player's highscore
     private void updateHighScore(int score)
     {
-        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        int highScore = PlayerPrefs.GetInt(currentScene + "_highScore", 0);
         if (score > highScore)
         {
-            PlayerPrefs.SetInt("HighScore", score);
+            PlayerPrefs.SetInt(currentScene + "_highScore", score);
         }
     }
 
     public void nextStage()
     {
-        GameManager.Instance.loadNextStage();
+        SceneManager.LoadScene("StageSelectScene");
     }
 
     public void replay()
     {
-        GameManager.Instance.replayStage();
+        SceneManager.LoadScene(ScoreManager.Instance.getCurrentScene());
     }
 }

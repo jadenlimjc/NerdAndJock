@@ -1368,6 +1368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageSelectUI
       objectReference: {fileID: 0}
+    - target: {fileID: 902782929221629636, guid: f42b19df7376b47caa1bbf3462c4225e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1422,7 +1426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313c2529318684c78b6ab06803b09ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageListPanel: {fileID: 0}
   settingsPanel: {fileID: 0}
   creditsPanel: {fileID: 0}
 --- !u!1 &1922994128
