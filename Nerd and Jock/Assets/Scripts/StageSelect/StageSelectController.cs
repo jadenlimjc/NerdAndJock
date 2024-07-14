@@ -11,20 +11,68 @@ public class StageSelectController : MonoBehaviour
     public Sprite passed;
     public Sprite unlocked;
     public Sprite[] starSprites;
+    //public static int UnlockedLevels;
+
+    private JSONSaving jsonSaving;
 
     void Start()
     {
-        PlayerPrefs.SetInt("NJ1001_unlocked", 1);
+        jsonSaving = FindObjectOfType<JSONSaving>();
+        jsonSaving.LoadData(); // load the data
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            StageData stageData = jsonSaving.GetGameData().stages.Find(stage => stage.stageName == levelButtons[i].name);
+            int starCount = stageData.stars;
+
+            Transform starGroup = levelButtons[i].transform.Find("stars");
+            Image[] starImages = starGroup.GetComponentsInChildren<Image>(true);
+            //int UnlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 0);
+            if (stageData != null && stageData.unlocked)
+            {
+                levelButtons[i].interactable = true;
+                float bestTime = stageData.bestTime;
+                string bestGrade = stageData.bestGrade;
+                
+                if (bestTime == float.MaxValue) {
+                    levelButtons[i].GetComponent<Image>().sprite = unlocked;
+                    bestGradeTexts[i].gameObject.SetActive(false);
+                    SetStars(starImages, 0);
+                } 
+                else 
+                {
+                    levelButtons[i].GetComponent<Image>().sprite = passed;
+                    bestGradeTexts[i].text = "BEST : " + bestGrade;
+                    bestGradeTexts[i].gameObject.SetActive(true);
+                    SetStars(starImages, starCount);
+                }
+            }
+            else
+            {
+                levelButtons[i].interactable = false;
+                levelButtons[i].GetComponent<Image>().sprite = locked;
+                bestGradeTexts[i].gameObject.SetActive(false);
+                SetStars(starImages, 0);
+            }
+        }
+    }
+
+    /*void Start()
+    {
+        UnlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 0);
         for (int i = 0; i < levelButtons.Length; i++)
         {
             string stageName = levelButtons[i].name;
-            bool isUnlocked = PlayerPrefs.GetInt(stageName + "_unlocked", 0) == 1;
             int starCount = PlayerPrefs.GetInt(stageName + "_stars", 0);
 
             Transform starGroup = levelButtons[i].transform.Find("stars");
             Image[] starImages = starGroup.GetComponentsInChildren<Image>(true);
 
-            if (!isUnlocked)
+            if (UnlockedLevels < i)
             {
                 levelButtons[i].interactable = false;
                 levelButtons[i].GetComponent<Image>().sprite = locked;
@@ -49,11 +97,10 @@ public class StageSelectController : MonoBehaviour
                     bestGradeTexts[i].gameObject.SetActive(true);
                     SetStars(starImages, starCount);
                 }
-                
             }
         }
     }
-
+*/
     private void SetStars(Image[] starImages, int starCount)
     {
         for (int i = 0; i < starImages.Length; i++)
@@ -77,15 +124,20 @@ public class StageSelectController : MonoBehaviour
         SceneManager.LoadScene(stageName);
     }
 
+    public void BackButton()
+    {
+        SceneManager.LoadScene("HomeScreenScene");
+    }
+/*
     public void Reset()
     {
         foreach (Button button in levelButtons)
         {
-            PlayerPrefs.DeleteKey(button.name + "_unlocked");
             PlayerPrefs.DeleteKey(button.name + "_bestGrade");
             PlayerPrefs.DeleteKey(button.name + "_bestTime");
             PlayerPrefs.DeleteKey(button.name + "_stars");
         }
         PlayerPrefs.Save();
     }
+    */
 }

@@ -20,6 +20,7 @@ public class EndSceneManager : MonoBehaviour
     public Button retryButton;
     public Button nextLevelButton;
     private string currentScene;
+    private JSONSaving jsonSaving;
 
 
     public Text gradeText;
@@ -29,6 +30,13 @@ public class EndSceneManager : MonoBehaviour
     void Start()
     {
         currentScene = ScoreManager.Instance.getCurrentScene();
+        jsonSaving = FindObjectOfType<JSONSaving>();
+        if (jsonSaving == null) 
+        {
+            Debug.LogError("JSONSaving instance not found in the scene.");
+            return;
+        }
+
         int score = PlayerPrefs.GetInt("Score", 0);
         float time = PlayerPrefs.GetFloat("Time", 0);
         int totalCollectables = PlayerPrefs.GetInt("TotalCollectables", 0); // Setting to 0 if it is not set
@@ -95,18 +103,19 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             nextLevelButton.gameObject.SetActive(true);
             retryButton.gameObject.SetActive(true);
-            
+            /*
             int currLevel = PlayerPrefs.GetInt("currLevel", 0);
+            Debug.Log($"Current level {currLevel}");
             int unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 0);
+            Debug.Log($"Unlocked level {unlockedLevels}");
 
             if (currLevel == unlockedLevels)
             {
                 unlockedLevels++;
+                Debug.Log($"New unlocked level {unlockedLevels}");
                 PlayerPrefs.SetInt("UnlockedLevels", unlockedLevels);
             }
-            if (stars > PlayerPrefs.GetInt("stars" + currLevel.ToString(),0)) {
-                PlayerPrefs.SetInt("stars" +currLevel.ToString(), stars);
-            }
+            */
             
         }
         else
@@ -114,58 +123,6 @@ public class EndSceneManager : MonoBehaviour
             failedImage.gameObject.SetActive(true);
             yield return new WaitForSeconds(delay);
             retryButton.gameObject.SetActive(true);
-        }
-    }
-
-    private void UnlockStages(List<string> stageNames)
-    {
-        if (stageNames.Count > 0)
-        {
-            Debug.Log("Unlocked stages:");
-            foreach (string stage in stageNames)
-            {
-                PlayerPrefs.SetInt(stage + "_unlocked", 1);
-                Debug.Log(stage);
-            }
-            PlayerPrefs.Save();
-        }
-        else
-        {
-            Debug.Log("No new stages were unlocked.");
-        }
-    }
-
-    private List<string> calculateNextStageNames()
-    {
-        List<string> nextStages = new List<string>();
-        if (currentScene == "NJ1001")
-        {
-            nextStages.Add("NJ2001");
-            nextStages.Add("NJ2012");
-            nextStages.Add("NJ2020");
-            nextStages.Add("NJ2021");
-            return nextStages;
-        }
-        else
-        {
-            string stageBranch = currentScene.Substring(3, 3);
-            Debug.Log(stageBranch);
-            int level = int.Parse(currentScene.Substring(2, 1));
-            Debug.Log(level);
-            int maxLevel = (stageBranch == "001" || stageBranch == "012") 
-                                        ? 3
-                                        : (stageBranch == "020" || stageBranch == "021")
-                                            ? 2
-                                            : -1;
-            Debug.Log(maxLevel);
-            string nextStage = "NJ" + (level + 1) + stageBranch;
-            Debug.Log(nextStage);
-            if (level + 1 <= maxLevel) 
-            {
-                nextStages.Add(nextStage);
-                return nextStages;
-            }
-            return nextStages;
         }
     }
 
@@ -237,6 +194,37 @@ public class EndSceneManager : MonoBehaviour
     // Save the player's highscore
     private void updateHighScore(int stars, float time, string grade)
     {
+        StageData stageData = jsonSaving.GetGameData().stages.Find(stage => stage.stageName == currentScene);
+        if (stageData == null)
+        {
+            stageData = new StageData(currentScene, grade, stars, true, time);
+            jsonSaving.GetGameData().stages.Add(stageData);
+        }
+        else
+        {
+            if (time < (stageData.bestTime))
+            {
+                stageData.bestGrade = grade;
+                stageData.stars = stars;
+                stageData.bestTime = time;
+            }
+        }
+        int currentIndex = jsonSaving.GetGameData().stages.IndexOf(stageData);
+        if (currentIndex != -1 && currentIndex + 1 < jsonSaving.GetGameData().stages.Count)
+        {
+            StageData nextStageData = jsonSaving.GetGameData().stages[currentIndex + 1];
+            if (!nextStageData.unlocked)
+            {
+                nextStageData.unlocked = true;
+                Debug.Log("Unlocked next stage: " + nextStageData.stageName);
+            }
+        }
+
+        jsonSaving.SaveData();
+    }
+
+    /*private void updateHighScore(int stars, float time, string grade)
+    {
         float bestTime = PlayerPrefs.GetFloat(currentScene + "_bestTime", 0f);
 
         if (bestTime == 0 || time < bestTime)
@@ -246,10 +234,11 @@ public class EndSceneManager : MonoBehaviour
             PlayerPrefs.SetString(currentScene + "_bestGrade", grade);
         }
     }
+    */
 
     public void nextStage()
     {
-        SceneManager.LoadScene("HomeScreenScene");
+        SceneManager.LoadScene("StageSelectScene");
     }
 
     public void replay()
