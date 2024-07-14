@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
 
     private float timeTaken = 0f;
     private bool isRunning = false;
+    private string currentScene;
 
     void Awake() 
     {
@@ -21,7 +22,6 @@ public class ScoreManager : MonoBehaviour
         {
             Instance = this;
             // To make sure the ScoreManager persists across scenes
-            //DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -33,6 +33,10 @@ public class ScoreManager : MonoBehaviour
     // Called every time a scene is loaded
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name != "EndScene")
+        {
+            currentScene = scene.name;
+        }
         scoreText = GameObject.FindWithTag("ScoreText")?.GetComponent<Text>();
         clockText = GameObject.FindWithTag("ClockText")?.GetComponent<Text>();
         initialiseLevel();  // Reset and initialize when a new scene is loaded
@@ -125,5 +129,10 @@ public class ScoreManager : MonoBehaviour
             int sec = Mathf.FloorToInt(timeTaken % 60F);
             clockText.text = string.Format("Time Taken: {0:0} : {1:00}", min, sec);
         }
+    }
+
+    public string getCurrentScene()
+    {
+        return currentScene;
     }
 }

@@ -13,6 +13,7 @@ TagManager:
   - Collectable
   - ScoreText
   - ClockText
+  - Torchlight
   layers:
   - Default
   - TransparentFX
@@ -50,6 +51,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
+  - name: 
+    uniqueID: 479309999
+    locked: 0
+  - name: 
     uniqueID: 802818779
     locked: 0

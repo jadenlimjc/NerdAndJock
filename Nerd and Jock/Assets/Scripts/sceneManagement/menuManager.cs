@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {    
-    public GameObject stageListPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
 
@@ -37,11 +36,13 @@ public class MenuManager : MonoBehaviour
     }
 
     public void NewGame() {
-        SceneManager.LoadScene("NJ1001");
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("StageSelectScene");
     }
 
     public void Continue() {
-        stageListPanel.SetActive(true);
+        SceneManager.LoadScene("StageSelectScene");
     }
 
     public void Settings() {

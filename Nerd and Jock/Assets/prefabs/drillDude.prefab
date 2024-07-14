@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1111303611669970371}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: enemyHeadCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4364887558960012109}
   - component: {fileID: 5008798525089604267}
   - component: {fileID: -1908065088998809799}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: drillDude
   m_TagString: enemy
   m_Icon: {fileID: 0}
