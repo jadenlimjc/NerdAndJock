@@ -123,6 +123,11 @@ public class StageSelectController : MonoBehaviour
     {
         SceneManager.LoadScene(stageName);
     }
+
+    public void BackButton()
+    {
+        SceneManager.LoadScene("HomeScreenScene");
+    }
 /*
     public void Reset()
     {
