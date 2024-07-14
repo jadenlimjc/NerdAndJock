@@ -54,7 +54,7 @@ public class MenuManager : MonoBehaviour
     }
 
     public void OnClickBack() {
-         stageListPanel.SetActive(false);
+        // stageListPanel.SetActive(false);
         //  settingsPanel.SetActive(false);
         //  creditsPanel.SetACtive(false);
     }
