@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground4
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -315,6 +319,10 @@ PrefabInstance:
     - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
       propertyPath: m_Name
       value: ground9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -480,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -583,6 +591,10 @@ PrefabInstance:
     - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
       propertyPath: m_Name
       value: ground12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -699,6 +711,10 @@ PrefabInstance:
     - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
       propertyPath: m_Name
       value: ground3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -973,6 +989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gym3
       objectReference: {fileID: 0}
+    - target: {fileID: 2920600797164032790, guid: 005bf01e420d941baabc93ad7a2ff049, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885374424137367324, guid: 005bf01e420d941baabc93ad7a2ff049, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.440001
@@ -1110,6 +1130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gymfloor2
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1206,6 +1230,10 @@ PrefabInstance:
     - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
       propertyPath: m_Name
       value: ground8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1304,6 +1332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground13
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1320,6 +1352,10 @@ PrefabInstance:
     - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_Name
       value: library4
+      objectReference: {fileID: 0}
+    - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330221404100235369, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1458,6 +1494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground7
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1474,6 +1514,10 @@ PrefabInstance:
     - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_Name
       value: library2
+      objectReference: {fileID: 0}
+    - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330221404100235369, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1622,6 +1666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground11
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1659,6 +1707,10 @@ PrefabInstance:
       propertyPath: exclamation
       value: 
       objectReference: {fileID: 579176629}
+    - target: {fileID: 1125860041618061672, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1257584075155659986, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
       propertyPath: m_Size.x
       value: 2.5270545
@@ -1710,6 +1762,10 @@ PrefabInstance:
     - target: {fileID: 3338941137022542122, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
       propertyPath: m_Name
       value: jockFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338941137022542122, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7732430129773574187, guid: dc70cb523d6c74828b527aa0e998b7f1, type: 3}
       propertyPath: other
@@ -1973,6 +2029,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: libraryfloor3
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1989,6 +2049,10 @@ PrefabInstance:
     - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_Name
       value: library3
+      objectReference: {fileID: 0}
+    - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330221404100235369, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2134,6 +2198,10 @@ PrefabInstance:
     - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
       propertyPath: m_Name
       value: ground6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2288,6 +2356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: nerdFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 3888922357625682096, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4658934853819527176, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
       propertyPath: jumpForce
       value: 5.1
@@ -2296,6 +2368,10 @@ PrefabInstance:
       propertyPath: exclamation
       value: 
       objectReference: {fileID: 1314230719}
+    - target: {fileID: 4658934853819527176, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7637615021430096373, guid: 5ea9c25643c5f4ced9b9de14a3ed369f, type: 3}
       propertyPath: other
       value: 
@@ -2411,6 +2487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: libraryfloor1
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2504,6 +2584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground1
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2585,6 +2669,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: libraryfloor4
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2601,6 +2689,10 @@ PrefabInstance:
     - target: {fileID: 2920600797164032790, guid: 005bf01e420d941baabc93ad7a2ff049, type: 3}
       propertyPath: m_Name
       value: gym2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920600797164032790, guid: 005bf01e420d941baabc93ad7a2ff049, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885374424137367324, guid: 005bf01e420d941baabc93ad7a2ff049, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2755,6 +2847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground10
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2841,6 +2937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gymfloor1
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2922,6 +3022,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gymfloor3
       objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3002,6 +3106,10 @@ PrefabInstance:
     - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
       propertyPath: m_Name
       value: libraryfloor2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 4dab2ae205e8a4fdaaea833fe1999af3, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3107,6 +3215,10 @@ PrefabInstance:
     - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
       propertyPath: m_Name
       value: ground5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674891205629526893, guid: 83f6b2e49372c48ca9a0aabc16d994b5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3606,6 +3718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gym1
       objectReference: {fileID: 0}
+    - target: {fileID: 2920600797164032790, guid: 005bf01e420d941baabc93ad7a2ff049, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885374424137367324, guid: 005bf01e420d941baabc93ad7a2ff049, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.498
@@ -3678,6 +3794,10 @@ PrefabInstance:
     - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_Name
       value: library1
+      objectReference: {fileID: 0}
+    - target: {fileID: 469006947940265682, guid: d80539fd0087b4d01840722170ec2148, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330221404100235369, guid: d80539fd0087b4d01840722170ec2148, type: 3}
       propertyPath: m_LocalPosition.x

@@ -197,7 +197,7 @@ public class EndSceneManager : MonoBehaviour
         StageData stageData = jsonSaving.GetGameData().stages.Find(stage => stage.stageName == currentScene);
         if (stageData == null)
         {
-            stageData = new StageData(currentScene, grade, stars, true, time);
+            stageData = new StageData(currentScene, grade, stars, true, time, null);
             jsonSaving.GetGameData().stages.Add(stageData);
         }
         else
@@ -209,6 +209,22 @@ public class EndSceneManager : MonoBehaviour
                 stageData.bestTime = time;
             }
         }
+        
+        string[] nextLevels = stageData.nextLevels;
+        if (nextLevels != null)
+        {
+            foreach (string nextStageName in nextLevels)
+            {
+                StageData nextStageData = jsonSaving.GetGameData().stages.Find(stage => stage.stageName == nextStageName); 
+                if (nextStageData != null && !nextStageData.unlocked)
+                {
+                    nextStageData.unlocked = true;
+                    Debug.Log("Unlocked next stage: " + nextStageData.stageName);
+                }
+            }
+        }
+        
+/*
         int currentIndex = jsonSaving.GetGameData().stages.IndexOf(stageData);
         if (currentIndex != -1 && currentIndex + 1 < jsonSaving.GetGameData().stages.Count)
         {
@@ -219,7 +235,7 @@ public class EndSceneManager : MonoBehaviour
                 Debug.Log("Unlocked next stage: " + nextStageData.stageName);
             }
         }
-
+*/
         jsonSaving.SaveData();
     }
 
