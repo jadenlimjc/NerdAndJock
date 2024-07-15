@@ -17,14 +17,16 @@ public class StageData
     public int stars;
     public bool unlocked;
     public float bestTime = float.MaxValue;
+    public string[] nextLevels;
 
-    public StageData(string stageName, string bestGrade, int stars, bool unlocked, float bestTime)
+    public StageData(string stageName, string bestGrade, int stars, bool unlocked, float bestTime, string[] nextLevels)
     {
         this.stageName = stageName;
         this.bestGrade = bestGrade;
         this.stars = stars;
         this.unlocked = unlocked;
         this.bestTime = bestTime;
+        this.nextLevels = nextLevels;
     }
 
     public override string ToString()
