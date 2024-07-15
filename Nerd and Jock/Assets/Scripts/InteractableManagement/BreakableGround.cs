@@ -5,8 +5,13 @@ using UnityEngine;
 public class BreakableGround : MonoBehaviour
 {
     public float destroyDelay = 3.0f;
+    //public animator groundAnimator;
     private bool isDestroying = false;
     // Start is called before the first frame update
+
+    /* public void Start() {
+        
+    } */
     public void OnTriggerEnter2D(Collider2D other) {
         if ((other.CompareTag("nerd") || other.CompareTag("jock")) && !isDestroying) {
             StartCoroutine(DestroyAfterDelay());
@@ -18,7 +23,7 @@ public class BreakableGround : MonoBehaviour
     private IEnumerator DestroyAfterDelay() {
         isDestroying = true;
         yield return new WaitForSeconds(destroyDelay);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
 
