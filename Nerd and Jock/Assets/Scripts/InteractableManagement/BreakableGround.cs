@@ -13,6 +13,7 @@ public class BreakableGround : MonoBehaviour
         
     } */
     public void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Collision detected with: " + other.gameObject.name); // Log collision detection
         if ((other.CompareTag("nerd") || other.CompareTag("jock")) && !isDestroying) {
             StartCoroutine(DestroyAfterDelay());
         }
@@ -24,6 +25,7 @@ public class BreakableGround : MonoBehaviour
         isDestroying = true;
         yield return new WaitForSeconds(destroyDelay);
         gameObject.SetActive(false);
+        BreakableGroundManager.Instance.ReactivateObject(gameObject,destroyDelay);
     }
 }
 

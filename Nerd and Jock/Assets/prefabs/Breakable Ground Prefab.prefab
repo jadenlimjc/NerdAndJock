@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 457557895365110204}
   - component: {fileID: 8285882581172848386}
   - component: {fileID: 6334054077605307286}
-  - component: {fileID: 5462963716690446689}
   - component: {fileID: 396927371664503714}
-  m_Layer: 3
+  - component: {fileID: 5462963716690446689}
+  m_Layer: 0
   m_Name: Breakable Ground Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.385, y: -5.6, z: 0}
-  m_LocalScale: {x: 0.640224, y: 1.06704, z: 1.06704}
+  m_LocalScale: {x: 1.06704, y: 1.06704, z: 1.06704}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3, y: 2.2}
+  m_DrawMode: 2
+  m_Size: {x: 2, y: 2.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -152,27 +152,14 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5, y: 2.2}
-    newSize: {x: 3, y: 2.2}
+    newSize: {x: 2, y: 2.2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 4.890032, y: 0.5917524}
+  m_Size: {x: 5, y: 0.5917524}
   m_EdgeRadius: 0
---- !u!114 &5462963716690446689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4796690437745743064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f554563d1b8704ea1b97bec649b6b40c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyDelay: 3
 --- !u!61 &396927371664503714
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210,11 +197,24 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5, y: 2.2}
-    newSize: {x: 3, y: 2.2}
+    newSize: {x: 2, y: 2.2}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.8832192, y: 0.5814242}
+  m_Size: {x: 2, y: 0.5814242}
   m_EdgeRadius: 0
+--- !u!114 &5462963716690446689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796690437745743064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f554563d1b8704ea1b97bec649b6b40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 2
