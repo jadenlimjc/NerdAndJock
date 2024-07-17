@@ -11,13 +11,13 @@ public class StageSelectController : MonoBehaviour
     public Sprite passed;
     public Sprite unlocked;
     public Sprite[] starSprites;
-    //public static int UnlockedLevels;
-
     private JSONSaving jsonSaving;
+    private StageManager stageManager;
 
     void Start()
     {
         jsonSaving = FindObjectOfType<JSONSaving>();
+        stageManager = StageManager.Instance;
         jsonSaving.LoadData(); // load the data
         UpdateUI();
     }
@@ -31,20 +31,21 @@ public class StageSelectController : MonoBehaviour
 
             Transform starGroup = levelButtons[i].transform.Find("stars");
             Image[] starImages = starGroup.GetComponentsInChildren<Image>(true);
-            //int UnlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 0);
-            if (stageData != null && stageData.unlocked)
+            if (stageData != null && stageManager.IsStageUnlocked(stageData.stageName))
             {
                 levelButtons[i].interactable = true;
                 float bestTime = stageData.bestTime;
                 string bestGrade = stageData.bestGrade;
                 
                 if (bestTime == float.MaxValue) {
+                    //Debug.Log($"Stage {stageData.stageName} is unlocked.");
                     levelButtons[i].GetComponent<Image>().sprite = unlocked;
                     bestGradeTexts[i].gameObject.SetActive(false);
                     SetStars(starImages, 0);
                 } 
                 else 
                 {
+                    //Debug.Log($"Stage {stageData.stageName} is passed.");
                     levelButtons[i].GetComponent<Image>().sprite = passed;
                     bestGradeTexts[i].text = "BEST : " + bestGrade;
                     bestGradeTexts[i].gameObject.SetActive(true);
@@ -53,6 +54,7 @@ public class StageSelectController : MonoBehaviour
             }
             else
             {
+                //Debug.Log($"Stage {stageData.stageName} is locked.");
                 levelButtons[i].interactable = false;
                 levelButtons[i].GetComponent<Image>().sprite = locked;
                 bestGradeTexts[i].gameObject.SetActive(false);
@@ -61,46 +63,6 @@ public class StageSelectController : MonoBehaviour
         }
     }
 
-    /*void Start()
-    {
-        UnlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 0);
-        for (int i = 0; i < levelButtons.Length; i++)
-        {
-            string stageName = levelButtons[i].name;
-            int starCount = PlayerPrefs.GetInt(stageName + "_stars", 0);
-
-            Transform starGroup = levelButtons[i].transform.Find("stars");
-            Image[] starImages = starGroup.GetComponentsInChildren<Image>(true);
-
-            if (UnlockedLevels < i)
-            {
-                levelButtons[i].interactable = false;
-                levelButtons[i].GetComponent<Image>().sprite = locked;
-                bestGradeTexts[i].gameObject.SetActive(false);
-                SetStars(starImages, 0);
-            }
-            else
-            {
-                levelButtons[i].interactable = true;
-                float bestTime = PlayerPrefs.GetFloat(stageName + "_bestTime", 0f);
-                string bestGrade = PlayerPrefs.GetString(stageName + "_bestGrade", "NA");
-                
-                if (bestTime == 0f) {
-                    levelButtons[i].GetComponent<Image>().sprite = unlocked;
-                    bestGradeTexts[i].gameObject.SetActive(false);
-                    SetStars(starImages, 0);
-                } 
-                else 
-                {
-                    levelButtons[i].GetComponent<Image>().sprite = passed;
-                    bestGradeTexts[i].text = "BEST : " + bestGrade;
-                    bestGradeTexts[i].gameObject.SetActive(true);
-                    SetStars(starImages, starCount);
-                }
-            }
-        }
-    }
-*/
     private void SetStars(Image[] starImages, int starCount)
     {
         for (int i = 0; i < starImages.Length; i++)
@@ -121,23 +83,14 @@ public class StageSelectController : MonoBehaviour
 
     public void LoadStage(string stageName)
     {
-        SceneManager.LoadScene(stageName);
+        if (stageManager.IsStageUnlocked(stageName))
+        {
+            SceneManager.LoadScene(stageName);
+        }
     }
 
     public void BackButton()
     {
         SceneManager.LoadScene("HomeScreenScene");
     }
-/*
-    public void Reset()
-    {
-        foreach (Button button in levelButtons)
-        {
-            PlayerPrefs.DeleteKey(button.name + "_bestGrade");
-            PlayerPrefs.DeleteKey(button.name + "_bestTime");
-            PlayerPrefs.DeleteKey(button.name + "_stars");
-        }
-        PlayerPrefs.Save();
-    }
-    */
 }

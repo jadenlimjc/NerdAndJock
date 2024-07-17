@@ -580,6 +580,74 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2200492150984621388, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
   m_PrefabInstance: {fileID: 11815054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &382989476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3048899197229209083, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_Name
+      value: StageManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.261805
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.4721003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2090085
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+--- !u!114 &382989477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7625240368438175418, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+  m_PrefabInstance: {fileID: 382989476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4718188b5f24db4846860999fbef1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &420573604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1390,7 @@ MonoBehaviour:
   failedImage: {fileID: 1626706302}
   retryButton: {fileID: 354877417}
   nextLevelButton: {fileID: 751059549}
+  stageManager: {fileID: 382989477}
   gradeText: {fileID: 1368719072}
   delay: 0.75
 --- !u!4 &1721105667
@@ -1551,3 +1620,4 @@ SceneRoots:
   - {fileID: 1721105667}
   - {fileID: 2046320431}
   - {fileID: 1393515126}
+  - {fileID: 382989476}
