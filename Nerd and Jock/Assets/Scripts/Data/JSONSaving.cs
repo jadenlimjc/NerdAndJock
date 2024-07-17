@@ -74,15 +74,16 @@ public class JSONSaving : MonoBehaviour
     {
         ClearGameData();
 
-        var nj3001 = new StageData("NJ3001", "", 0, false, float.MaxValue, null);
-        var nj3012 = new StageData("NJ3012", "", 0, false, float.MaxValue, null);
+        var nj3001 = new StageData("NJ3001", "", 0, false, float.MaxValue);
+        var nj3012 = new StageData("NJ3012", "", 0, false, float.MaxValue);
+        var nj3020 = new StageData("NJ3020", "", 0, false, float.MaxValue);
 
-        var nj2001 = new StageData("NJ2001", "", 0, false, float.MaxValue, new string[] { "NJ3001" });
-        var nj2012 = new StageData("NJ2012", "", 0, false, float.MaxValue, new string[] { "NJ3012" });
-        var nj2020 = new StageData("NJ2020", "", 0, false, float.MaxValue, null);
-        var nj2021 = new StageData("NJ2021", "", 0, false, float.MaxValue, null);
+        var nj2001 = new StageData("NJ2001", "", 0, false, float.MaxValue);
+        var nj2012 = new StageData("NJ2012", "", 0, false, float.MaxValue);
+        var nj2020 = new StageData("NJ2020", "", 0, false, float.MaxValue);
+        var nj2021 = new StageData("NJ2021", "", 0, false, float.MaxValue);
 
-        var nj1001 = new StageData("NJ1001", "", 0, true, float.MaxValue, new string[] { "NJ2001", "NJ2012", "NJ2020", "NJ2021" });
+        var nj1001 = new StageData("NJ1001", "", 0, true, float.MaxValue);
 
         gameData.stages.Add(nj1001);
         gameData.stages.Add(nj2001);
@@ -91,6 +92,7 @@ public class JSONSaving : MonoBehaviour
         gameData.stages.Add(nj2021);
         gameData.stages.Add(nj3001);
         gameData.stages.Add(nj3012);
+        gameData.stages.Add(nj3020);
         SaveData();
     }
 }
