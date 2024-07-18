@@ -4,6 +4,7 @@ using UnityEngine;
 public class JSONSaving : MonoBehaviour
 {
     public static JSONSaving Instance;
+    public StageManager stageManager;
 
     private void Awake()
     {
@@ -73,7 +74,7 @@ public class JSONSaving : MonoBehaviour
     public void InitializeGameData()
     {
         ClearGameData();
-
+        
         var nj3001 = new StageData("NJ3001", "", 0, false, float.MaxValue);
         var nj3012 = new StageData("NJ3012", "", 0, false, float.MaxValue);
         var nj3020 = new StageData("NJ3020", "", 0, false, float.MaxValue);

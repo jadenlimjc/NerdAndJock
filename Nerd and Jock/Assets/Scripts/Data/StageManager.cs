@@ -9,6 +9,7 @@ public class StageManager : MonoBehaviour
     private List<StageDataSO> allStages; 
     private Dictionary<string, bool> unlockedStages = new Dictionary<string, bool>();
     public GameObject stageSelectPanel;
+    private JSONSaving jsonSaving;
 
     void Awake()
     {
@@ -27,6 +28,11 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        jsonSaving = FindObjectOfType<JSONSaving>();
+        if (jsonSaving == null)
+        {
+            Debug.LogError("JSONSaving not found!");
+        }
     }
 
     private void InitializeStages()
@@ -57,8 +63,20 @@ public class StageManager : MonoBehaviour
                 string nextStageName = nextStage.stageName;
                 //Debug.Log($"Stage: {nextStageName}");
                 unlockedStages[nextStageName] = true;
-                //Debug.Log("Unlocked next stage: " + nextStageName);
+                
+                StageData stageData = jsonSaving.GetGameData().stages.Find(s => s.stageName == nextStageName);
+                if (stageData == null)
+                {
+                    stageData = new StageData(nextStageName, "", 0, true, float.MaxValue);
+                    jsonSaving.GetGameData().stages.Add(stageData);
+                }
+                else
+                {
+                    stageData.unlocked = true;
+                    Debug.Log("Unlocked next stage: " + nextStageName);
+                }
             }
+            jsonSaving.SaveData();
         }
     }
 
