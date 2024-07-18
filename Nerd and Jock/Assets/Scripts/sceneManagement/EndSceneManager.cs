@@ -21,6 +21,7 @@ public class EndSceneManager : MonoBehaviour
     public Button nextLevelButton;
     private string currentScene;
     private JSONSaving jsonSaving;
+    private StageManager stageManager;
 
 
     public Text gradeText;
@@ -31,9 +32,15 @@ public class EndSceneManager : MonoBehaviour
     {
         currentScene = ScoreManager.Instance.getCurrentScene();
         jsonSaving = FindObjectOfType<JSONSaving>();
+        stageManager = StageManager.Instance;
         if (jsonSaving == null) 
         {
             Debug.LogError("JSONSaving instance not found in the scene.");
+            return;
+        }
+        if (stageManager == null)
+        {
+            Debug.LogError("StageManager instance not assigned.");
             return;
         }
 
@@ -103,20 +110,7 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             nextLevelButton.gameObject.SetActive(true);
             retryButton.gameObject.SetActive(true);
-            /*
-            int currLevel = PlayerPrefs.GetInt("currLevel", 0);
-            Debug.Log($"Current level {currLevel}");
-            int unlockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 0);
-            Debug.Log($"Unlocked level {unlockedLevels}");
-
-            if (currLevel == unlockedLevels)
-            {
-                unlockedLevels++;
-                Debug.Log($"New unlocked level {unlockedLevels}");
-                PlayerPrefs.SetInt("UnlockedLevels", unlockedLevels);
-            }
-            */
-            
+            UnlockStage();
         }
         else
         {
@@ -197,7 +191,7 @@ public class EndSceneManager : MonoBehaviour
         StageData stageData = jsonSaving.GetGameData().stages.Find(stage => stage.stageName == currentScene);
         if (stageData == null)
         {
-            stageData = new StageData(currentScene, grade, stars, true, time, null);
+            stageData = new StageData(currentScene, grade, stars, true, time);
             jsonSaving.GetGameData().stages.Add(stageData);
         }
         else
@@ -209,52 +203,19 @@ public class EndSceneManager : MonoBehaviour
                 stageData.bestTime = time;
             }
         }
-        
-        string[] nextLevels = stageData.nextLevels;
-        if (nextLevels != null)
-        {
-            foreach (string nextStageName in nextLevels)
-            {
-                StageData nextStageData = jsonSaving.GetGameData().stages.Find(stage => stage.stageName == nextStageName); 
-                if (nextStageData != null && !nextStageData.unlocked)
-                {
-                    nextStageData.unlocked = true;
-                    Debug.Log("Unlocked next stage: " + nextStageData.stageName);
-                }
-            }
-        }
-        
-/*
-        int currentIndex = jsonSaving.GetGameData().stages.IndexOf(stageData);
-        if (currentIndex != -1 && currentIndex + 1 < jsonSaving.GetGameData().stages.Count)
-        {
-            StageData nextStageData = jsonSaving.GetGameData().stages[currentIndex + 1];
-            if (!nextStageData.unlocked)
-            {
-                nextStageData.unlocked = true;
-                Debug.Log("Unlocked next stage: " + nextStageData.stageName);
-            }
-        }
-*/
         jsonSaving.SaveData();
     }
 
-    /*private void updateHighScore(int stars, float time, string grade)
+    private void UnlockStage()
     {
-        float bestTime = PlayerPrefs.GetFloat(currentScene + "_bestTime", 0f);
-
-        if (bestTime == 0 || time < bestTime)
-        {
-            PlayerPrefs.SetInt(currentScene + "_stars", stars);
-            PlayerPrefs.SetFloat(currentScene + "_bestTime", time);
-            PlayerPrefs.SetString(currentScene + "_bestGrade", grade);
-        }
+        // Unlock the next stages based on the current stage
+        //Debug.Log($"Trying to unlock stages following {currentScene}");
+        stageManager.UnlockNextStages(currentScene);
     }
-    */
 
     public void nextStage()
     {
-        SceneManager.LoadScene("StageSelectScene");
+        SceneManager.LoadScene("HomeScreenScene");
     }
 
     public void replay()
@@ -262,5 +223,9 @@ public class EndSceneManager : MonoBehaviour
         SceneManager.LoadScene(ScoreManager.Instance.getCurrentScene());
     }
 
-
+    private void CompleteStage()
+    {
+        string currentStageName = ScoreManager.Instance.getCurrentScene();
+        stageManager.UnlockNextStages(currentStageName);
+    }
 }
