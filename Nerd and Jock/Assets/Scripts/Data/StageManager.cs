@@ -89,4 +89,19 @@ public class StageManager : MonoBehaviour
         //  settingsPanel.SetActive(false);
         //  creditsPanel.SetACtive(false);
     }
+
+    public void InitializeGameDataFromSO()
+    {
+        jsonSaving.ClearGameData();
+        InitializeStages();
+        foreach (StageDataSO stageDataSO in allStages)
+        {
+            bool isUnlocked = false;
+            unlockedStages.TryGetValue(stageDataSO.stageName, out isUnlocked);
+
+            StageData newStage = new StageData(stageDataSO.stageName, "", 0, isUnlocked, float.MaxValue);
+            jsonSaving.GetGameData().stages.Add(newStage);
+        }
+        jsonSaving.SaveData();
+    }
 }
