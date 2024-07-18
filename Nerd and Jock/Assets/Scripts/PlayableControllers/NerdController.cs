@@ -11,10 +11,11 @@ public class NerdController : MonoBehaviour
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Rigidbody2D rb;
-    private bool isGrounded;
+    public bool isGrounded;
     private GameObject currentInteractable;
-    private bool isInteracting = false;
+    public bool isInteracting = false;
     public GameObject exclamation;
+
 
     // Fields used for multiple jump method
     /*
@@ -146,7 +147,7 @@ public class NerdController : MonoBehaviour
     // Interact method to check input and corresponding interaction of sprites and objects
     void Interact()
     {
-        if (currentInteractable != null && Input.GetKey(KeyCode.E) && !isInteracting) {
+        if (currentInteractable != null && Input.GetKey(KeyCode.E) && !isInteracting && isGrounded) {
             IInteractable interactable =  currentInteractable.GetComponent<IInteractable>();
             if (interactable != null) {
                 StartCoroutine(InteractCoroutine(interactable));

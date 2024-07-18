@@ -145,7 +145,7 @@ public class JockController : MonoBehaviour
     // Interact method to check input and corresponding interaction of sprites and objects
     void Interact()
     {
-        if (currentInteractable != null && Input.GetKey(KeyCode.Return) && !isInteracting) {
+        if (currentInteractable != null && Input.GetKey(KeyCode.Return) && !isInteracting && isGrounded) {
             IInteractable interactable =  currentInteractable.GetComponent<IInteractable>();
             if (interactable != null) {
                 StartCoroutine(InteractCoroutine(interactable));

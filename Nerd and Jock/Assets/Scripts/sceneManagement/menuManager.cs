@@ -9,6 +9,10 @@ public class MenuManager : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject creditsPanel;
 
+    public AudioManager audioManager;
+
+    
+
     private JSONSaving jsonSaving;
     //public static int UnlockedLevels;
 
@@ -31,9 +35,23 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogError("JSONSaving instance not found. Ensure it is loaded in this scene.");
         }
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
     }
 
     public void NewGame() {
+        if (audioManager != null)
+        {
+            audioManager.PlayClickSound();
+        }
+        StartCoroutine(DelayedNewGame());
+    }
+
+    public IEnumerator DelayedNewGame() {
+        yield return new WaitForSeconds(0.1f); // Delay to allow the click sound to play
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         if (jsonSaving != null) 
@@ -44,6 +62,16 @@ public class MenuManager : MonoBehaviour
     }
 
     public void Continue() {
+        if (audioManager != null)
+        {
+            audioManager.PlayClickSound();
+        }
+        StartCoroutine(DelayedContinue());
+    }
+
+    private IEnumerator DelayedContinue()
+    {
+        yield return new WaitForSeconds(0.1f); // Delay to allow the click sound to play
         if (jsonSaving != null)
         {
             jsonSaving.LoadData();
@@ -52,32 +80,28 @@ public class MenuManager : MonoBehaviour
     }
 
     public void Settings() {
+        if (audioManager != null)
+        {
+            audioManager.PlayClickSound();
+        }
         settingsPanel.SetActive(true);
     }
 
     public void Credits() {
+        if (audioManager != null)
+        {
+            audioManager.PlayClickSound();
+        }
         creditsPanel.SetActive(true);
     }
-/*
-    public void OnClickBack() {
-         stageListPanel.SetActive(false);
-        //  settingsPanel.SetActive(false);
-        //  creditsPanel.SetACtive(false);
-    }
-    
 
-    public void OnClickLevelButton(string level) {
-        if (levelMap.TryGetValue(level, out int levelNum))
+    public void OnButtonHover()
+    {
+        if (audioManager != null)
         {
-            PlayerPrefs.SetInt("currLevel", levelNum);
-            SceneManager.LoadScene(level);
-        }
-        else
-        {
-            Debug.LogError($"Level '{level}' not found in the level map.");
+            audioManager.PlayHoverSound();
         }
     }
-    */
 
     
 }
