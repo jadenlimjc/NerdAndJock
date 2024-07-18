@@ -8,6 +8,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] 
     private List<StageDataSO> allStages; 
     private Dictionary<string, bool> unlockedStages = new Dictionary<string, bool>();
+    public GameObject stageSelectPanel;
 
     void Awake()
     {
@@ -64,5 +65,10 @@ public class StageManager : MonoBehaviour
     public bool IsStageUnlocked(string stageName)
     {
         return unlockedStages.TryGetValue(stageName, out bool isUnlocked) && isUnlocked;
+    }
+    public void OnClickBack() {
+        stageSelectPanel.SetActive(false);
+        //  settingsPanel.SetActive(false);
+        //  creditsPanel.SetACtive(false);
     }
 }

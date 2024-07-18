@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {    
+    public GameObject stageSelectPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
 
@@ -47,37 +48,29 @@ public class MenuManager : MonoBehaviour
         {
             audioManager.PlayClickSound();
         }
-        StartCoroutine(DelayedNewGame());
-    }
-
-    public IEnumerator DelayedNewGame() {
-        yield return new WaitForSeconds(0.1f); // Delay to allow the click sound to play
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         if (jsonSaving != null) 
         {
             jsonSaving.InitializeGameData();
         }
-        SceneManager.LoadScene("StageSelectScene");
+        stageSelectPanel.SetActive(true);
     }
+
+    
 
     public void Continue() {
         if (audioManager != null)
         {
             audioManager.PlayClickSound();
         }
-        StartCoroutine(DelayedContinue());
-    }
-
-    private IEnumerator DelayedContinue()
-    {
-        yield return new WaitForSeconds(0.1f); // Delay to allow the click sound to play
         if (jsonSaving != null)
         {
             jsonSaving.LoadData();
         }
-        SceneManager.LoadScene("StageSelectScene");
+        stageSelectPanel.SetActive(true);
     }
+
 
     public void Settings() {
         if (audioManager != null)

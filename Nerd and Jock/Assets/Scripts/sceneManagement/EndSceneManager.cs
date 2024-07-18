@@ -215,7 +215,7 @@ public class EndSceneManager : MonoBehaviour
 
     public void nextStage()
     {
-        SceneManager.LoadScene("StageSelectScene");
+        SceneManager.LoadScene("HomeScreenScene");
     }
 
     public void replay()
