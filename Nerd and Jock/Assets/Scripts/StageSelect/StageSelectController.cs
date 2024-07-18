@@ -13,6 +13,7 @@ public class StageSelectController : MonoBehaviour
     public Sprite[] starSprites;
     private JSONSaving jsonSaving;
     private StageManager stageManager;
+    public GameObject stageSelectPanel;
 
     public void Initialize()
     {
@@ -90,8 +91,8 @@ public class StageSelectController : MonoBehaviour
         }
     }
 
-    // public void BackButton()
-    // {
-    //     SceneManager.LoadScene("HomeScreenScene");
-    // }
+    public void BackButton()
+    {
+        stageSelectPanel.SetActive(false);
+    }
 }

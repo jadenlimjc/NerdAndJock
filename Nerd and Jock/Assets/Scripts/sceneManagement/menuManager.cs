@@ -40,6 +40,14 @@ public class MenuManager : MonoBehaviour
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
         stageSelectController = FindObjectOfType<StageSelectController>();
+
+        if (PlayerPrefs.GetInt("ShowStageSelect", 0) == 1)
+        {
+            stageSelectPanel.SetActive(true);
+            stageSelectController.Initialize();
+            PlayerPrefs.SetInt("ShowStageSelect", 0);  // Reset flag
+            PlayerPrefs.Save();
+        }
     }
 
     public void NewGame() {

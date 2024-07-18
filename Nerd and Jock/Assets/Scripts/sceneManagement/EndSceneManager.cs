@@ -215,6 +215,8 @@ public class EndSceneManager : MonoBehaviour
 
     public void nextStage()
     {
+        PlayerPrefs.SetInt("ShowStageSelect", 1);  // Set flag
+        PlayerPrefs.Save();
         SceneManager.LoadScene("HomeScreenScene");
     }
 
