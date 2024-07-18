@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip nerdInteractClip;
     public AudioClip jockJumpClip;
     public AudioClip jockInteractClip;
+    public AudioClip mainMenuBGMClip;
 
     private Dictionary<AudioType, AudioSource> audioSources;
 
@@ -46,6 +47,7 @@ public class AudioManager : MonoBehaviour
         audioSources.Add(AudioType.NerdInteract, gameObject.AddComponent<AudioSource>());
         audioSources.Add(AudioType.JockJump, gameObject.AddComponent<AudioSource>());
         audioSources.Add(AudioType.JockInteract, gameObject.AddComponent<AudioSource>());
+        audioSources.Add(AudioType.MainMenuBGM, gameObject.AddComponent<AudioSource>());
     }
 
     public void PlaySound(AudioType audioType)
@@ -78,6 +80,7 @@ public class AudioManager : MonoBehaviour
             case AudioType.NerdInteract: return nerdInteractClip;
             case AudioType.JockJump: return jockJumpClip;
             case AudioType.JockInteract: return jockInteractClip;
+            case AudioType.MainMenuBGM: return mainMenuBGMClip;
             default: return null;
         }
     }

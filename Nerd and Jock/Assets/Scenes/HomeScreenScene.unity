@@ -3160,6 +3160,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3308549ea40954236b23d6b652f9b2a5, type: 3}
   - {fileID: 21300000, guid: c9fa4c418e0f4487f99ae69c4bfd1afa, type: 3}
   - {fileID: 21300000, guid: 2f9150ec4bf7145a99272904023cd8cd, type: 3}
+  audioManager: {fileID: 0}
 --- !u!4 &829476911
 Transform:
   m_ObjectHideFlags: 0
@@ -4689,6 +4690,7 @@ MonoBehaviour:
   nerdInteractClip: {fileID: 8300000, guid: 7cb2da85836f54e3c81b59d7dd74c744, type: 3}
   jockJumpClip: {fileID: 8300000, guid: 6f65e9a5397e04c18a4b10a05f7f9c21, type: 3}
   jockInteractClip: {fileID: 8300000, guid: 2f0d336bd7a494f39b13fb23776d2d6b, type: 3}
+  mainMenuBGMClip: {fileID: 8300000, guid: 1b256eb5f926244a492f9a0768301dfa, type: 3}
 --- !u!4 &1238700761
 Transform:
   m_ObjectHideFlags: 0

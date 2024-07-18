@@ -41,6 +41,7 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
+        audioManager.PlaySound(AudioType.MainMenuBGM);
     }
 
     public void NewGame() {

@@ -13,13 +13,20 @@ public class StageSelectController : MonoBehaviour
     public Sprite[] starSprites;
     private JSONSaving jsonSaving;
     private StageManager stageManager;
+    public AudioManager audioManager;
 
     void Start()
     {
         jsonSaving = FindObjectOfType<JSONSaving>();
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
         stageManager = StageManager.Instance;
         jsonSaving.LoadData(); // load the data
         UpdateUI();
+        
     }
 
     private void UpdateUI()
@@ -85,6 +92,8 @@ public class StageSelectController : MonoBehaviour
     {
         if (stageManager.IsStageUnlocked(stageName))
         {
+            audioManager.PlaySound(AudioType.Star);
+            audioManager.StopSound(AudioType.MainMenuBGM);
             SceneManager.LoadScene(stageName);
         }
     }

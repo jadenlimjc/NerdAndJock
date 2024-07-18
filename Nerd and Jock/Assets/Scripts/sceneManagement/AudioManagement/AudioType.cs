@@ -9,5 +9,14 @@ public enum AudioType
     NerdJump,
     NerdInteract,
     JockJump,
-    JockInteract
+    JockInteract,
+    MainMenuBGM
+
+    /* need to add
+    TutorialType
+    TutorialClick
+    LevelSelectClick
+    Indiv stage bgm
+     */
+
 }

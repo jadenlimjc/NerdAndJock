@@ -230,12 +230,16 @@ public class EndSceneManager : MonoBehaviour
     public void nextStage()
     {
         audioManager.PlaySound(AudioType.Click);
+        audioManager.StopSound(AudioType.Pass);
+        audioManager.StopSound(AudioType.Fail);
         SceneManager.LoadScene("HomeScreenScene");
     }
 
     public void replay()
     {
         audioManager.PlaySound(AudioType.Click);
+        audioManager.StopSound(AudioType.Pass);
+        audioManager.StopSound(AudioType.Fail);
         SceneManager.LoadScene(ScoreManager.Instance.getCurrentScene());
     }
 
