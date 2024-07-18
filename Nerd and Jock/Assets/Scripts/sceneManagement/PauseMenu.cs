@@ -7,6 +7,17 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gamePaused = false;
     public GameObject pauseMenuUI;
+    public AudioManager audioManager;
+    void Start()
+    {
+        
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
+    }
+
 
 
     // Update is called once per frame
@@ -48,5 +59,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1.0f;
         gamePaused = false;
         SceneManager.LoadScene("HomeScreenScene");
+    }
+    public void OnButtonHover()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlayHoverSound();
+        }
     }
 }

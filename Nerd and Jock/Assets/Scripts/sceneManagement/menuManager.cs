@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {    
+    public GameObject stageSelectPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
 
     public AudioManager audioManager;
-
-    
-
+    private StageSelectController stageSelectController;
     private JSONSaving jsonSaving;
     //public static int UnlockedLevels;
 
@@ -40,6 +39,15 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
+        stageSelectController = FindObjectOfType<StageSelectController>();
+
+        if (PlayerPrefs.GetInt("ShowStageSelect", 0) == 1)
+        {
+            stageSelectPanel.SetActive(true);
+            stageSelectController.Initialize();
+            PlayerPrefs.SetInt("ShowStageSelect", 0);  // Reset flag
+            PlayerPrefs.Save();
+        }
     }
 
     public void NewGame() {
@@ -47,37 +55,31 @@ public class MenuManager : MonoBehaviour
         {
             audioManager.PlayClickSound();
         }
-        StartCoroutine(DelayedNewGame());
-    }
-
-    public IEnumerator DelayedNewGame() {
-        yield return new WaitForSeconds(0.1f); // Delay to allow the click sound to play
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         if (jsonSaving != null) 
         {
             jsonSaving.InitializeGameData();
         }
-        SceneManager.LoadScene("StageSelectScene");
+        stageSelectPanel.SetActive(true);
+        stageSelectController.Initialize();
     }
+
+    
 
     public void Continue() {
         if (audioManager != null)
         {
             audioManager.PlayClickSound();
         }
-        StartCoroutine(DelayedContinue());
-    }
-
-    private IEnumerator DelayedContinue()
-    {
-        yield return new WaitForSeconds(0.1f); // Delay to allow the click sound to play
         if (jsonSaving != null)
         {
             jsonSaving.LoadData();
         }
-        SceneManager.LoadScene("StageSelectScene");
+        stageSelectPanel.SetActive(true);
+        stageSelectController.Initialize();
     }
+
 
     public void Settings() {
         if (audioManager != null)

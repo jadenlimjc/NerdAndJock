@@ -9,6 +9,15 @@ public class ExitScene : MonoBehaviour
     public string sceneToLoad = "EndScene"; // Name of the scene to load
     public static bool nerdInDoor = false;
     public static bool jockInDoor = false;
+    public AudioManager audioManager;
+
+    void Start() {
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("door")) {

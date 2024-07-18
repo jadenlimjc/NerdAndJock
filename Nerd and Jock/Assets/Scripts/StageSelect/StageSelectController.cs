@@ -13,9 +13,11 @@ public class StageSelectController : MonoBehaviour
     public Sprite[] starSprites;
     private JSONSaving jsonSaving;
     private StageManager stageManager;
+    public GameObject stageSelectPanel;
 
-    void Start()
+    public void Initialize()
     {
+        Debug.Log("stageselectcontroller started");
         jsonSaving = FindObjectOfType<JSONSaving>();
         stageManager = StageManager.Instance;
         jsonSaving.LoadData(); // load the data
@@ -31,21 +33,21 @@ public class StageSelectController : MonoBehaviour
 
             Transform starGroup = levelButtons[i].transform.Find("stars");
             Image[] starImages = starGroup.GetComponentsInChildren<Image>(true);
-            if (stageData != null && stageManager.IsStageUnlocked(stageData.stageName))
+            if (stageData != null && stageData.unlocked)
             {
                 levelButtons[i].interactable = true;
                 float bestTime = stageData.bestTime;
                 string bestGrade = stageData.bestGrade;
                 
                 if (bestTime == float.MaxValue) {
-                    //Debug.Log($"Stage {stageData.stageName} is unlocked.");
+                    Debug.Log($"Stage {stageData.stageName} is unlocked.");
                     levelButtons[i].GetComponent<Image>().sprite = unlocked;
                     bestGradeTexts[i].gameObject.SetActive(false);
                     SetStars(starImages, 0);
                 } 
                 else 
                 {
-                    //Debug.Log($"Stage {stageData.stageName} is passed.");
+                    Debug.Log($"Stage {stageData.stageName} is passed.");
                     levelButtons[i].GetComponent<Image>().sprite = passed;
                     bestGradeTexts[i].text = "BEST : " + bestGrade;
                     bestGradeTexts[i].gameObject.SetActive(true);
@@ -54,7 +56,7 @@ public class StageSelectController : MonoBehaviour
             }
             else
             {
-                //Debug.Log($"Stage {stageData.stageName} is locked.");
+                Debug.Log($"Stage {stageData.stageName} is locked.");
                 levelButtons[i].interactable = false;
                 levelButtons[i].GetComponent<Image>().sprite = locked;
                 bestGradeTexts[i].gameObject.SetActive(false);
@@ -91,6 +93,6 @@ public class StageSelectController : MonoBehaviour
 
     public void BackButton()
     {
-        SceneManager.LoadScene("HomeScreenScene");
+        stageSelectPanel.SetActive(false);
     }
 }
