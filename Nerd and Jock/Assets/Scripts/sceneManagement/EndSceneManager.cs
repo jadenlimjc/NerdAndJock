@@ -232,6 +232,8 @@ public class EndSceneManager : MonoBehaviour
         audioManager.PlaySound(AudioType.Click);
         audioManager.StopSound(AudioType.Pass);
         audioManager.StopSound(AudioType.Fail);
+        PlayerPrefs.SetInt("ShowStageSelect", 1);  // Set flag
+        PlayerPrefs.Save();
         SceneManager.LoadScene("HomeScreenScene");
     }
 

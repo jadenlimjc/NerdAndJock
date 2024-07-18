@@ -11,9 +11,7 @@ public class MenuManager : MonoBehaviour
     public GameObject creditsPanel;
 
     public AudioManager audioManager;
-
-    
-
+    private StageSelectController stageSelectController;
     private JSONSaving jsonSaving;
     //public static int UnlockedLevels;
 
@@ -42,6 +40,15 @@ public class MenuManager : MonoBehaviour
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
         audioManager.PlaySound(AudioType.MainMenuBGM);
+        stageSelectController = FindObjectOfType<StageSelectController>();
+
+        if (PlayerPrefs.GetInt("ShowStageSelect", 0) == 1)
+        {
+            stageSelectPanel.SetActive(true);
+            stageSelectController.Initialize();
+            PlayerPrefs.SetInt("ShowStageSelect", 0);  // Reset flag
+            PlayerPrefs.Save();
+        }
     }
 
     public void NewGame() {
@@ -56,6 +63,7 @@ public class MenuManager : MonoBehaviour
             jsonSaving.InitializeGameData();
         }
         stageSelectPanel.SetActive(true);
+        stageSelectController.Initialize();
     }
 
     
@@ -70,6 +78,7 @@ public class MenuManager : MonoBehaviour
             jsonSaving.LoadData();
         }
         stageSelectPanel.SetActive(true);
+        stageSelectController.Initialize();
     }
 
 

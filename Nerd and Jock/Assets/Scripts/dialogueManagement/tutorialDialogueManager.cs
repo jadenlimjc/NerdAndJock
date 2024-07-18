@@ -54,6 +54,7 @@ public class tutorialDialogueManager : MonoBehaviour
         dialogueActive = true;
         tutorialDialogueSentences = dialogueSentences;
         sentenceIndex = 0;
+        ScoreManager.Instance.stopClock();
         StartCoroutine(StartDialogueCoroutine());
     }
 
@@ -102,6 +103,7 @@ public class tutorialDialogueManager : MonoBehaviour
         LockPlayerMovement(false);
         dialogueActive = false;
         yield return null;
+        ScoreManager.Instance.startClock();
     }
 
     void LockPlayerMovement(bool lockMovement)
