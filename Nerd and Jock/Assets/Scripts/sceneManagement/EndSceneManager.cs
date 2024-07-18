@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,10 @@ public class EndSceneManager : MonoBehaviour
     public Image failedImage;
     public Button retryButton;
     public Button nextLevelButton;
+    private string currentScene;
+    private JSONSaving jsonSaving;
+    private StageManager stageManager;
+
 
     public Text gradeText;
     // Adding a delay so it looks better
@@ -25,6 +30,20 @@ public class EndSceneManager : MonoBehaviour
 
     void Start()
     {
+        currentScene = ScoreManager.Instance.getCurrentScene();
+        jsonSaving = FindObjectOfType<JSONSaving>();
+        stageManager = StageManager.Instance;
+        if (jsonSaving == null) 
+        {
+            Debug.LogError("JSONSaving instance not found in the scene.");
+            return;
+        }
+        if (stageManager == null)
+        {
+            Debug.LogError("StageManager instance not assigned.");
+            return;
+        }
+
         int score = PlayerPrefs.GetInt("Score", 0);
         float time = PlayerPrefs.GetFloat("Time", 0);
         int totalCollectables = PlayerPrefs.GetInt("TotalCollectables", 0); // Setting to 0 if it is not set
@@ -86,11 +105,12 @@ public class EndSceneManager : MonoBehaviour
         // Display message based on grade
         if (grade != "F" && grade != "D+" && grade != "D")
         {
-            updateHighScore(score);
+            updateHighScore(stars, time, grade);
             wellDoneImage.gameObject.SetActive(true);
             yield return new WaitForSeconds(delay);
             nextLevelButton.gameObject.SetActive(true);
             retryButton.gameObject.SetActive(true);
+            UnlockStage();
         }
         else
         {
@@ -98,43 +118,114 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             retryButton.gameObject.SetActive(true);
         }
-
-        
     }
 
     // Calculate grade
     private string calculateGrade(float time)
     {
-        if (time <= 50) return "A+";
-        if (time <= 60) return "A";
-        if (time <= 70) return "A-";
-        if (time <= 80) return "B+";
-        if (time <= 90) return "B";
-        if (time <= 100) return "B-";
-        if (time <= 110) return "C+";
-        if (time <= 120) return "C";
-        if (time <= 130) return "D+";
-        if (time <= 140) return "D";
+        string scenePrefix = currentScene.Substring(0, 3);
+
+        switch (scenePrefix)
+        {
+            case "NJ1":
+                return "A+";
+            case "NJ2":
+                return calculateGradeForNJ2XXX(time);
+            case "NJ3":
+                return calculateGradeForNJ3XXX(time);
+            case "NJ4":
+                return calculateGradeForNJ4XXX(time);
+            default:
+                return "Not found"; // for my own debugging
+        }
+    }
+
+    private string calculateGradeForNJ2XXX(float time)
+    {
+        if (time <= 90) return "A+";
+        if (time <= 100) return "A";
+        if (time <= 110) return "A-";
+        if (time <= 120) return "B+";
+        if (time <= 130) return "B";
+        if (time <= 140) return "B-";
+        if (time <= 150) return "C+";
+        if (time <= 160) return "C";
+        if (time <= 170) return "D+";
+        if (time <= 180) return "D";
+        return "F";
+    }
+
+    private string calculateGradeForNJ3XXX(float time)
+    {
+        if (time <= 120) return "A+";
+        if (time <= 130) return "A";
+        if (time <= 140) return "A-";
+        if (time <= 150) return "B+";
+        if (time <= 160) return "B";
+        if (time <= 170) return "B-";
+        if (time <= 180) return "C+";
+        if (time <= 190) return "C";
+        if (time <= 200) return "D+";
+        if (time <= 210) return "D";
+        return "F";
+    }
+
+    private string calculateGradeForNJ4XXX(float time)
+    {
+        if (time <= 150) return "A+";
+        if (time <= 160) return "A";
+        if (time <= 170) return "A-";
+        if (time <= 180) return "B+";
+        if (time <= 190) return "B";
+        if (time <= 200) return "B-";
+        if (time <= 210) return "C+";
+        if (time <= 220) return "C";
+        if (time <= 230) return "D+";
+        if (time <= 240) return "D";
         return "F";
     }
 
     // Save the player's highscore
-    private void updateHighScore(int score)
+    private void updateHighScore(int stars, float time, string grade)
     {
-        int highScore = PlayerPrefs.GetInt("HighScore", 0);
-        if (score > highScore)
+        StageData stageData = jsonSaving.GetGameData().stages.Find(stage => stage.stageName == currentScene);
+        if (stageData == null)
         {
-            PlayerPrefs.SetInt("HighScore", score);
+            stageData = new StageData(currentScene, grade, stars, true, time);
+            jsonSaving.GetGameData().stages.Add(stageData);
         }
+        else
+        {
+            if (time < (stageData.bestTime))
+            {
+                stageData.bestGrade = grade;
+                stageData.stars = stars;
+                stageData.bestTime = time;
+            }
+        }
+        jsonSaving.SaveData();
+    }
+
+    private void UnlockStage()
+    {
+        // Unlock the next stages based on the current stage
+        //Debug.Log($"Trying to unlock stages following {currentScene}");
+        stageManager.UnlockNextStages(currentScene);
     }
 
     public void nextStage()
     {
-        GameManager.Instance.loadNextStage();
+        SceneManager.LoadScene("StageSelectScene");
     }
 
     public void replay()
     {
-        GameManager.Instance.replayStage();
+        SceneManager.LoadScene(ScoreManager.Instance.getCurrentScene());
+    }
+
+    private void CompleteStage()
+    {
+        string currentStageName = ScoreManager.Instance.getCurrentScene();
+        stageManager.UnlockNextStages(currentStageName);
     }
 }

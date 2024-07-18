@@ -22,6 +22,8 @@ public class respawnController : MonoBehaviour
     private MonoBehaviour movementScript; 
     private Collider2D col;
     private bool isDying = false;
+    public GameObject other;
+    public Vector2 otherSpawn;
     
 
     void Start()
@@ -67,6 +69,10 @@ public class respawnController : MonoBehaviour
         isRespawning = true;
         yield return new WaitForSeconds(respawnTimer);
         gameObject.transform.position = spawn;
+        if (other != null) 
+        {
+            other.transform.position = otherSpawn;
+        }
         isRespawning = false;
         // trigger dialogue upon first respawn
         if (!dialogueStarted) {
@@ -91,6 +97,10 @@ public class respawnController : MonoBehaviour
         yield return new WaitForSeconds(respawnTimer);
 
         gameObject.transform.position = spawn;
+        if (other != null) 
+        {
+            other.transform.position = otherSpawn;
+        }
         rb.isKinematic = false; // Re-enable physics interactions
         col.enabled = true; //Re-enable collider
         movementScript.enabled = true; // Enable the movement script

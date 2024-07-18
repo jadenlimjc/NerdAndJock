@@ -10,13 +10,11 @@ public class JockController : MonoBehaviour
     public float jumpForce = 4f; // Force applied for jumping
     public Transform groundCheck; // Empty GameObject to check if the player is on the ground
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
-
-    public LayerMask enemyHead; //Layer mask to specify what is considered the enemies' head
     private Rigidbody2D rb;
     private bool isGrounded;
-  
     private GameObject currentInteractable;
     private bool isInteracting = false;
+    public GameObject exclamation;
 
       // Fields used for multiple jump method
     /*
@@ -27,6 +25,7 @@ public class JockController : MonoBehaviour
 
     void Start()
     {
+        exclamation.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         // Initialise jumpCount for multiple jumps method
@@ -167,6 +166,7 @@ public class JockController : MonoBehaviour
         rb.isKinematic = false; // Make the sprite unaffected by other sprites
         animator.SetBool("IsInteracting", false); // Stop interaction animation
         isInteracting = false; // Enable movement and interactions
+        exclamation.SetActive(false);
         
         if (currentInteractable == (interactable as MonoBehaviour).gameObject) 
         {
@@ -179,12 +179,13 @@ public class JockController : MonoBehaviour
         IInteractable interactable = other.GetComponent<IInteractable>();
         if (interactable != null)
         {
-            if (other.CompareTag("Collectable"))
+            if (other.CompareTag("Collectable") || other.CompareTag("Torchlight"))
             {
                 interactable.OnInteract();
             }
             else if (other.CompareTag("jockInteract") && isGrounded) 
             {
+                exclamation.SetActive(true);
                 currentInteractable = other.gameObject;
             }
         }
@@ -195,6 +196,7 @@ public class JockController : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject == currentInteractable) {
             currentInteractable = null;
+            exclamation.SetActive(false);
         }
     }
     
@@ -208,5 +210,5 @@ public class JockController : MonoBehaviour
         }
     }
 
-   
+
 }
