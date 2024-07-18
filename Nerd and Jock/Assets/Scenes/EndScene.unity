@@ -131,6 +131,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046320431}
     m_Modifications:
+    - target: {fileID: 1909125522319530592, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1721105666}
+    - target: {fileID: 1909125522319530592, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909125522319530592, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EndSceneManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909125522319530592, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2200492150984621388, guid: 3355a9589925e4fa7b7f1fb9a05e4c17, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -637,17 +653,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
---- !u!114 &382989477 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7625240368438175418, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
-  m_PrefabInstance: {fileID: 382989476}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4718188b5f24db4846860999fbef1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &420573604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,7 +1395,7 @@ MonoBehaviour:
   failedImage: {fileID: 1626706302}
   retryButton: {fileID: 354877417}
   nextLevelButton: {fileID: 751059549}
-  stageManager: {fileID: 382989477}
+  audioManager: {fileID: 0}
   gradeText: {fileID: 1368719072}
   delay: 0.75
 --- !u!4 &1721105667

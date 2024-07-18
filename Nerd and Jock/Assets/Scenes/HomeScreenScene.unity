@@ -4679,10 +4679,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4768029cbfa1740e49c5e763f32cc060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1238700759}
   hoverClip: {fileID: 8300000, guid: 68b0f4b68e7554805b13a21ee1c220b2, type: 3}
   clickClip: {fileID: 8300000, guid: b31713f64420c44b6b3415a7a84a305d, type: 3}
-  exitClip: {fileID: 0}
+  exitClip: {fileID: 8300000, guid: b43d39e6fee4b4ff7b0ca14bbe45c675, type: 3}
+  failClip: {fileID: 8300000, guid: afda07fb5c0fe453e9e1e1676b06a63c, type: 3}
+  passClip: {fileID: 8300000, guid: 0d3d6688a95f748bebf311d8141bf119, type: 3}
+  starClip: {fileID: 8300000, guid: eaa1143ff5d0d48e6b1b7635d1c4e806, type: 3}
+  nerdJumpClip: {fileID: 8300000, guid: 70da7164e2b2d45f3b9a46833e531efb, type: 3}
+  nerdInteractClip: {fileID: 8300000, guid: 7cb2da85836f54e3c81b59d7dd74c744, type: 3}
+  jockJumpClip: {fileID: 8300000, guid: 6f65e9a5397e04c18a4b10a05f7f9c21, type: 3}
+  jockInteractClip: {fileID: 8300000, guid: 2f0d336bd7a494f39b13fb23776d2d6b, type: 3}
 --- !u!4 &1238700761
 Transform:
   m_ObjectHideFlags: 0
