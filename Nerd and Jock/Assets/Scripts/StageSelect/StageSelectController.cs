@@ -95,7 +95,7 @@ public class StageSelectController : MonoBehaviour
         if (stageManager.IsStageUnlocked(stageName))
         {
             audioManager.PlaySound(AudioType.Star);
-            audioManager.StopSound(AudioType.MainMenuBGM);
+            audioManager.StopLoopingSound(AudioType.MainMenuBGM);
             SceneManager.LoadScene(stageName);
         }
     }

@@ -15,9 +15,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip nerdInteractClip;
     public AudioClip jockJumpClip;
     public AudioClip jockInteractClip;
+    public AudioClip typeClip;
+    public AudioClip popClip;
     public AudioClip mainMenuBGMClip;
 
     private Dictionary<AudioType, AudioSource> audioSources;
+    private Dictionary<AudioType, AudioSource> loopingAudioSources;
 
     private void Awake()
     {
@@ -47,15 +50,30 @@ public class AudioManager : MonoBehaviour
         audioSources.Add(AudioType.NerdInteract, gameObject.AddComponent<AudioSource>());
         audioSources.Add(AudioType.JockJump, gameObject.AddComponent<AudioSource>());
         audioSources.Add(AudioType.JockInteract, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.MainMenuBGM, gameObject.AddComponent<AudioSource>());
+        audioSources.Add(AudioType.Type, gameObject.AddComponent<AudioSource>());
+        audioSources.Add(AudioType.Pop, gameObject.AddComponent<AudioSource>());
+        loopingAudioSources.Add(AudioType.MainMenuBGM, gameObject.AddComponent<AudioSource>());
     }
 
-    public void PlaySound(AudioType audioType)
+   public void PlaySound(AudioType audioType, float volume = 1.0f)
     {
         AudioClip clip = GetAudioClip(audioType);
         if (clip != null && audioSources.TryGetValue(audioType, out AudioSource audioSource))
         {
+            audioSource.volume = volume;
             audioSource.PlayOneShot(clip);
+        }
+    }
+
+    public void PlayLoopingSound(AudioType audioType, float volume = 1.0f)
+    {
+        AudioClip clip = GetAudioClip(audioType);
+        if (clip != null && loopingAudioSources.TryGetValue(audioType, out AudioSource audioSource))
+        {
+            audioSource.clip = clip;
+            audioSource.loop = true;
+            audioSource.volume = volume;
+            audioSource.Play();
         }
     }
 
@@ -64,6 +82,15 @@ public class AudioManager : MonoBehaviour
         if (audioSources.TryGetValue(audioType, out AudioSource audioSource))
         {
             audioSource.Stop();
+        }
+    }
+
+    public void StopLoopingSound(AudioType audioType)
+    {
+        if (loopingAudioSources.TryGetValue(audioType, out AudioSource audioSource))
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
         }
     }
     private AudioClip GetAudioClip(AudioType audioType)
@@ -80,6 +107,8 @@ public class AudioManager : MonoBehaviour
             case AudioType.NerdInteract: return nerdInteractClip;
             case AudioType.JockJump: return jockJumpClip;
             case AudioType.JockInteract: return jockInteractClip;
+            case AudioType.Type: return typeClip;
+            case AudioType.Pop: return popClip;
             case AudioType.MainMenuBGM: return mainMenuBGMClip;
             default: return null;
         }

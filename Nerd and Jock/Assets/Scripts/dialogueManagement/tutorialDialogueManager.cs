@@ -23,6 +23,7 @@ public class tutorialDialogueManager : MonoBehaviour
     private Rigidbody2D nerdRigidbody;
     private Rigidbody2D jockRigidbody;
     private string[] tutorialDialogueSentences;
+    public AudioManager audioManager;
 
     private float speechBubbleAnimationDelay = 1.0f;
     private float continueButtonDelay = 0.2f;
@@ -36,6 +37,11 @@ public class tutorialDialogueManager : MonoBehaviour
         {
             StartDialogue(initialDialogueSentences);
         }
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
         // Initialize animators
         nerdAnimator = nerd.GetComponent<Animator>();
         jockAnimator = jock.GetComponent<Animator>();
@@ -46,6 +52,7 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         if (dialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
+            audioManager.PlaySound(AudioType.Click);
             ContinueDialogue();
         }
     }
@@ -62,6 +69,8 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         LockPlayerMovement(true);
         tutorialSpeechBubbleAnimator.SetTrigger("Open");
+        audioManager.PlaySound(AudioType.Pop);
+
         yield return new WaitForSeconds(speechBubbleAnimationDelay);
         StartCoroutine(TypeTutorialDialogue());
     }
@@ -70,12 +79,14 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
         tutorialDialogueText.text = string.Empty;
+        audioManager.PlaySound(AudioType.Type);
         foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
         {
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
         yield return new WaitForSeconds(continueButtonDelay);
+        audioManager.StopSound(AudioType.Type);
         continueButton.SetActive(true);
     }
 
@@ -100,6 +111,7 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         tutorialDialogueText.text = string.Empty;
         tutorialSpeechBubbleAnimator.SetTrigger("Close");
+        audioManager.PlaySound(AudioType.Pop);
         LockPlayerMovement(false);
         dialogueActive = false;
         yield return null;
