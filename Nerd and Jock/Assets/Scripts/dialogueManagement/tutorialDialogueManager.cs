@@ -37,6 +37,7 @@ public class tutorialDialogueManager : MonoBehaviour
         {
             StartDialogue(initialDialogueSentences);
         }
+        audioManager = FindObjectOfType<AudioManager>();
         if (audioManager == null)
         {
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
@@ -66,6 +67,7 @@ public class tutorialDialogueManager : MonoBehaviour
     private IEnumerator StartDialogueCoroutine()
     {
         LockPlayerMovement(true);
+        audioManager.PlaySound(AudioType.Pop);
         tutorialSpeechBubbleAnimator.SetTrigger("Open");
         yield return new WaitForSeconds(speechBubbleAnimationDelay);
         StartCoroutine(TypeTutorialDialogue());
@@ -75,11 +77,13 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
         tutorialDialogueText.text = string.Empty;
+        audioManager.PlaySound(AudioType.Type);
         foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
         {
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
+        audioManager.StopSound(AudioType.Type);
         yield return new WaitForSeconds(continueButtonDelay);
         continueButton.SetActive(true);
     }
@@ -88,6 +92,7 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         if (continueButton.activeSelf)
         {
+            audioManager.PlaySound(AudioType.Click);
             continueButton.SetActive(false);
             if (sentenceIndex < tutorialDialogueSentences.Length - 1)
             {
@@ -105,6 +110,7 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         tutorialDialogueText.text = string.Empty;
         tutorialSpeechBubbleAnimator.SetTrigger("Close");
+        audioManager.PlaySound(AudioType.Pop);
         LockPlayerMovement(false);
         dialogueActive = false;
         yield return null;

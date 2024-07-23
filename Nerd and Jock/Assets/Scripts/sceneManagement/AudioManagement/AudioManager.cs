@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip mainMenuBGMClip;
 
     private Dictionary<AudioType, AudioSource> audioSources;
+    private Dictionary<AudioType, AudioSource> loopingAudioSources;
 
     private void Awake()
     {
@@ -37,29 +38,74 @@ public class AudioManager : MonoBehaviour
 
     private void InitializeAudioSources()
     {
-        audioSources = new Dictionary<AudioType, AudioSource>();
+        audioSources = new Dictionary<AudioType, AudioSource>
+        {
+            { AudioType.Hover, gameObject.AddComponent<AudioSource>() },
+            { AudioType.Click, gameObject.AddComponent<AudioSource>() },
+            { AudioType.Exit, gameObject.AddComponent<AudioSource>() },
+            { AudioType.Fail, gameObject.AddComponent<AudioSource>() },
+            { AudioType.Pass, gameObject.AddComponent<AudioSource>() },
+            { AudioType.Star, gameObject.AddComponent<AudioSource>() },
+            { AudioType.NerdJump, gameObject.AddComponent<AudioSource>() },
+            { AudioType.NerdInteract, gameObject.AddComponent<AudioSource>() },
+            { AudioType.JockJump, gameObject.AddComponent<AudioSource>() },
+            { AudioType.JockInteract, gameObject.AddComponent<AudioSource>() },
+            { AudioType.Pop, gameObject.AddComponent<AudioSource>() },
+        };
 
-        audioSources.Add(AudioType.Hover, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.Click, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.Exit, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.Fail, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.Pass, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.Star, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.NerdJump, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.NerdInteract, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.JockJump, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.JockInteract, gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.Type,gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.Pop,gameObject.AddComponent<AudioSource>());
-        audioSources.Add(AudioType.MainMenuBGM, gameObject.AddComponent<AudioSource>());
+        loopingAudioSources = new Dictionary<AudioType, AudioSource>
+        {
+            { AudioType.MainMenuBGM, gameObject.AddComponent<AudioSource>() }
+        };
+
+        Debug.Log("Audio sources initialized");
     }
 
-    public void PlaySound(AudioType audioType)
+    public void PlaySound(AudioType audioType, float volume = 1.0f)
     {
-        AudioClip clip = GetAudioClip(audioType);
-        if (clip != null && audioSources.TryGetValue(audioType, out AudioSource audioSource))
+        if (audioSources.TryGetValue(audioType, out AudioSource audioSource))
         {
-            audioSource.PlayOneShot(clip);
+            AudioClip clip = GetAudioClip(audioType);
+            if (clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.volume = volume;
+                audioSource.loop = false;
+                audioSource.Play();
+                Debug.Log($"Playing sound: {audioType}");
+            }
+            else
+            {
+                Debug.LogError($"AudioClip for {audioType} is null.");
+            }
+        }
+        else
+        {
+            Debug.LogError($"AudioSource for {audioType} not found.");
+        }
+    }
+
+    public void PlayLoopingSound(AudioType audioType, float volume = 1.0f)
+    {
+        if (loopingAudioSources.TryGetValue(audioType, out AudioSource audioSource))
+        {
+            AudioClip clip = GetAudioClip(audioType);
+            if (clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.loop = true;
+                audioSource.volume = volume;
+                audioSource.Play();
+                Debug.Log($"Playing looping sound: {audioType}");
+            }
+            else
+            {
+                Debug.LogError($"AudioClip for {audioType} is null.");
+            }
+        }
+        else
+        {
+            Debug.LogError($"Looping AudioSource for {audioType} not found.");
         }
     }
 
@@ -68,8 +114,19 @@ public class AudioManager : MonoBehaviour
         if (audioSources.TryGetValue(audioType, out AudioSource audioSource))
         {
             audioSource.Stop();
+            Debug.Log($"Stopping sound: {audioType}");
+        }
+        else if (loopingAudioSources.TryGetValue(audioType, out AudioSource loopingAudioSource))
+        {
+            loopingAudioSource.Stop();
+            Debug.Log($"Stopping looping sound: {audioType}");
+        }
+        else
+        {
+            Debug.LogError($"AudioSource for {audioType} not found.");
         }
     }
+
     private AudioClip GetAudioClip(AudioType audioType)
     {
         switch (audioType)
