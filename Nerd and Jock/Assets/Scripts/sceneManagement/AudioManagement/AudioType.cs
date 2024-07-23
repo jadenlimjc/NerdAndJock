@@ -10,7 +10,9 @@ public enum AudioType
     NerdInteract,
     JockJump,
     JockInteract,
-    MainMenuBGM
+    MainMenuBGM,
+    Type,
+    Pop
 
     /* need to add
     TutorialType

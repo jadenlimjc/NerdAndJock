@@ -23,6 +23,7 @@ public class tutorialDialogueManager : MonoBehaviour
     private Rigidbody2D nerdRigidbody;
     private Rigidbody2D jockRigidbody;
     private string[] tutorialDialogueSentences;
+    public AudioManager audioManager;
 
     private float speechBubbleAnimationDelay = 1.0f;
     private float continueButtonDelay = 0.2f;
@@ -35,6 +36,10 @@ public class tutorialDialogueManager : MonoBehaviour
         if (initialDialogueSentences != null && initialDialogueSentences.Length > 0)
         {
             StartDialogue(initialDialogueSentences);
+        }
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
         // Initialize animators
         nerdAnimator = nerd.GetComponent<Animator>();
