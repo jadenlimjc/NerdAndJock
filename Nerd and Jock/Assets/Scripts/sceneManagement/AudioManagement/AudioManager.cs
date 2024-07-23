@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -15,12 +16,22 @@ public class AudioManager : MonoBehaviour
     public AudioClip nerdInteractClip;
     public AudioClip jockJumpClip;
     public AudioClip jockInteractClip;
-    public AudioClip typeClip;
     public AudioClip popClip;
     public AudioClip mainMenuBGMClip;
+    public AudioClip NJ1001BGMClip;
+    public AudioClip NJ2001BGMClip;
+    public AudioClip NJ2012BGMClip;
+    public AudioClip NJ2020BGMClip;
+    public AudioClip NJ2021BGMClip;
+    public AudioClip NJ3001BGMClip;
+    public AudioClip NJ3012BGMClip;
+    public AudioClip NJ3020BGMClip;
+    public AudioClip NJ3021BGMClip;
 
     private Dictionary<AudioType, AudioSource> audioSources;
-    private Dictionary<AudioType, AudioSource> loopingAudioSources;
+    private Dictionary<string, AudioClip> sceneBGMMapping;
+    private AudioSource bgmAudioSource;
+
 
     private void Awake()
     {
@@ -29,6 +40,8 @@ public class AudioManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeAudioSources();
+            InitializeSceneBGMMapping();
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else if (instance != this)
         {
@@ -53,12 +66,32 @@ public class AudioManager : MonoBehaviour
             { AudioType.Pop, gameObject.AddComponent<AudioSource>() },
         };
 
-        loopingAudioSources = new Dictionary<AudioType, AudioSource>
-        {
-            { AudioType.MainMenuBGM, gameObject.AddComponent<AudioSource>() }
-        };
+        // Initialize the BGM AudioSource
+        bgmAudioSource = gameObject.AddComponent<AudioSource>();
+        bgmAudioSource.loop = true; // Ensure the BGM loops
+        bgmAudioSource.volume = 0.5f; // Adjust the volume as needed
+    }
 
-        Debug.Log("Audio sources initialized");
+    private void InitializeSceneBGMMapping()
+    {
+        sceneBGMMapping = new Dictionary<string, AudioClip>
+        {
+            { "HomeScreenScene", mainMenuBGMClip },
+            { "NJ1001", NJ1001BGMClip },
+            { "NJ2001", NJ2001BGMClip },
+            { "NJ2012", NJ2012BGMClip},
+            { "NJ2020", NJ2020BGMClip},
+            { "NJ2021", NJ2021BGMClip},
+            { "NJ3001", NJ3001BGMClip},
+            { "NJ3012", NJ3012BGMClip},
+            { "NJ3020", NJ3020BGMClip},
+            { "NJ3021", NJ3021BGMClip}
+        };
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlayBGM(scene.name);
     }
 
     public void PlaySound(AudioType audioType, float volume = 1.0f)
@@ -85,45 +118,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayLoopingSound(AudioType audioType, float volume = 1.0f)
+    public void PlayBGM(string sceneName)
     {
-        if (loopingAudioSources.TryGetValue(audioType, out AudioSource audioSource))
+        if (sceneBGMMapping.TryGetValue(sceneName, out AudioClip bgmClip))
         {
-            AudioClip clip = GetAudioClip(audioType);
-            if (clip != null)
-            {
-                audioSource.clip = clip;
-                audioSource.loop = true;
-                audioSource.volume = volume;
-                audioSource.Play();
-                Debug.Log($"Playing looping sound: {audioType}");
-            }
-            else
-            {
-                Debug.LogError($"AudioClip for {audioType} is null.");
-            }
+            bgmAudioSource.clip = bgmClip;
+            bgmAudioSource.loop = true; // Ensure the audio source loops the BGM
+            bgmAudioSource.Play();
+            Debug.Log($"Playing BGM for scene: {sceneName}");
         }
         else
         {
-            Debug.LogError($"Looping AudioSource for {audioType} not found.");
+            Debug.LogWarning($"No BGM found for scene: {sceneName}");
         }
     }
+
 
     public void StopSound(AudioType audioType)
     {
         if (audioSources.TryGetValue(audioType, out AudioSource audioSource))
         {
             audioSource.Stop();
-            Debug.Log($"Stopping sound: {audioType}");
-        }
-        else if (loopingAudioSources.TryGetValue(audioType, out AudioSource loopingAudioSource))
-        {
-            loopingAudioSource.Stop();
-            Debug.Log($"Stopping looping sound: {audioType}");
-        }
-        else
-        {
-            Debug.LogError($"AudioSource for {audioType} not found.");
         }
     }
 
@@ -141,9 +156,7 @@ public class AudioManager : MonoBehaviour
             case AudioType.NerdInteract: return nerdInteractClip;
             case AudioType.JockJump: return jockJumpClip;
             case AudioType.JockInteract: return jockInteractClip;
-            case AudioType.Type: return typeClip;
             case AudioType.Pop: return popClip;
-            case AudioType.MainMenuBGM: return mainMenuBGMClip;
             default: return null;
         }
     }

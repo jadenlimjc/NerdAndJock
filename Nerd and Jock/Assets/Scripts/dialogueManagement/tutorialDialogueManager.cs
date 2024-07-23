@@ -67,7 +67,11 @@ public class tutorialDialogueManager : MonoBehaviour
     private IEnumerator StartDialogueCoroutine()
     {
         LockPlayerMovement(true);
-        audioManager.PlaySound(AudioType.Pop);
+        if (audioManager != null)
+        {
+            Debug.Log("Playing Pop sound.");
+            audioManager.PlaySound(AudioType.Pop);
+        }
         tutorialSpeechBubbleAnimator.SetTrigger("Open");
         yield return new WaitForSeconds(speechBubbleAnimationDelay);
         StartCoroutine(TypeTutorialDialogue());
@@ -77,13 +81,11 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
         tutorialDialogueText.text = string.Empty;
-        audioManager.PlaySound(AudioType.Type);
         foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
         {
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
-        audioManager.StopSound(AudioType.Type);
         yield return new WaitForSeconds(continueButtonDelay);
         continueButton.SetActive(true);
     }

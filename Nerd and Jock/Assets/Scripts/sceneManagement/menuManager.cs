@@ -39,7 +39,6 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
-        audioManager.PlayLoopingSound(AudioType.MainMenuBGM, 0.5f);
         stageSelectController = FindObjectOfType<StageSelectController>();
 
         if (PlayerPrefs.GetInt("ShowStageSelect", 0) == 1)
