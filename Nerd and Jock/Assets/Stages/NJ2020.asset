@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageName: NJ2020
   nextLevels:
-  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 1b31cb40a8c754de2896c6bc71ccc525, type: 2}
