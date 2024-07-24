@@ -22,6 +22,7 @@ public class EndSceneManager : MonoBehaviour
     private string currentScene;
     private JSONSaving jsonSaving;
     private StageManager stageManager;
+    public AudioManager audioManager;
 
 
     public Text gradeText;
@@ -43,6 +44,11 @@ public class EndSceneManager : MonoBehaviour
             Debug.LogError("StageManager instance not assigned.");
             return;
         }
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
 
         int score = PlayerPrefs.GetInt("Score", 0);
         float time = PlayerPrefs.GetFloat("Time", 0);
@@ -52,8 +58,10 @@ public class EndSceneManager : MonoBehaviour
         nextLevelButton.gameObject.SetActive(false);
         wellDoneImage.gameObject.SetActive(false);
         failedImage.gameObject.SetActive(false);
+        
 
         StartCoroutine(displayResults(score, time));
+
     }
 
     // Calculate stars, accounting for collectables not a multiple of 3
@@ -70,21 +78,25 @@ public class EndSceneManager : MonoBehaviour
     {
         // Display score
         // Lit up stars based on score
+        
         if (stars >= 1) 
         {
             yield return new WaitForSeconds(delay);
+            audioManager.PlaySound(AudioType.Star);
             star1.sprite = star1Lit;
             yield return new WaitForSeconds(delay);
         }
 
         if (stars >= 2)
         {
+            audioManager.PlaySound(AudioType.Star);
             star2.sprite = star2Lit;
             yield return new WaitForSeconds(delay);
         }
 
         if (stars >= 3) 
         {
+            audioManager.PlaySound(AudioType.Star);
             star3.sprite = star3Lit;
             yield return new WaitForSeconds(delay);
         }
@@ -106,6 +118,7 @@ public class EndSceneManager : MonoBehaviour
         if (grade != "F" && grade != "D+" && grade != "D")
         {
             updateHighScore(stars, time, grade);
+            audioManager.PlaySound(AudioType.Pass);
             wellDoneImage.gameObject.SetActive(true);
             yield return new WaitForSeconds(delay);
             nextLevelButton.gameObject.SetActive(true);
@@ -115,6 +128,7 @@ public class EndSceneManager : MonoBehaviour
         else
         {
             failedImage.gameObject.SetActive(true);
+            audioManager.PlaySound(AudioType.Fail);
             yield return new WaitForSeconds(delay);
             retryButton.gameObject.SetActive(true);
         }
@@ -215,6 +229,9 @@ public class EndSceneManager : MonoBehaviour
 
     public void nextStage()
     {
+        audioManager.PlaySound(AudioType.Click);
+        audioManager.StopSound(AudioType.Pass);
+        audioManager.StopSound(AudioType.Fail);
         PlayerPrefs.SetInt("ShowStageSelect", 1);  // Set flag
         PlayerPrefs.Save();
         SceneManager.LoadScene("HomeScreenScene");
@@ -222,6 +239,9 @@ public class EndSceneManager : MonoBehaviour
 
     public void replay()
     {
+        audioManager.PlaySound(AudioType.Click);
+        audioManager.StopSound(AudioType.Pass);
+        audioManager.StopSound(AudioType.Fail);
         SceneManager.LoadScene(ScoreManager.Instance.getCurrentScene());
     }
 
@@ -229,5 +249,12 @@ public class EndSceneManager : MonoBehaviour
     {
         string currentStageName = ScoreManager.Instance.getCurrentScene();
         stageManager.UnlockNextStages(currentStageName);
+    }
+    public void OnButtonHover()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Hover);
+        }
     }
 }

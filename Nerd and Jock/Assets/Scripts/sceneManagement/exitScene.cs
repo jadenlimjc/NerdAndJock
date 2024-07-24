@@ -49,6 +49,7 @@ public class ExitScene : MonoBehaviour
     {
         if (nerdInDoor && jockInDoor)
         {
+            audioManager.PlaySound(AudioType.Exit);
             stopClock();
             saveScoreAndTime();
             SceneManager.LoadScene(sceneToLoad);

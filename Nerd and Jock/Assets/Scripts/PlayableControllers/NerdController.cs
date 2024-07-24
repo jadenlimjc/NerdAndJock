@@ -16,6 +16,8 @@ public class NerdController : MonoBehaviour
     public bool isInteracting = false;
     public GameObject exclamation;
 
+    public AudioManager audioManager;
+
 
     // Fields used for multiple jump method
     /*
@@ -29,6 +31,11 @@ public class NerdController : MonoBehaviour
         exclamation.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
         // Initialise jumpCount for multiple jumps method
         /*
         jumpCount = maxJumps;
@@ -139,6 +146,7 @@ public class NerdController : MonoBehaviour
 
         if (isGrounded && Input.GetKeyDown(KeyCode.W))
         {
+            audioManager.PlaySound(AudioType.NerdJump);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         RestrictPositionWithinCameraBounds();
@@ -160,6 +168,7 @@ public class NerdController : MonoBehaviour
     IEnumerator InteractCoroutine(IInteractable interactable) 
     {
         isInteracting = true; // Disable movement and interactions
+        audioManager.PlaySound(AudioType.NerdInteract);
         animator.SetBool("IsInteracting", true); // Start interaction animation
         rb.velocity = Vector2.zero; // Make the sprite stop moving
         rb.isKinematic = true; // Make the sprite unaffected by other sprites
@@ -167,6 +176,7 @@ public class NerdController : MonoBehaviour
         interactable.OnInteract(); // Call the interaction
         rb.isKinematic = false; // Make the sprite unaffected by other sprites
         animator.SetBool("IsInteracting", false); // Stop interaction animation
+        audioManager.StopSound(AudioType.NerdInteract);
         isInteracting = false; // Enable movement and interactions
         exclamation.SetActive(false);
         

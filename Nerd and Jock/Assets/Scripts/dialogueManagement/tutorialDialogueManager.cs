@@ -23,6 +23,7 @@ public class tutorialDialogueManager : MonoBehaviour
     private Rigidbody2D nerdRigidbody;
     private Rigidbody2D jockRigidbody;
     private string[] tutorialDialogueSentences;
+    public AudioManager audioManager;
 
     private float speechBubbleAnimationDelay = 1.0f;
     private float continueButtonDelay = 0.2f;
@@ -35,6 +36,11 @@ public class tutorialDialogueManager : MonoBehaviour
         if (initialDialogueSentences != null && initialDialogueSentences.Length > 0)
         {
             StartDialogue(initialDialogueSentences);
+        }
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
         // Initialize animators
         nerdAnimator = nerd.GetComponent<Animator>();
@@ -61,6 +67,11 @@ public class tutorialDialogueManager : MonoBehaviour
     private IEnumerator StartDialogueCoroutine()
     {
         LockPlayerMovement(true);
+        if (audioManager != null)
+        {
+            Debug.Log("Playing Pop sound.");
+            audioManager.PlaySound(AudioType.Pop);
+        }
         tutorialSpeechBubbleAnimator.SetTrigger("Open");
         yield return new WaitForSeconds(speechBubbleAnimationDelay);
         StartCoroutine(TypeTutorialDialogue());
@@ -83,6 +94,7 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         if (continueButton.activeSelf)
         {
+            audioManager.PlaySound(AudioType.Click);
             continueButton.SetActive(false);
             if (sentenceIndex < tutorialDialogueSentences.Length - 1)
             {
@@ -100,6 +112,7 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         tutorialDialogueText.text = string.Empty;
         tutorialSpeechBubbleAnimator.SetTrigger("Close");
+        audioManager.PlaySound(AudioType.Pop);
         LockPlayerMovement(false);
         dialogueActive = false;
         yield return null;

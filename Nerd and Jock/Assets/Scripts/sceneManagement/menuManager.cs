@@ -53,7 +53,7 @@ public class MenuManager : MonoBehaviour
     public void NewGame() {
         if (audioManager != null)
         {
-            audioManager.PlayClickSound();
+            audioManager.PlaySound(AudioType.Click);
         }
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
@@ -70,7 +70,7 @@ public class MenuManager : MonoBehaviour
     public void Continue() {
         if (audioManager != null)
         {
-            audioManager.PlayClickSound();
+            audioManager.PlaySound(AudioType.Click);
         }
         if (jsonSaving != null)
         {
@@ -84,7 +84,7 @@ public class MenuManager : MonoBehaviour
     public void Settings() {
         if (audioManager != null)
         {
-            audioManager.PlayClickSound();
+            audioManager.PlaySound(AudioType.Click);
         }
         settingsPanel.SetActive(true);
     }
@@ -92,7 +92,7 @@ public class MenuManager : MonoBehaviour
     public void Credits() {
         if (audioManager != null)
         {
-            audioManager.PlayClickSound();
+            audioManager.PlaySound(AudioType.Click);
         }
         creditsPanel.SetActive(true);
     }
@@ -101,7 +101,7 @@ public class MenuManager : MonoBehaviour
     {
         if (audioManager != null)
         {
-            audioManager.PlayHoverSound();
+            audioManager.PlaySound(AudioType.Hover);
         }
     }
 

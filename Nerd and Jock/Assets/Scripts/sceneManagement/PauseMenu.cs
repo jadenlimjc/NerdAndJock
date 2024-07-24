@@ -38,6 +38,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Click);
+        }
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
         gamePaused = false;
@@ -46,16 +50,21 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Click);
+        }
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
     }
 
-    public void LoadSettings() {
-
-    }
 
     public void QuitGame() {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Click);
+        }
         Time.timeScale = 1.0f;
         gamePaused = false;
         SceneManager.LoadScene("HomeScreenScene");
@@ -64,7 +73,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (audioManager != null)
         {
-            audioManager.PlayHoverSound();
+            audioManager.PlaySound(AudioType.Hover);
         }
     }
 }

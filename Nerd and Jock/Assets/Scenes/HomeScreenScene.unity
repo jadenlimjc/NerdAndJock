@@ -3160,6 +3160,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3308549ea40954236b23d6b652f9b2a5, type: 3}
   - {fileID: 21300000, guid: c9fa4c418e0f4487f99ae69c4bfd1afa, type: 3}
   - {fileID: 21300000, guid: 2f9150ec4bf7145a99272904023cd8cd, type: 3}
+  audioManager: {fileID: 0}
   stageSelectPanel: {fileID: 2085111347}
 --- !u!4 &829476911
 Transform:
@@ -4680,10 +4681,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4768029cbfa1740e49c5e763f32cc060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1238700759}
   hoverClip: {fileID: 8300000, guid: 68b0f4b68e7554805b13a21ee1c220b2, type: 3}
   clickClip: {fileID: 8300000, guid: b31713f64420c44b6b3415a7a84a305d, type: 3}
-  exitClip: {fileID: 0}
+  exitClip: {fileID: 8300000, guid: b43d39e6fee4b4ff7b0ca14bbe45c675, type: 3}
+  failClip: {fileID: 8300000, guid: afda07fb5c0fe453e9e1e1676b06a63c, type: 3}
+  passClip: {fileID: 8300000, guid: 0d3d6688a95f748bebf311d8141bf119, type: 3}
+  starClip: {fileID: 8300000, guid: eaa1143ff5d0d48e6b1b7635d1c4e806, type: 3}
+  nerdJumpClip: {fileID: 8300000, guid: 22c893496a0e84909a4ce2af9eab8ff8, type: 3}
+  nerdInteractClip: {fileID: 8300000, guid: 7cb2da85836f54e3c81b59d7dd74c744, type: 3}
+  jockJumpClip: {fileID: 8300000, guid: 6f65e9a5397e04c18a4b10a05f7f9c21, type: 3}
+  jockInteractClip: {fileID: 8300000, guid: 2f0d336bd7a494f39b13fb23776d2d6b, type: 3}
+  popClip: {fileID: 8300000, guid: 70da7164e2b2d45f3b9a46833e531efb, type: 3}
+  mainMenuBGMClip: {fileID: 8300000, guid: 0675db8fd71fe4c3ea7964831370f9dc, type: 3}
+  NJ1001BGMClip: {fileID: 8300000, guid: 31c6a1f7f09f2432fbe529c39782919e, type: 3}
+  NJ2001BGMClip: {fileID: 8300000, guid: 52fabad7bf05743dd9c3b487d72acfa2, type: 3}
+  NJ2012BGMClip: {fileID: 8300000, guid: 1b256eb5f926244a492f9a0768301dfa, type: 3}
+  NJ2020BGMClip: {fileID: 8300000, guid: 719ebb24401844e96b96f2ad2cda1658, type: 3}
+  NJ2021BGMClip: {fileID: 8300000, guid: 45fde45f3fa8c4d568dce27926940511, type: 3}
+  NJ3001BGMClip: {fileID: 8300000, guid: c68ac6ef7cda048089d3d87a22082ced, type: 3}
+  NJ3012BGMClip: {fileID: 8300000, guid: 6818ac7a7128f4d5c89cca64348aad99, type: 3}
+  NJ3020BGMClip: {fileID: 8300000, guid: becfcd5d5a32c4e80b28af61858eeec5, type: 3}
+  NJ3021BGMClip: {fileID: 8300000, guid: d099cf76068a741bba1c49370d5aa9a3, type: 3}
 --- !u!4 &1238700761
 Transform:
   m_ObjectHideFlags: 0
