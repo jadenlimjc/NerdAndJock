@@ -91,7 +91,13 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PlayBGM(scene.name);
+        if (scene.name == "EndScene") {
+            bgmAudioSource.Stop();
+        }
+        else {
+            PlayBGM(scene.name);
+        }
+        
     }
 
     public void PlaySound(AudioType audioType, float volume = 1.0f)
