@@ -156,36 +156,6 @@ public class EndSceneManager : MonoBehaviour
 
     private string calculateGradeForNJ2XXX(float time)
     {
-        if (time <= 90) return "A+";
-        if (time <= 100) return "A";
-        if (time <= 110) return "A-";
-        if (time <= 120) return "B+";
-        if (time <= 130) return "B";
-        if (time <= 140) return "B-";
-        if (time <= 150) return "C+";
-        if (time <= 160) return "C";
-        if (time <= 170) return "D+";
-        if (time <= 180) return "D";
-        return "F";
-    }
-
-    private string calculateGradeForNJ3XXX(float time)
-    {
-        if (time <= 120) return "A+";
-        if (time <= 130) return "A";
-        if (time <= 140) return "A-";
-        if (time <= 150) return "B+";
-        if (time <= 160) return "B";
-        if (time <= 170) return "B-";
-        if (time <= 180) return "C+";
-        if (time <= 190) return "C";
-        if (time <= 200) return "D+";
-        if (time <= 210) return "D";
-        return "F";
-    }
-
-    private string calculateGradeForNJ4XXX(float time)
-    {
         if (time <= 150) return "A+";
         if (time <= 160) return "A";
         if (time <= 170) return "A-";
@@ -196,6 +166,36 @@ public class EndSceneManager : MonoBehaviour
         if (time <= 220) return "C";
         if (time <= 230) return "D+";
         if (time <= 240) return "D";
+        return "F";
+    }
+
+    private string calculateGradeForNJ3XXX(float time)
+    {
+        if (time <= 180) return "A+";
+        if (time <= 190) return "A";
+        if (time <= 200) return "A-";
+        if (time <= 210) return "B+";
+        if (time <= 220) return "B";
+        if (time <= 230) return "B-";
+        if (time <= 240) return "C+";
+        if (time <= 250) return "C";
+        if (time <= 260) return "D+";
+        if (time <= 270) return "D";
+        return "F";
+    }
+
+    private string calculateGradeForNJ4XXX(float time)
+    {
+        if (time <= 240) return "A+";
+        if (time <= 250) return "A";
+        if (time <= 260) return "A-";
+        if (time <= 270) return "B+";
+        if (time <= 280) return "B";
+        if (time <= 290) return "B-";
+        if (time <= 300) return "C+";
+        if (time <= 310) return "C";
+        if (time <= 320) return "D+";
+        if (time <= 330) return "D";
         return "F";
     }
 
