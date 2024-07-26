@@ -44,6 +44,6 @@ public class NerdPlaceBlock : MonoBehaviour {
 
     private void PlaceBlock() {
         Instantiate(blockPrefab, blockSpawnPoint.position, Quaternion.identity);
-        //audioManager.PlaySound(AudioType.Pop);
+        audioManager.PlaySound(AudioType.Pop);
     }
 }

@@ -73,7 +73,7 @@ public class JockPortal : MonoBehaviour
             Destroy(portal2);
             portal1 = null;
             portal2 = null;
-            //audioManager.PlaySound(AudioType.Exit);
+            audioManager.PlaySound(AudioType.Exit);
 
             // Start cooldown
             isTeleportOnCooldown = true;

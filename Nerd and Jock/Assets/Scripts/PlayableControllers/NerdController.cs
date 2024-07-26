@@ -168,7 +168,7 @@ public class NerdController : MonoBehaviour
     IEnumerator InteractCoroutine(IInteractable interactable) 
     {
         isInteracting = true; // Disable movement and interactions
-        //audioManager.PlaySound(AudioType.NerdInteract);
+        audioManager.PlaySound(AudioType.NerdInteract);
         animator.SetBool("IsInteracting", true); // Start interaction animation
         rb.velocity = Vector2.zero; // Make the sprite stop moving
         rb.isKinematic = true; // Make the sprite unaffected by other sprites
@@ -176,7 +176,7 @@ public class NerdController : MonoBehaviour
         interactable.OnInteract(); // Call the interaction
         rb.isKinematic = false; // Make the sprite unaffected by other sprites
         animator.SetBool("IsInteracting", false); // Stop interaction animation
-        //audioManager.StopSound(AudioType.NerdInteract);
+        audioManager.StopSound(AudioType.NerdInteract);
         isInteracting = false; // Enable movement and interactions
         exclamation.SetActive(false);
         
