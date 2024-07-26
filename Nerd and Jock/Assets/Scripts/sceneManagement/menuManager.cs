@@ -7,25 +7,13 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {    
     public GameObject stageSelectPanel;
-    public GameObject settingsPanel;
+
     public GameObject creditsPanel;
 
     public AudioManager audioManager;
     private StageSelectController stageSelectController;
     private JSONSaving jsonSaving;
-    //public static int UnlockedLevels;
-
-    /*private Dictionary<string, int> levelMap = new Dictionary<string, int>
-    {
-        { "NJ1001", 0 },
-        { "NJ2001", 1 },
-        { "NJ3001", 2 },
-        { "NJ2012", 3 },
-        { "NJ3012", 4 },
-        { "NJ2020", 5 },
-        { "NJ2021", 6 }
-    };
-    */
+  
 
     void Start()
     {
