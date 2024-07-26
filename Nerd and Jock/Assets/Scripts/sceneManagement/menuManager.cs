@@ -81,13 +81,7 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    public void Settings() {
-        if (audioManager != null)
-        {
-            audioManager.PlaySound(AudioType.Click);
-        }
-        settingsPanel.SetActive(true);
-    }
+    
 
     public void Credits() {
         if (audioManager != null)
