@@ -1997,6 +1997,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1697066267993763248, guid: 5d7762654d9964d379ce8f85e6c61d1e, type: 3}
+      propertyPath: m_Size.x
+      value: 17.3372
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697066267993763248, guid: 5d7762654d9964d379ce8f85e6c61d1e, type: 3}
+      propertyPath: m_Offset.x
+      value: 4.5659757
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198275091935022419, guid: 5d7762654d9964d379ce8f85e6c61d1e, type: 3}
+      propertyPath: m_Size.x
+      value: 17.356546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198275091935022419, guid: 5d7762654d9964d379ce8f85e6c61d1e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.12017879
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198275091935022419, guid: 5d7762654d9964d379ce8f85e6c61d1e, type: 3}
+      propertyPath: m_Offset.x
+      value: 4.5756493
+      objectReference: {fileID: 0}
     - target: {fileID: 4708704588190941689, guid: 5d7762654d9964d379ce8f85e6c61d1e, type: 3}
       propertyPath: m_Name
       value: untouchableGround

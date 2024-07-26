@@ -10,6 +10,9 @@ public class JockPortal : MonoBehaviour
 
     private JockController jockController;
     private AudioManager audioManager;
+    public bool isTeleportOnCooldown = false;
+    public float teleportCooldownDuration = 10f;
+    public float teleportCooldownTimer = 0f;
 
     void Start()
     {
@@ -28,13 +31,24 @@ public class JockPortal : MonoBehaviour
             CreatePortal();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.RightShift) && !isTeleportOnCooldown)
         {
             Teleport();
         }
+
         if (portal1 != null)
         {
             portal1.transform.position = nerd.transform.position;
+        }
+
+        if (isTeleportOnCooldown)
+        {
+            teleportCooldownTimer -= Time.deltaTime;
+            if (teleportCooldownTimer <= 0f)
+            {
+                isTeleportOnCooldown = false;
+                teleportCooldownTimer = 0f;
+            }
         }
     }
 
@@ -59,7 +73,11 @@ public class JockPortal : MonoBehaviour
             Destroy(portal2);
             portal1 = null;
             portal2 = null;
-            audioManager.PlaySound(AudioType.Exit);
+            //audioManager.PlaySound(AudioType.Exit);
+
+            // Start cooldown
+            isTeleportOnCooldown = true;
+            teleportCooldownTimer = teleportCooldownDuration;
         }
     }
 }

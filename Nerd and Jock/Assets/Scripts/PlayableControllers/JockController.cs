@@ -141,7 +141,7 @@ public class JockController : MonoBehaviour
 
         if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            audioManager.PlaySound(AudioType.JockJump);
+            //audioManager.PlaySound(AudioType.JockJump);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         RestrictPositionWithinCameraBounds();
@@ -165,7 +165,7 @@ public class JockController : MonoBehaviour
     IEnumerator InteractCoroutine(IInteractable interactable) 
     {
         isInteracting = true; // Disable movement and interactions
-        audioManager.PlaySound(AudioType.JockInteract); //play Jock Interact audio
+        //audioManager.PlaySound(AudioType.JockInteract); //play Jock Interact audio
         animator.SetBool("IsInteracting", true); // Start interaction animation
         rb.velocity = Vector2.zero; // Make the sprite stop moving
         rb.isKinematic = true; // Make the sprite unaffected by other sprites
@@ -173,7 +173,7 @@ public class JockController : MonoBehaviour
         yield return new WaitForSeconds(3); // Wait for 3 seconds
         rb.isKinematic = false; // Make the sprite unaffected by other sprites
         animator.SetBool("IsInteracting", false); // Stop interaction animation
-        audioManager.StopSound(AudioType.JockInteract); // stop Jock Interact audio
+        //audioManager.StopSound(AudioType.JockInteract); // stop Jock Interact audio
         isInteracting = false; // Enable movement and interactions
         exclamation.SetActive(false);
         
