@@ -12,6 +12,7 @@ public enum AudioType
     JockInteract,
     Typing,
     Pop,
+    Earthquake,
     MainMenuBGM,
     NJ1001BGM,
     NJ2001BGM,

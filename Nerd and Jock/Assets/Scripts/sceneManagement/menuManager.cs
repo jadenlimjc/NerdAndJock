@@ -13,6 +13,8 @@ public class MenuManager : MonoBehaviour
     public AudioManager audioManager;
     private StageSelectController stageSelectController;
     private JSONSaving jsonSaving;
+
+    public GameObject activePanel;
   
 
     void Start()
@@ -51,6 +53,7 @@ public class MenuManager : MonoBehaviour
         }
         stageSelectPanel.SetActive(true);
         stageSelectController.Initialize();
+        activePanel = stageSelectPanel.gameObject;
     }
 
     
@@ -66,6 +69,7 @@ public class MenuManager : MonoBehaviour
         }
         stageSelectPanel.SetActive(true);
         stageSelectController.Initialize();
+        activePanel = stageSelectPanel.gameObject;
     }
 
 
@@ -77,6 +81,7 @@ public class MenuManager : MonoBehaviour
             audioManager.PlaySound(AudioType.Click);
         }
         creditsPanel.SetActive(true);
+        activePanel = creditsPanel.gameObject;
     }
 
     public void OnButtonHover()
@@ -85,6 +90,14 @@ public class MenuManager : MonoBehaviour
         {
             audioManager.PlaySound(AudioType.Hover);
         }
+    }
+    public void BackButton()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Click);
+        }
+        activePanel.SetActive(false);
     }
 
     

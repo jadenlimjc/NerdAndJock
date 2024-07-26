@@ -14,7 +14,6 @@ public class StageSelectController : MonoBehaviour
     private JSONSaving jsonSaving;
     private StageManager stageManager;
     public AudioManager audioManager;
-    public GameObject stageSelectPanel;
 
     public void Initialize()
     {
@@ -99,8 +98,5 @@ public class StageSelectController : MonoBehaviour
         }
     }
 
-    public void BackButton()
-    {
-        stageSelectPanel.SetActive(false);
-    }
+    
 }
