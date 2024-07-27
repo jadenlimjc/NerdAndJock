@@ -54,12 +54,9 @@ public class JockPortal : MonoBehaviour
 
     void CreatePortal()
     {
-        if (portal1 == null)
+        if (portal1 == null && portal2 == null)
         {
             portal1 = Instantiate(portalPrefab, nerd.transform.position, Quaternion.identity);
-        }
-        else if (portal2 == null)
-        {
             portal2 = Instantiate(portalPrefab, transform.position, Quaternion.identity);
         }
     }
