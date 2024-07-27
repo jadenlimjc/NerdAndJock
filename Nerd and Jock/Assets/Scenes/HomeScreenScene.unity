@@ -6170,7 +6170,8 @@ MonoBehaviour:
   jockJumpClip: {fileID: 8300000, guid: 6f65e9a5397e04c18a4b10a05f7f9c21, type: 3}
   jockInteractClip: {fileID: 8300000, guid: 2f0d336bd7a494f39b13fb23776d2d6b, type: 3}
   popClip: {fileID: 8300000, guid: 70da7164e2b2d45f3b9a46833e531efb, type: 3}
-  typingClip: {fileID: 0}
+  typingClip: {fileID: 8300000, guid: 4c6e6f52b5aa441ea872d61e6fe99e5e, type: 3}
+  earthquakeClip: {fileID: 8300000, guid: e37bb8797c261423d95c93cfc15c350d, type: 3}
   mainMenuBGMClip: {fileID: 8300000, guid: 0675db8fd71fe4c3ea7964831370f9dc, type: 3}
   NJ1001BGMClip: {fileID: 8300000, guid: 31c6a1f7f09f2432fbe529c39782919e, type: 3}
   NJ2001BGMClip: {fileID: 8300000, guid: 52fabad7bf05743dd9c3b487d72acfa2, type: 3}
@@ -10003,7 +10004,7 @@ GameObject:
   - component: {fileID: 2113124500}
   - component: {fileID: 2113124499}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Panels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

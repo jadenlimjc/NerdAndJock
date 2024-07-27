@@ -27,7 +27,7 @@ public class BreakableGround : MonoBehaviour
     // Update is called once per frame
     private IEnumerator DestroyAfterDelay() {
         isDestroying = true;
-        audioManager.PlaySound(AudioType.Earthquake);
+        audioManager.PlaySound(AudioType.Earthquake, 4.0f);
         yield return new WaitForSeconds(destroyDelay);
         gameObject.SetActive(false);
         audioManager.StopSound(AudioType.Earthquake);

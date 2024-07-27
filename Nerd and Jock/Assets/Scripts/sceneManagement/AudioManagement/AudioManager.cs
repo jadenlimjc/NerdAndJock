@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
             { AudioType.JockInteract, gameObject.AddComponent<AudioSource>() },
             { AudioType.Pop, gameObject.AddComponent<AudioSource>() },
             { AudioType.Typing, gameObject.AddComponent<AudioSource>()},
-            {AUdioType.Earthquake, gameObject.GetComponent<AudioSource>() },
+            { AudioType.Earthquake, gameObject.GetComponent<AudioSource>() },
         };
 
         // Initialize the BGM AudioSource
