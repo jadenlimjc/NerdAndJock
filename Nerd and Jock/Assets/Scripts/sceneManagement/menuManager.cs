@@ -40,6 +40,14 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    void Update() {
+        if (stageSelectPanel.gameObject.activeSelf) {
+        activePanel = stageSelectPanel.gameObject;
+    } else if (creditsPanel.gameObject.activeSelf) {
+        activePanel = creditsPanel.gameObject;
+    }
+    }
+
     public void NewGame() {
         if (audioManager != null)
         {
@@ -53,7 +61,6 @@ public class MenuManager : MonoBehaviour
         }
         stageSelectPanel.SetActive(true);
         stageSelectController.Initialize();
-        activePanel = stageSelectPanel.gameObject;
     }
 
     
@@ -69,7 +76,6 @@ public class MenuManager : MonoBehaviour
         }
         stageSelectPanel.SetActive(true);
         stageSelectController.Initialize();
-        activePanel = stageSelectPanel.gameObject;
     }
 
 
@@ -81,7 +87,16 @@ public class MenuManager : MonoBehaviour
             audioManager.PlaySound(AudioType.Click);
         }
         creditsPanel.SetActive(true);
-        activePanel = creditsPanel.gameObject;
+    }
+    public void QuitApplication()
+    {
+        // If running in the editor, stop playing
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            // If running in a build, quit the application
+            Application.Quit();
+        #endif
     }
 
     public void OnButtonHover()
