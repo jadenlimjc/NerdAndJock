@@ -36,16 +36,19 @@ public class StageManager : MonoBehaviour
 
     private void InitializeStages()
     {
+        unlockedStages.Clear();
         if (unlockedStages.Count == 0)
         {
             // Initialize all stages as locked except the first
             foreach (StageDataSO stageDataSO in allStages)
             {
                 unlockedStages[stageDataSO.stageName] = false;
+                Debug.Log($"{stageDataSO.stageName} is locked");
             }
             if (allStages.Count > 0)
             {
                 unlockedStages[allStages[0].stageName] = true;
+                Debug.Log($"{allStages[0].stageName} is unlocked");
             }
         }
     }

@@ -119,12 +119,12 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"AudioClip for {audioType} is null.");
+              //  Debug.LogError($"AudioClip for {audioType} is null.");
             }
         }
         else
         {
-            Debug.LogError($"AudioSource for {audioType} not found.");
+            //Debug.LogError($"AudioSource for {audioType} not found.");
         }
     }
 
@@ -135,11 +135,11 @@ public class AudioManager : MonoBehaviour
             bgmAudioSource.clip = bgmClip;
             bgmAudioSource.loop = true; // Ensure the audio source loops the BGM
             bgmAudioSource.Play();
-            Debug.Log($"Playing BGM for scene: {sceneName}");
+           // Debug.Log($"Playing BGM for scene: {sceneName}");
         }
         else
         {
-            Debug.LogWarning($"No BGM found for scene: {sceneName}");
+           // Debug.LogWarning($"No BGM found for scene: {sceneName}");
         }
     }
 

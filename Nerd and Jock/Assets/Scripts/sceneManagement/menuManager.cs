@@ -55,10 +55,11 @@ public class MenuManager : MonoBehaviour
         }
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        if (jsonSaving != null) 
-        {
+        //if (jsonSaving != null) 
+        //{ 
             jsonSaving.InitializeGameData();
-        }
+            jsonSaving.SaveData();
+        //}
         stageSelectPanel.SetActive(true);
         stageSelectController.Initialize();
     }
