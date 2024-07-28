@@ -2359,6 +2359,7 @@ MonoBehaviour:
   nerd: {fileID: 324063786}
   jock: {fileID: 1168924756}
   continueButton: {fileID: 1472898504}
+  audioManager: {fileID: 0}
 --- !u!4 &2096254004
 Transform:
   m_ObjectHideFlags: 0
@@ -2576,10 +2577,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4328603782367537473, guid: 8cbaadbdae33e41f7abba26646f9df33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 57.000122
+      objectReference: {fileID: 0}
     - target: {fileID: 6153412153872921237, guid: 8cbaadbdae33e41f7abba26646f9df33, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7075812999825705525, guid: 8cbaadbdae33e41f7abba26646f9df33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.999893
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435081148096502618, guid: 8cbaadbdae33e41f7abba26646f9df33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -107
+      objectReference: {fileID: 0}
     - target: {fileID: 7753261672728463856, guid: 8cbaadbdae33e41f7abba26646f9df33, type: 3}
       propertyPath: m_Name
       value: ScoreTracker
@@ -2810,6 +2823,10 @@ PrefabInstance:
     - target: {fileID: 902782929221629636, guid: f42b19df7376b47caa1bbf3462c4225e, type: 3}
       propertyPath: m_Name
       value: PauseMenuUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 902782929221629636, guid: f42b19df7376b47caa1bbf3462c4225e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1104844723644836888, guid: f42b19df7376b47caa1bbf3462c4225e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -1313,6 +1313,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7dd34bf4db3c54242ab07dd96821239d, type: 3}
+    - target: {fileID: 6000462450876321636, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000462450876321636, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1344,18 +1352,6 @@ PrefabInstance:
     - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
       propertyPath: m_SizeDelta.y
       value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1391,7 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 201.33334
+      value: 153
       objectReference: {fileID: 0}
     - target: {fileID: 6530469996192728588, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1407,7 +1403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6732134921247273258, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
       propertyPath: m_text
-      value: Olaf (e block head)
+      value: Olaf (E Block Head)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
