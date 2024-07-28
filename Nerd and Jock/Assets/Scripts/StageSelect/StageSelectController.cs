@@ -41,7 +41,7 @@ public class StageSelectController : MonoBehaviour
             Image[] starImages = starGroup.GetComponentsInChildren<Image>(true);
             if (stageData != null && stageData.unlocked)
             {
-                levelButtons[i].interactable = true;
+                levelButtons[i].interactable = stageData.unlocked;
                 float bestTime = stageData.bestTime;
                 string bestGrade = stageData.bestGrade;
                 
@@ -91,12 +91,9 @@ public class StageSelectController : MonoBehaviour
 
     public void LoadStage(string stageName)
     {
-        if (stageManager.IsStageUnlocked(stageName))
-        {
-            audioManager.PlaySound(AudioType.Star);
-            SceneManager.LoadScene(stageName);
-        }
+        //Debug.Log($"Attempting to load stage directly without check: {stageName}");
+        SceneManager.LoadScene(stageName);
     }
-
+    
     
 }

@@ -4146,6 +4146,7 @@ MonoBehaviour:
   - {fileID: 686657787}
   - {fileID: 1386284826}
   - {fileID: 1051128872}
+  - {fileID: 1928056771}
   bestGradeTexts:
   - {fileID: 1882800272}
   - {fileID: 1340418880}
@@ -4155,6 +4156,7 @@ MonoBehaviour:
   - {fileID: 1809859983}
   - {fileID: 1267262}
   - {fileID: 1609288011}
+  - {fileID: 137233455}
   locked: {fileID: 21300000, guid: db997f80f590a4a5d9da1a51696f015e, type: 3}
   passed: {fileID: 21300000, guid: e439d404806c94618aeca1002fc648f1, type: 3}
   unlocked: {fileID: 21300000, guid: 615733967103b40979591628ec351a3a, type: 3}
@@ -4406,6 +4408,14 @@ PrefabInstance:
       propertyPath: stageSelectPanel
       value: 
       objectReference: {fileID: 2085111347}
+    - target: {fileID: 7625240368438175418, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: allStages.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7625240368438175418, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
+      propertyPath: allStages.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: a6691b584d68c41d681aa46be31d65fa, type: 2}
     - target: {fileID: 7790512879985517349, guid: f5eb29e907ce0422c8cb226f797e7f5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.261805
