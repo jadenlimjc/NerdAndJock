@@ -2275,10 +2275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bca49fa6a5744d8a63563e2cc6aade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 0}
+  dialogueManager: {fileID: 1309268373}
   dialogueSentences:
-  - the torch is just there only! almost there liao!
-  - take alr yall try, see whether can see anot.
+  - The torch is just there only! Almost there liao!
+  - Take alr yall try, see whether can see anot.
   nerdInCheckpoint: 0
   jockInCheckpoint: 0
 --- !u!4 &1057749034
