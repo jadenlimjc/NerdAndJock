@@ -30,7 +30,7 @@ public class MenuManager : MonoBehaviour
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
         stageSelectController = FindObjectOfType<StageSelectController>();
-
+        Debug.Log($"ShowStageSelect : {PlayerPrefs.GetInt("ShowStageSelect", 0)}");
         if (PlayerPrefs.GetInt("ShowStageSelect", 0) == 1)
         {
             stageSelectPanel.SetActive(true);
