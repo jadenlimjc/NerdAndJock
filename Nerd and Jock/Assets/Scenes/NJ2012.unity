@@ -2779,10 +2779,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialDialogueText: {fileID: 712019712}
   initialDialogueSentences:
-  - Eh? Yall still toh ah? we not studying now this is hall activity! I'm your block
-    head olaf! nice to meet you guys!
-  - Yall.. cannot really see? how can? seh aready? cannot be la how weak only...
-  - Yall try and find the torchlight, maybe then can see abit better la hor.. jiayous!
+  - Eh? Y'all still toh ah? We not studying now this is hall activity! I'm your block
+    head olaf! Nice to meet you guys!
+  - Yall.. cannot really see? How can? Seh aready? Cannot be la how weak only...
+  - Y'all try and find the torchlight, maybe then can see abit better la hor.. jiayous!
   textSpeed: 0.01
   tutorialSpeechBubbleAnimator: {fileID: 712019711}
   nerd: {fileID: 324063793}

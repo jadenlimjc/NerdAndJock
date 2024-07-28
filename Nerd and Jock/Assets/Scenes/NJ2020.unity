@@ -2123,10 +2123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialDialogueText: {fileID: 2090533590}
   initialDialogueSentences:
-  - Hello all! My name is tesseract! this module has a heavy emphasis on teamwork.
-    In fact, it's so important that you will be tied together. literally.
-  - the tether impedes your movement and forces you to play together! it will either
-    cause you to sink or swim! all the best!
+  - Hello all! My name is Contessa! This module has a heavy emphasis on teamwork.
+    In fact, it's so important that you will be tied together. Literally.
+  - The tether impedes your movement and forces you to play together! It will either
+    cause you to sink or swim! All the best!
   textSpeed: 0.01
   tutorialSpeechBubbleAnimator: {fileID: 2090533591}
   nerd: {fileID: 324063793}
@@ -4651,7 +4651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6732134921247273258, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
       propertyPath: m_text
-      value: Professor tesseract
+      value: Professor Contessa
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

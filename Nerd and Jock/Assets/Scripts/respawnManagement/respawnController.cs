@@ -16,7 +16,7 @@ public class respawnController : MonoBehaviour
     public Vector2 spawn = new Vector2(0, 0);
     public Transform groundCheck; 
     public LayerMask groundLayer;
-    private bool isRespawning = false;
+    public bool isRespawning = false;
     private Animator animator;
     private Rigidbody2D rb;
     private MonoBehaviour movementScript; 

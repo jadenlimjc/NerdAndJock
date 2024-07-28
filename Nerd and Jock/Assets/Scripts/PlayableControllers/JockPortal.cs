@@ -14,6 +14,9 @@ public class JockPortal : MonoBehaviour
     public float teleportCooldownDuration = 10f;
     public float teleportCooldownTimer = 0f;
 
+    public respawnController nerdRC;
+    public respawnController jockRC;
+
     void Start()
     {
         jockController = GetComponent<JockController>();
@@ -26,29 +29,41 @@ public class JockPortal : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            CreatePortal();
+            if (portal1 == null)
+            {
+                CreatePortal();
+            }
+            else if (!isTeleportOnCooldown)
+            {
+                Teleport();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.RightShift) && !isTeleportOnCooldown)
-        {
-            Teleport();
-        }
 
         if (portal1 != null)
         {
             portal1.transform.position = nerd.transform.position;
+        }
+        if (portal2 != null)
+        {
+            portal2.transform.position = transform.position;
         }
 
         if (isTeleportOnCooldown)
         {
             teleportCooldownTimer -= Time.deltaTime;
             if (teleportCooldownTimer <= 0f)
-            {
+            { 
                 isTeleportOnCooldown = false;
                 teleportCooldownTimer = 0f;
             }
+        }
+        // Check if either player is respawning and destroy portals if true
+        if (nerdRC.isRespawning || jockRC.isRespawning)
+        {
+            DestroyPortals();
         }
     }
 
@@ -75,6 +90,20 @@ public class JockPortal : MonoBehaviour
             // Start cooldown
             isTeleportOnCooldown = true;
             teleportCooldownTimer = teleportCooldownDuration;
+        }
+    }
+    void DestroyPortals()
+    {
+        if (portal1 != null)
+        {
+            Destroy(portal1);
+            portal1 = null;
+        }
+
+        if (portal2 != null)
+        {
+            Destroy(portal2);
+            portal2 = null;
         }
     }
 }

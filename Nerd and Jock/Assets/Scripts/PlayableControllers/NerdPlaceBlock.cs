@@ -32,7 +32,7 @@ public class NerdPlaceBlock : MonoBehaviour {
             }
         }
 
-        if (!nerdController.isGrounded && !nerdController.isInteracting && Input.GetKeyDown(KeyCode.Space) && currentCharges > 0) {
+        if (!nerdController.isGrounded && !nerdController.isInteracting && Input.GetKeyDown(KeyCode.C) && currentCharges > 0) {
             PlaceBlock();
             currentCharges--;
             if (currentCharges < maxCharges) {
