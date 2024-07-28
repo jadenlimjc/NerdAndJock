@@ -92,6 +92,7 @@ public class StageSelectController : MonoBehaviour
     public void LoadStage(string stageName)
     {
         //Debug.Log($"Attempting to load stage directly without check: {stageName}");
+        audioManager.PlaySound(AudioType.Star);
         SceneManager.LoadScene(stageName);
     }
     
