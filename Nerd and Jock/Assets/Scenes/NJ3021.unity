@@ -3084,6 +3084,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
+--- !u!114 &1361715501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9059007020935205020, guid: bdf8a0658be18401cb6e8994bfb40115, type: 3}
+  m_PrefabInstance: {fileID: 1361715500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1373608814 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8977920832641856290, guid: 109e7c569cefa4099ab6b1e306dd859a, type: 3}
@@ -5044,7 +5055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef4c3a02c31f43b3abbc47ab6cbd4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialDialogueText: {fileID: 0}
+  tutorialDialogueText: {fileID: 1361715501}
   initialDialogueSentences:
   - In this module, each of you will harness your innate powers to unlock new abilities!
   - Jock, press Right Shift to punch through reality, conjuring portals at nerd and

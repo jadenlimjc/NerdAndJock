@@ -24,6 +24,8 @@ public class EndSceneManager : MonoBehaviour
     private StageManager stageManager;
     public AudioManager audioManager;
 
+    public GameObject creditsPanel;
+
 
     public Text gradeText;
     // Adding a delay so it looks better
@@ -132,6 +134,8 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             retryButton.gameObject.SetActive(true);
         }
+
+        DisplayCredits();
         
     }
 
@@ -204,6 +208,27 @@ public class EndSceneManager : MonoBehaviour
         }
         jsonSaving.SaveData();
     }
+    // check if all stages complete, display credits if they are
+    public void DisplayCredits() {
+        Debug.Log("Checking whether all stages completed");
+        List <StageData> stages = jsonSaving.GetGameData().stages;
+        bool allCompleted = true;
+
+        foreach (StageData stage in stages)
+        {
+            if (stage.bestTime == float.MaxValue)
+            {
+                allCompleted = false;
+                break;
+            }
+        }
+
+        if (allCompleted)
+        {
+            Debug.Log("All stages completed, displaying credits panel");
+            creditsPanel.SetActive(true); // Display the credits panel
+        }
+    }
 
     private void UnlockStage()
     {
@@ -241,5 +266,13 @@ public class EndSceneManager : MonoBehaviour
         {
             audioManager.PlaySound(AudioType.Hover);
         }
+    }
+
+    public void BackButton() {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Click);
+        }
+        creditsPanel.SetActive(false);
     }
 }

@@ -2251,8 +2251,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+      - m_Target: {fileID: 1721105666}
+        m_TargetAssemblyTypeName: EndSceneManager, Assembly-CSharp
         m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
@@ -4010,6 +4010,7 @@ MonoBehaviour:
   retryButton: {fileID: 354877417}
   nextLevelButton: {fileID: 751059549}
   audioManager: {fileID: 0}
+  creditsPanel: {fileID: 2095297500}
   gradeText: {fileID: 1368719072}
   delay: 0.75
 --- !u!4 &1721105667
@@ -4247,7 +4248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2095297501
 RectTransform:
   m_ObjectHideFlags: 0
