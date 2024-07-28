@@ -34,10 +34,6 @@ public class JockController : MonoBehaviour
         {
             Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
         }
-        // Initialise jumpCount for multiple jumps method
-        /*
-        jumpCount = maxJumps;
-        */
     }
 
     void Update()

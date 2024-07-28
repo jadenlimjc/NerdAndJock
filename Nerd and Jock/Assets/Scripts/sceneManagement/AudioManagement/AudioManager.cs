@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip jockJumpClip;
     public AudioClip jockInteractClip;
     public AudioClip popClip;
+    public AudioClip typingClip;
+    public AudioClip earthquakeClip;
     public AudioClip mainMenuBGMClip;
     public AudioClip NJ1001BGMClip;
     public AudioClip NJ2001BGMClip;
@@ -64,6 +66,8 @@ public class AudioManager : MonoBehaviour
             { AudioType.JockJump, gameObject.AddComponent<AudioSource>() },
             { AudioType.JockInteract, gameObject.AddComponent<AudioSource>() },
             { AudioType.Pop, gameObject.AddComponent<AudioSource>() },
+            { AudioType.Typing, gameObject.AddComponent<AudioSource>()},
+            { AudioType.Earthquake, gameObject.GetComponent<AudioSource>() },
         };
 
         // Initialize the BGM AudioSource
@@ -91,7 +95,13 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PlayBGM(scene.name);
+        if (scene.name == "EndScene") {
+            bgmAudioSource.Stop();
+        }
+        else {
+            PlayBGM(scene.name);
+        }
+        
     }
 
     public void PlaySound(AudioType audioType, float volume = 1.0f)
@@ -157,6 +167,8 @@ public class AudioManager : MonoBehaviour
             case AudioType.JockJump: return jockJumpClip;
             case AudioType.JockInteract: return jockInteractClip;
             case AudioType.Pop: return popClip;
+            case AudioType.Typing: return typingClip;
+            case AudioType.Earthquake: return earthquakeClip;
             default: return null;
         }
     }

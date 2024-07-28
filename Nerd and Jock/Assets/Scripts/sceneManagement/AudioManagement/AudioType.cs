@@ -10,8 +10,9 @@ public enum AudioType
     NerdInteract,
     JockJump,
     JockInteract,
-    Type,
+    Typing,
     Pop,
+    Earthquake,
     MainMenuBGM,
     NJ1001BGM,
     NJ2001BGM,
@@ -23,11 +24,5 @@ public enum AudioType
     NJ3020BGM,
     NJ3021BGM
 
-    /* need to add
-    TutorialType
-    TutorialClick
-    LevelSelectClick
-    Indiv stage bgm
-     */
-
+    
 }

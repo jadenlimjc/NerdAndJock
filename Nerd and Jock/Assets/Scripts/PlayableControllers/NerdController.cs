@@ -146,7 +146,7 @@ public class NerdController : MonoBehaviour
 
         if (isGrounded && Input.GetKeyDown(KeyCode.W))
         {
-            audioManager.PlaySound(AudioType.NerdJump);
+            //audioManager.PlaySound(AudioType.NerdJump);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         RestrictPositionWithinCameraBounds();

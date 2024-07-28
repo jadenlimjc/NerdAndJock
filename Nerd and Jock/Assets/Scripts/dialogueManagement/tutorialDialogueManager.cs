@@ -81,11 +81,13 @@ public class tutorialDialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
         tutorialDialogueText.text = string.Empty;
+        audioManager.PlaySound(AudioType.Typing);
         foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
         {
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
+        audioManager.StopSound(AudioType.Typing);
         yield return new WaitForSeconds(continueButtonDelay);
         continueButton.SetActive(true);
     }

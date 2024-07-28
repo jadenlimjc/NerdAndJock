@@ -7,25 +7,15 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {    
     public GameObject stageSelectPanel;
-    public GameObject settingsPanel;
+
     public GameObject creditsPanel;
 
     public AudioManager audioManager;
     private StageSelectController stageSelectController;
     private JSONSaving jsonSaving;
-    //public static int UnlockedLevels;
 
-    /*private Dictionary<string, int> levelMap = new Dictionary<string, int>
-    {
-        { "NJ1001", 0 },
-        { "NJ2001", 1 },
-        { "NJ3001", 2 },
-        { "NJ2012", 3 },
-        { "NJ3012", 4 },
-        { "NJ2020", 5 },
-        { "NJ2021", 6 }
-    };
-    */
+    public GameObject activePanel;
+  
 
     void Start()
     {
@@ -48,6 +38,14 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetInt("ShowStageSelect", 0);  // Reset flag
             PlayerPrefs.Save();
         }
+    }
+
+    void Update() {
+        if (stageSelectPanel.gameObject.activeSelf) {
+        activePanel = stageSelectPanel.gameObject;
+    } else if (creditsPanel.gameObject.activeSelf) {
+        activePanel = creditsPanel.gameObject;
+    }
     }
 
     public void NewGame() {
@@ -81,13 +79,7 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    public void Settings() {
-        if (audioManager != null)
-        {
-            audioManager.PlaySound(AudioType.Click);
-        }
-        settingsPanel.SetActive(true);
-    }
+    
 
     public void Credits() {
         if (audioManager != null)
@@ -96,6 +88,16 @@ public class MenuManager : MonoBehaviour
         }
         creditsPanel.SetActive(true);
     }
+    public void QuitApplication()
+    {
+        // If running in the editor, stop playing
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            // If running in a build, quit the application
+            Application.Quit();
+        #endif
+    }
 
     public void OnButtonHover()
     {
@@ -103,6 +105,14 @@ public class MenuManager : MonoBehaviour
         {
             audioManager.PlaySound(AudioType.Hover);
         }
+    }
+    public void BackButton()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Click);
+        }
+        activePanel.SetActive(false);
     }
 
     
