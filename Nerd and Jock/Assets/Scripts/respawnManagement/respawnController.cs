@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class respawnController : MonoBehaviour
 {
+    //trigger respawn dialogue
     public static respawnController Instance;
+    [SerializeField] private tutorialDialogueManager dialogueManager;
+    [TextArea]
+    [SerializeField] private string[] dialogueSentences;
+    private static bool dialogueStarted = false;
     public float lowerBound = -10.0f;
     public float respawnTimer = 1.0f;
     // Start is called before the first frame update
     public Vector2 spawn = new Vector2(0, 0);
-    private bool isRespawning = false;
+    public Transform groundCheck; 
+    public LayerMask groundLayer;
+    public bool isRespawning = false;
     private Animator animator;
     private Rigidbody2D rb;
     private MonoBehaviour movementScript; 
     private Collider2D col;
     private bool isDying = false;
+    public GameObject other;
+    public Vector2 otherSpawn;
+    
 
     void Start()
     {
@@ -28,9 +38,11 @@ public class respawnController : MonoBehaviour
     void Update()
     {
 
-        if (!isRespawning && (transform.position.y < lowerBound || !isWithinCameraView()))
+        if (!isRespawning && (transform.position.y < lowerBound || (!isWithinCameraView() && isGrounded())))
         {
-            StartCoroutine(respawnAfterDelayWithoutAnimation());
+            StartCoroutine(respawnAfterDelay());
+            
+            
         }
 
     }
@@ -42,12 +54,31 @@ public class respawnController : MonoBehaviour
         return screenPoint.y >= 0 && screenPoint.y <= 1;
     }
 
-    private IEnumerator respawnAfterDelayWithoutAnimation() 
+    private bool isGrounded() 
+    {
+        if (groundCheck == null) 
+        {
+            return false;
+        }
+
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+    }
+
+    public IEnumerator respawnAfterDelay()
     {
         isRespawning = true;
         yield return new WaitForSeconds(respawnTimer);
-        transform.position = spawn;
+        gameObject.transform.position = spawn;
+        if (other != null) 
+        {
+            other.transform.position = otherSpawn;
+        }
         isRespawning = false;
+        // trigger dialogue upon first respawn
+        if (!dialogueStarted) {
+                dialogueStarted = true;
+                dialogueManager.StartDialogue(dialogueSentences);
+            }
     }
 
     public IEnumerator respawnAfterDelayWithAnimation()
@@ -66,9 +97,14 @@ public class respawnController : MonoBehaviour
         yield return new WaitForSeconds(respawnTimer);
 
         gameObject.transform.position = spawn;
+        if (other != null) 
+        {
+            other.transform.position = otherSpawn;
+        }
         rb.isKinematic = false; // Re-enable physics interactions
         col.enabled = true; //Re-enable collider
         movementScript.enabled = true; // Enable the movement script
+        animator.SetTrigger("Idle"); // Trigger the idle animation to reset the state
         isDying = false; // Reset flag
         isRespawning = false; // Reset flag
     }

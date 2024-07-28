@@ -2,22 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ExitScene : MonoBehaviour
 {
     public string sceneToLoad = "EndScene"; // Name of the scene to load
     public static bool nerdInDoor = false;
     public static bool jockInDoor = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public AudioManager audioManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Start() {
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -50,8 +49,27 @@ public class ExitScene : MonoBehaviour
     {
         if (nerdInDoor && jockInDoor)
         {
+            audioManager.PlaySound(AudioType.Exit);
+            stopClock();
+            saveScoreAndTime();
             SceneManager.LoadScene(sceneToLoad);
         }
     }
+
+    private void stopClock()
+    {
+        ScoreManager.Instance.stopClock();
+    }
+
+    private void saveScoreAndTime()
+    {
+        int score = ScoreManager.Instance.score;
+        float time = ScoreManager.Instance.getTimeTaken();
+
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.SetFloat("Time", time);
+        PlayerPrefs.Save();
+    }
+
 
 }

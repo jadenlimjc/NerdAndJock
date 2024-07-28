@@ -5,53 +5,150 @@ using TMPro;
 
 public class tutorialDialogueManager : MonoBehaviour
 {
+
     [SerializeField] private TextMeshProUGUI tutorialDialogueText;
     [Header("Dialogue Sentences")]
     [TextArea]
-    [SerializeField] private string[] tutorialDialogueSentences;
+    [SerializeField] private string[] initialDialogueSentences;
     [SerializeField] private float textSpeed = 0.01f;
     [Header("Animation Controllers")]
     [SerializeField] private Animator tutorialSpeechBubbleAnimator;
     private int sentenceIndex;
+    //reference to players
+    public Transform nerd;
+    public Transform jock;
+    public GameObject continueButton;
+    private Animator nerdAnimator;
+    private Animator jockAnimator;
+    private Rigidbody2D nerdRigidbody;
+    private Rigidbody2D jockRigidbody;
+    private string[] tutorialDialogueSentences;
+    public AudioManager audioManager;
 
-    private float speechBubbleAnimationDelay = 0.6f;
-    private bool typing = false;
+    private float speechBubbleAnimationDelay = 1.0f;
+    private float continueButtonDelay = 0.2f;
+    private bool dialogueActive = false;
 
-    private void Start() {
-        StartCoroutine(StartDialogue());
+
+    public void Start()
+    {
+        continueButton.SetActive(false);
+        if (initialDialogueSentences != null && initialDialogueSentences.Length > 0)
+        {
+            StartDialogue(initialDialogueSentences);
+        }
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager instance not found. Ensure it is loaded in this scene.");
+        }
+        // Initialize animators
+        nerdAnimator = nerd.GetComponent<Animator>();
+        jockAnimator = jock.GetComponent<Animator>();
+        nerdRigidbody = nerd.GetComponent<Rigidbody2D>();
+        jockRigidbody = jock.GetComponent<Rigidbody2D>();
     }
-    private void Update() {
-        if (Input.anyKey) {
-            StartCoroutine(ContinueDialogue());
+    private void Update()
+    {
+        if (dialogueActive && Input.GetKeyDown(KeyCode.Space))
+        {
+            ContinueDialogue();
         }
     }
-    public IEnumerator StartDialogue() {
+    public void StartDialogue(string[] dialogueSentences)
+    {
+        dialogueActive = true;
+        tutorialDialogueSentences = dialogueSentences;
+        sentenceIndex = 0;
+        ScoreManager.Instance.stopClock();
+        StartCoroutine(StartDialogueCoroutine());
+    }
+
+    private IEnumerator StartDialogueCoroutine()
+    {
+        LockPlayerMovement(true);
+        if (audioManager != null)
+        {
+            Debug.Log("Playing Pop sound.");
+            audioManager.PlaySound(AudioType.Pop);
+        }
         tutorialSpeechBubbleAnimator.SetTrigger("Open");
         yield return new WaitForSeconds(speechBubbleAnimationDelay);
         StartCoroutine(TypeTutorialDialogue());
     }
 
-    private IEnumerator TypeTutorialDialogue() {
-        typing = true;
-        foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray()) {
+    private IEnumerator TypeTutorialDialogue()
+    {
+        continueButton.SetActive(false);
+        tutorialDialogueText.text = string.Empty;
+        audioManager.PlaySound(AudioType.Typing);
+        foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
+        {
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
-        typing = false;
+        audioManager.StopSound(AudioType.Typing);
+        yield return new WaitForSeconds(continueButtonDelay);
+        continueButton.SetActive(true);
     }
 
-    private IEnumerator ContinueDialogue() {
+    private void ContinueDialogue()
+    {
+        if (continueButton.activeSelf)
+        {
+            audioManager.PlaySound(AudioType.Click);
+            continueButton.SetActive(false);
+            if (sentenceIndex < tutorialDialogueSentences.Length - 1)
+            {
+                sentenceIndex++;
+                StartCoroutine(TypeTutorialDialogue());
+            }
+            else
+            {
+                StartCoroutine(EndDialogue());
+            }
+        }
+    }
 
-        if (!typing && sentenceIndex < tutorialDialogueSentences.Length - 1) {
-            sentenceIndex++;
-            tutorialDialogueText.text = string.Empty;
-            StartCoroutine(TypeTutorialDialogue());
+    private IEnumerator EndDialogue()
+    {
+        tutorialDialogueText.text = string.Empty;
+        tutorialSpeechBubbleAnimator.SetTrigger("Close");
+        audioManager.PlaySound(AudioType.Pop);
+        LockPlayerMovement(false);
+        dialogueActive = false;
+        yield return null;
+        ScoreManager.Instance.startClock();
+    }
+
+    void LockPlayerMovement(bool lockMovement)
+    {
+        if (lockMovement)
+        {
+            // Set animations to idle
+            if (nerdAnimator != null)
+            {
+                nerdAnimator.SetFloat("Speed", 0);
+                nerdAnimator.SetBool("IsJumping", false);
+
+            }
+
+            if (jockAnimator != null)
+            {
+                jockAnimator.SetFloat("Speed", 0);
+                nerdAnimator.SetBool("IsJumping", false);
+            }
+            if (nerdRigidbody != null)
+            {
+                nerdRigidbody.velocity = Vector2.zero;
+            }
+
+            if (jockRigidbody != null)
+            {
+                jockRigidbody.velocity = Vector2.zero;
+            }
         }
-        else if (!typing) {
-            tutorialDialogueText.text = string.Empty;
-            tutorialSpeechBubbleAnimator.SetTrigger("Close");
-            yield return null;
-        }
+        nerd.GetComponent<NerdController>().enabled = !lockMovement;
+        jock.GetComponent<JockController>().enabled = !lockMovement;
     }
 }
-

@@ -10,6 +10,10 @@ TagManager:
   - nerdInteract
   - nerd
   - jock
+  - Collectable
+  - ScoreText
+  - ClockText
+  - Torchlight
   layers:
   - Default
   - TransparentFX
@@ -45,8 +49,11 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Foreground
-    uniqueID: 802818779
+    uniqueID: 479309999
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 802818779
     locked: 0

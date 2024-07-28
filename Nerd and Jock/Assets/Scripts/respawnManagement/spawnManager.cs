@@ -7,10 +7,15 @@ public class spawnManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] enemyPrefabs;
 
-    public float leftBound;
-    public float rightBound;
+    public float leftSpawn;
+    public float rightSpawn;
     public float spawnPosY;
-    private float checkInterval = 1.0f;
+    public float checkInterval = 5.0f;
+    public float leftBound = -10f;
+    public float rightBound = 10f;
+
+    private GameObject currentEnemy = null; // current spawned enemy
+    
     void Start()
     {
         StartCoroutine(CheckAndSpawn());
@@ -25,7 +30,7 @@ public class spawnManager : MonoBehaviour
     IEnumerator CheckAndSpawn() {
         while (true) {
             yield return new WaitForSeconds(checkInterval);
-            if (GameObject.FindGameObjectWithTag("enemy") == null)
+            if (currentEnemy == null)
             {
                 SpawnCharacter();
             }
@@ -34,7 +39,12 @@ public class spawnManager : MonoBehaviour
 
     void SpawnCharacter() {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-        Vector2 spawnPos = new Vector2(Random.Range(leftBound, rightBound), spawnPosY);
-        Instantiate(enemyPrefabs[enemyIndex], spawnPos, enemyPrefabs[enemyIndex].transform.rotation);
+        Vector2 spawnPos = new Vector2(Random.Range(leftSpawn, rightSpawn), spawnPosY);
+        currentEnemy = Instantiate(enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);
+        IEnemy enemyController = currentEnemy.GetComponent<IEnemy>();
+        if (enemyController != null)
+        {
+            enemyController.SetMovementBounds(leftBound,rightBound);
+        }
     }
 }   
