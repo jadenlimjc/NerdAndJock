@@ -64,6 +64,7 @@ public class JSONSaving : MonoBehaviour
     public void ClearGameData()
     {
         gameData.stages.Clear();
+        Debug.Log("Game data cleared");
     }
 
     public GameData GetGameData()
