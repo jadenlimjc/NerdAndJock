@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: 98b7aeeccd5a843ceb161ade3d0be1e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StageSelectScene.unity
     guid: 409cf0aebb8c24c89859a534919d9339
   - enabled: 1
@@ -28,7 +28,7 @@ EditorBuildSettings:
     guid: 02ac00f2221c04192b49c2e4e18f0fb2
   - enabled: 1
     path: Assets/Scenes/NJ2021.unity
-    guid: 1e8824515fde04fba9c30b5ee647d89f
+    guid: b807a27dc157b4c3c962dbd2fc4e09c9
   - enabled: 1
     path: Assets/Scenes/NJ3012.unity
     guid: 9ac7fda6e10984fa68ace46466c551ce

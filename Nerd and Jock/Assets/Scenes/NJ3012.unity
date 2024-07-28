@@ -5535,7 +5535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225608150741198000, guid: e4ff688f3596a4813ba3b2f75ce40917, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2560
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 3225608150741198000, guid: e4ff688f3596a4813ba3b2f75ce40917, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5592,6 +5592,10 @@ PrefabInstance:
     - target: {fileID: 3781335637521466290, guid: e4ff688f3596a4813ba3b2f75ce40917, type: 3}
       propertyPath: m_Name
       value: FogOfWarUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781335637521466290, guid: e4ff688f3596a4813ba3b2f75ce40917, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5701,11 +5705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888357056303081483, guid: b1ecbc0fe88ea4505987084f7ae701fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.12
+      value: -5.092
       objectReference: {fileID: 0}
     - target: {fileID: 4888357056303081483, guid: b1ecbc0fe88ea4505987084f7ae701fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9139998
+      value: -2.891
       objectReference: {fileID: 0}
     - target: {fileID: 4888357056303081483, guid: b1ecbc0fe88ea4505987084f7ae701fe, type: 3}
       propertyPath: m_LocalPosition.z

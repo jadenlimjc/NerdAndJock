@@ -28,7 +28,7 @@ public class tutorialDialogueManager : MonoBehaviour
     private float speechBubbleAnimationDelay = 1.0f;
     private float continueButtonDelay = 0.2f;
     private bool dialogueActive = false;
-
+    private bool isPaused = false;
 
     public void Start()
     {
@@ -50,9 +50,21 @@ public class tutorialDialogueManager : MonoBehaviour
     }
     private void Update()
     {
+    
         if (dialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
             ContinueDialogue();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeTyping();
+            }
+            else
+            {
+                PauseTyping();
+            }
         }
     }
     public void StartDialogue(string[] dialogueSentences)
@@ -84,6 +96,10 @@ public class tutorialDialogueManager : MonoBehaviour
         audioManager.PlaySound(AudioType.Typing);
         foreach (char letter in tutorialDialogueSentences[sentenceIndex].ToCharArray())
         {
+            while (isPaused)
+            {
+                yield return null; // Wait until the game is resumed
+            }
             tutorialDialogueText.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
@@ -150,5 +166,17 @@ public class tutorialDialogueManager : MonoBehaviour
         }
         nerd.GetComponent<NerdController>().enabled = !lockMovement;
         jock.GetComponent<JockController>().enabled = !lockMovement;
+    }
+
+    private void PauseTyping()
+    {
+        isPaused = true;
+        audioManager.StopSound(AudioType.Typing);
+    }
+
+    private void ResumeTyping()
+    {
+        isPaused = false;
+        audioManager.PlaySound(AudioType.Typing);
     }
 }

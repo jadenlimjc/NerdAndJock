@@ -24,6 +24,8 @@ public class EndSceneManager : MonoBehaviour
     private StageManager stageManager;
     public AudioManager audioManager;
 
+    public GameObject creditsPanel;
+
 
     public Text gradeText;
     // Adding a delay so it looks better
@@ -132,6 +134,9 @@ public class EndSceneManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
             retryButton.gameObject.SetActive(true);
         }
+
+        DisplayCredits();
+        
     }
 
     // Calculate grade
@@ -147,8 +152,6 @@ public class EndSceneManager : MonoBehaviour
                 return calculateGradeForNJ2XXX(time);
             case "NJ3":
                 return calculateGradeForNJ3XXX(time);
-            case "NJ4":
-                return calculateGradeForNJ4XXX(time);
             default:
                 return "Not found"; // for my own debugging
         }
@@ -165,39 +168,25 @@ public class EndSceneManager : MonoBehaviour
         if (time <= 210) return "C+";
         if (time <= 220) return "C";
         if (time <= 230) return "D+";
-        if (time <= 240) return "D";
+        if (time <= 300) return "D";
         return "F";
     }
 
     private string calculateGradeForNJ3XXX(float time)
     {
-        if (time <= 180) return "A+";
-        if (time <= 190) return "A";
-        if (time <= 200) return "A-";
-        if (time <= 210) return "B+";
-        if (time <= 220) return "B";
-        if (time <= 230) return "B-";
-        if (time <= 240) return "C+";
-        if (time <= 250) return "C";
-        if (time <= 260) return "D+";
-        if (time <= 270) return "D";
+        if (time <= 210) return "A+";
+        if (time <= 240) return "A";
+        if (time <= 270) return "A-";
+        if (time <= 300) return "B+";
+        if (time <= 330) return "B";
+        if (time <= 360) return "B-";
+        if (time <= 390) return "C+";
+        if (time <= 420) return "C";
+        if (time <= 450) return "D+";
+        if (time <= 480) return "D";
         return "F";
     }
 
-    private string calculateGradeForNJ4XXX(float time)
-    {
-        if (time <= 240) return "A+";
-        if (time <= 250) return "A";
-        if (time <= 260) return "A-";
-        if (time <= 270) return "B+";
-        if (time <= 280) return "B";
-        if (time <= 290) return "B-";
-        if (time <= 300) return "C+";
-        if (time <= 310) return "C";
-        if (time <= 320) return "D+";
-        if (time <= 330) return "D";
-        return "F";
-    }
 
     // Save the player's highscore
     private void updateHighScore(int stars, float time, string grade)
@@ -218,6 +207,27 @@ public class EndSceneManager : MonoBehaviour
             }
         }
         jsonSaving.SaveData();
+    }
+    // check if all stages complete, display credits if they are
+    public void DisplayCredits() {
+        Debug.Log("Checking whether all stages completed");
+        List <StageData> stages = jsonSaving.GetGameData().stages;
+        bool allCompleted = true;
+
+        foreach (StageData stage in stages)
+        {
+            if (stage.bestTime == float.MaxValue)
+            {
+                allCompleted = false;
+                break;
+            }
+        }
+
+        if (allCompleted)
+        {
+            Debug.Log("All stages completed, displaying credits panel");
+            creditsPanel.SetActive(true); // Display the credits panel
+        }
     }
 
     private void UnlockStage()
@@ -256,5 +266,13 @@ public class EndSceneManager : MonoBehaviour
         {
             audioManager.PlaySound(AudioType.Hover);
         }
+    }
+
+    public void BackButton() {
+        if (audioManager != null)
+        {
+            audioManager.PlaySound(AudioType.Click);
+        }
+        creditsPanel.SetActive(false);
     }
 }
